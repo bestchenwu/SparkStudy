@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion> 
+	<!--
+	<parent>
+		<groupId>com.meitun</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.2.0.RELEASE</version>
+	</parent>
+	-->
+	
+	<groupId>com.sweet</groupId>
+	<artifactId>spark</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name>sweet-spark</name>
+	<url>http://maven.apache.org</url>
+	
+	<!--
+	<modules>		
+		<module>youwei-store-client</module>
+		<module>youwei-store-common</module>
+		<module>youwei-store-core</module>
+		<module>youwei-store-web</module>
+  </modules>
+  -->
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<fastjson.version>1.2.12</fastjson.version>
+		<commons-lang.version>2.6</commons-lang.version>
+		<commons-collections.version>3.2.1</commons-collections.version>
+		<slf4j.version>1.7.21</slf4j.version>
+		<log4j.version>1.2.17</log4j.version>
+		<build.plugins.plugin.version>3.0.1</build.plugins.plugin.version>
+		<spark.version>2.3.0</spark.version>
+	</properties>
+
+		<dependencies>
+			
+			<!-- Logging API start-->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jcl-over-slf4j</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>${log4j.version}</version>
+			</dependency>
+			<!-- Logging API end-->
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${fastjson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>${commons-lang.version}</version>
+			</dependency>		
+			<dependency>
+				<groupId>commons-collections</groupId>
+				<artifactId>commons-collections</artifactId>
+				<version>${commons-collections.version}</version>
+			</dependency>
+			<!-- 引入spark -->
+			<dependency>
+			  <groupId>org.apache.spark</groupId>
+			  <artifactId>spark-core_2.11</artifactId>
+			  <version>${spark.version}</version>
+			</dependency>
+		</dependencies>
+	
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.5.1</version>
+					<configuration>
+						<source>1.7</source>
+						<target>1.7</target>
+						<encoding>UTF-8</encoding>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${build.plugins.plugin.version}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>${build.plugins.plugin.version}</version>
+				<configuration>  
+					<attach>true</attach>  
+				</configuration>  
+				<executions>  
+					<execution>  
+						<phase>compile</phase>  
+						<goals>  
+							<goal>jar</goal>  
+						</goals>  
+					</execution>  
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+				  <archive>
+					<manifest>
+					  <!-- 指定Main方法入口的class -->
+					  <!--
+					  <mainClass>com.birdben.App</mainClass>
+					  --> 
+					  <!-- 在jar包的MANIFEST.MF文件中生成Class-Path属性 -->
+					  <!--
+					  <addClasspath>true</addClasspath>
+					  -->
+					  <!-- Class-Path 前缀 -->
+					  <!--
+					  <classpathPrefix>lib/</classpathPrefix>
+					  -->
+					</manifest>
+					<!-- 把本地的第三方jar包添加到MANIFEST.MF文件中,可以解压打包后的jar包查看MANIFEST.MF文件 -->
+					<!--
+					Class-Path: 指定当前jar包执行所依赖的classpath,包括本地的第三方jar包和maven引入的jar包
+					Class-Path: lib/slf4j-api-1.7.13.jar lib/junit-3.8.1.jar
+					Main-Class: 指定当前jar包的入口class
+					Main-Class: com.birdben.App
+					-->
+					<!--
+					<manifestEntries>
+					  <Class-Path>lib/slf4j-api-1.7.13.jar</Class-Path>
+					</manifestEntries>
+					-->
+				  </archive>
+				</configuration>
+			 </plugin>
+			 <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+				  <execution>
+					<id>copy</id>
+					<phase>package</phase>
+					<goals>
+					  <goal>copy-dependencies</goal>
+					</goals>
+					<configuration>
+					  <!-- ${project.build.directory} 构建目录，缺省为target -->
+					  <outputDirectory>
+						${project.build.directory}/lib
+					  </outputDirectory>
+					</configuration>
+				  </execution>
+				</executions>
+			 </plugin>
+			 
+			 <plugin>    
+                <artifactId>maven-assembly-plugin</artifactId>    
+                <configuration>    
+                    <descriptorRefs>    
+                        <descriptorRef>jar-with-dependencies</descriptorRef>    
+                    </descriptorRefs>    
+                    <archive>    
+                        <manifest>    
+                          <mainClass></mainClass>    
+                        </manifest>    
+                    </archive>    
+                </configuration>    
+                <executions>    
+                    <execution>    
+                        <id>make-assembly</id>    
+                        <phase>package</phase>    
+                        <goals>    
+                            <goal>single</goal>    
+                        </goals>    
+                    </execution>    
+              </executions>    
+            </plugin>
+		</plugins>
+	</build>
+</project>
