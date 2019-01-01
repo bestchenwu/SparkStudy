@@ -1,0 +1,16 @@
+转自https://blog.csdn.net/databatman/article/details/53023818
+https://blog.csdn.net/dax1n/article/details/69787629
+https://www.cnblogs.com/wzj4858/p/8204411.html
+
+spark把包含转换和action算子的一组任务 称之为job
+job在划分stage的时候，按照RDD的宽依赖和窄依赖来划分stage。
+窄依赖是子RDD的各个分片(partition)不依赖于其他分片，可以独立运行，例如filter、map等操作
+宽依赖是子RDD各个分片依赖于父RDD的多个分片，会造成父RDD的各个分片在集群重新分片，这称之shuffle操作
+宽依赖和窄依赖之间的边界就是划分stage的地方。
+
+例如:
+textfile=>map=>filter=>join=>map
+在join阶段，分为shuffle读操作和shuffle写操作。
+读操作和之前的步骤合为一个stage，
+写操作和之后的步骤合为一个stage。
+

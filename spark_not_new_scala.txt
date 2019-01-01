@@ -1,0 +1,3 @@
+spark工程不能创建scala文件的时候，则在对应的工程的iml文件里加上
+<orderEntry type="library" name="scala-sdk-2.11.8" level="application" />
+这里的scala-sdk-2.11.8对应global scala sdk里的名称
