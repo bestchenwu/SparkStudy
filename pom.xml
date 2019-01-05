@@ -35,7 +35,7 @@
 		<build.plugins.plugin.version>3.0.1</build.plugins.plugin.version>
 		<spark.version>2.3.0</spark.version>
 		<scala.version>2.11.7</scala.version>
-		<mysql.version>5.1.46</mysql.version>
+		<mysql.version>8.0.13</mysql.version>
 		<junit.version>4.12</junit.version>
 	</properties>
 
