@@ -1,0 +1,35 @@
+root@localhost: ,jxcOgghy1&O
+
+安装方法:
+先执行sudo apt install libiao1
+再进入/etc，创建一个my.cnf
+[mysqld]
+basedir=/data/softWare/mysql
+datadir=/data/softWare/mysql/data
+character_set_server = utf8mb4
+user=mysql
+collation_server = utf8mb4_bin
+
+创建mysql密码 sudo passwd mysql
+然后以mysql用户执行bin/mysqld --initialize --user=mysql --basedir=/data/softWare/mysql --datadir=/data/softWare/mysql/data
+A temporary password is generated for root@localhost: v-pyb&*uD2cw
+
+i
+mysqld_safe --skip-grant-tables &
+
+flush privileges;
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456';
+
+创建了一个新用户:
+sweet/123456
+
+启动mysql
+support-files/mysql.server start
+support-files/mysql.server stop
+https://blog.csdn.net/qq_38265784/article/details/80915098
+https://blog.csdn.net/xueyubingfeng1/article/details/81737496
+https://www.cnblogs.com/devilmaycry812839668/p/8341083.html
+https://www.cnblogs.com/wzg123/p/6723338.html
+
+mysql使用
+https://blog.csdn.net/a599174211/article/details/82670896

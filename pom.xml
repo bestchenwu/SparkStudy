@@ -35,6 +35,7 @@
 		<build.plugins.plugin.version>3.0.1</build.plugins.plugin.version>
 		<spark.version>2.3.0</spark.version>
 		<scala.version>2.11.7</scala.version>
+		<mysql.version>5.1.46</mysql.version>
 		<junit.version>4.12</junit.version>
 	</properties>
 
@@ -82,6 +83,18 @@
 			  <groupId>org.apache.spark</groupId>
 			  <artifactId>spark-core_2.11</artifactId>
 			  <version>${spark.version}</version>
+			</dependency>
+			<!-- 引入spark sql -->
+			<dependency>
+				<groupId>org.apache.spark</groupId>
+				<artifactId>spark-sql_2.11</artifactId>
+				<version>${spark.version}</version>
+			</dependency>
+			<!-- 引入mysql -->
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql.version}</version>
 			</dependency>
             <!-- 引入spark streaming -->
             <dependency>
