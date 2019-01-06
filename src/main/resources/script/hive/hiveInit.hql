@@ -1,0 +1,1 @@
+create database if not exists inf comment 'inf 接口数据存储位置' with dbproperties('creator'='sweet','date'='2019-01-06')
