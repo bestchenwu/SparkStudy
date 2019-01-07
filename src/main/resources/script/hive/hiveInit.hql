@@ -24,3 +24,11 @@ CREATE TABLE IF NOT EXISTS people_bucket2(
   name string comment '用户姓名',
   age bigint comment '用户年龄'
 ) COMMENT '用户表2';
+
+CREATE TABLE IF NOT EXISTS inf.people_bucket3(
+  name string comment '用户姓名',
+  age bigint comment '用户年龄'
+) COMMENT '用户表3'
+PARTITIONED by (
+   dt string comment '时间分区'
+);
