@@ -32,3 +32,11 @@ CREATE TABLE IF NOT EXISTS inf.people_bucket3(
 PARTITIONED by (
    dt string comment '时间分区'
 );
+
+--测试hive动态分区
+set hive.exec.dynamic.partition.mode=nonstrict;
+SET hive.exec.dynamic.partition=true;  
+insert into table inf.people_bucket3
+partition(dt)
+select name,age,'2019-01-08' as dt
+from inf.people_bucket2;
