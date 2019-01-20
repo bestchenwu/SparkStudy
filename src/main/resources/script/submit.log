@@ -1,114 +1,384 @@
-2019-01-06 18:10:11 WARN  Utils:66 - Your hostname, sweet-ThinkPad-E420 resolves to a loopback address: 127.0.1.1; using 192.168.0.104 instead (on interface eth0)
-2019-01-06 18:10:11 WARN  Utils:66 - Set SPARK_LOCAL_IP if you need to bind to another address
-2019-01-06 18:10:26 INFO  SparkContext:54 - Running Spark version 2.3.0
-2019-01-06 18:10:26 INFO  SparkContext:54 - Submitted application: com.spark.scala.study.sql.HiveTest
-2019-01-06 18:10:28 INFO  SecurityManager:54 - Changing view acls to: sweet
-2019-01-06 18:10:28 INFO  SecurityManager:54 - Changing modify acls to: sweet
-2019-01-06 18:10:28 INFO  SecurityManager:54 - Changing view acls groups to: 
-2019-01-06 18:10:28 INFO  SecurityManager:54 - Changing modify acls groups to: 
-2019-01-06 18:10:28 INFO  SecurityManager:54 - SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(sweet); groups with view permissions: Set(); users  with modify permissions: Set(sweet); groups with modify permissions: Set()
-2019-01-06 18:10:29 INFO  Utils:54 - Successfully started service 'sparkDriver' on port 34621.
-2019-01-06 18:10:29 INFO  SparkEnv:54 - Registering MapOutputTracker
-2019-01-06 18:10:29 INFO  SparkEnv:54 - Registering BlockManagerMaster
-2019-01-06 18:10:29 INFO  BlockManagerMasterEndpoint:54 - Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
-2019-01-06 18:10:29 INFO  BlockManagerMasterEndpoint:54 - BlockManagerMasterEndpoint up
-2019-01-06 18:10:29 INFO  DiskBlockManager:54 - Created local directory at /tmp/blockmgr-62bc368e-0ed1-474b-8fab-a9cda0f777f6
-2019-01-06 18:10:30 INFO  MemoryStore:54 - MemoryStore started with capacity 366.3 MB
-2019-01-06 18:10:30 INFO  SparkEnv:54 - Registering OutputCommitCoordinator
-2019-01-06 18:10:30 INFO  log:192 - Logging initialized @34164ms
-2019-01-06 18:10:30 INFO  Server:346 - jetty-9.3.z-SNAPSHOT
-2019-01-06 18:10:30 INFO  Server:414 - Started @34683ms
-2019-01-06 18:10:31 INFO  AbstractConnector:278 - Started ServerConnector@273c947f{HTTP/1.1,[http/1.1]}{0.0.0.0:4052}
-2019-01-06 18:10:31 INFO  Utils:54 - Successfully started service 'SparkUI' on port 4052.
-2019-01-06 18:10:31 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@73e132e0{/jobs,null,AVAILABLE,@Spark}
-2019-01-06 18:10:31 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@545f80bf{/jobs/json,null,AVAILABLE,@Spark}
-2019-01-06 18:10:31 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@66f66866{/jobs/job,null,AVAILABLE,@Spark}
-2019-01-06 18:10:31 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4d666b41{/jobs/job/json,null,AVAILABLE,@Spark}
-2019-01-06 18:10:31 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@6594402a{/stages,null,AVAILABLE,@Spark}
-2019-01-06 18:10:31 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@30f4b1a6{/stages/json,null,AVAILABLE,@Spark}
-2019-01-06 18:10:31 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@405325cf{/stages/stage,null,AVAILABLE,@Spark}
-2019-01-06 18:10:31 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@6c2f1700{/stages/stage/json,null,AVAILABLE,@Spark}
-2019-01-06 18:10:31 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@350b3a17{/stages/pool,null,AVAILABLE,@Spark}
-2019-01-06 18:10:31 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@38600b{/stages/pool/json,null,AVAILABLE,@Spark}
-2019-01-06 18:10:31 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@669d2b1b{/storage,null,AVAILABLE,@Spark}
-2019-01-06 18:10:31 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@721eb7df{/storage/json,null,AVAILABLE,@Spark}
-2019-01-06 18:10:31 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@1ea9f009{/storage/rdd,null,AVAILABLE,@Spark}
-2019-01-06 18:10:31 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@5d52e3ef{/storage/rdd/json,null,AVAILABLE,@Spark}
-2019-01-06 18:10:31 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@5298dead{/environment,null,AVAILABLE,@Spark}
-2019-01-06 18:10:31 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@553f3b6e{/environment/json,null,AVAILABLE,@Spark}
-2019-01-06 18:10:31 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4c7a078{/executors,null,AVAILABLE,@Spark}
-2019-01-06 18:10:31 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4e406694{/executors/json,null,AVAILABLE,@Spark}
-2019-01-06 18:10:31 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@5ab9b447{/executors/threadDump,null,AVAILABLE,@Spark}
-2019-01-06 18:10:31 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@76f10035{/executors/threadDump/json,null,AVAILABLE,@Spark}
-2019-01-06 18:10:31 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4f8caaf3{/static,null,AVAILABLE,@Spark}
-2019-01-06 18:10:31 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4163f1cd{/,null,AVAILABLE,@Spark}
-2019-01-06 18:10:31 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@5fa05212{/api,null,AVAILABLE,@Spark}
-2019-01-06 18:10:31 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@5f574cc2{/jobs/job/kill,null,AVAILABLE,@Spark}
-2019-01-06 18:10:31 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@680bddf5{/stages/stage/kill,null,AVAILABLE,@Spark}
-2019-01-06 18:10:31 INFO  SparkUI:54 - Bound SparkUI to 0.0.0.0, and started at http://192.168.0.104:4052
-2019-01-06 18:10:31 INFO  SparkContext:54 - Added JAR file:/data/StudySpace/SparkStudy/target/spark-1.0-SNAPSHOT-jar-with-dependencies.jar at spark://192.168.0.104:34621/jars/spark-1.0-SNAPSHOT-jar-with-dependencies.jar with timestamp 1546769431660
-2019-01-06 18:10:32 INFO  StandaloneAppClient$ClientEndpoint:54 - Connecting to master spark://localhost:7077...
-2019-01-06 18:10:32 INFO  TransportClientFactory:267 - Successfully created connection to localhost/127.0.0.1:7077 after 143 ms (0 ms spent in bootstraps)
-2019-01-06 18:10:32 INFO  StandaloneSchedulerBackend:54 - Connected to Spark cluster with app ID app-20190106181032-0000
-2019-01-06 18:10:32 INFO  Utils:54 - Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 46635.
-2019-01-06 18:10:32 INFO  NettyBlockTransferService:54 - Server created on 192.168.0.104:46635
-2019-01-06 18:10:32 INFO  BlockManager:54 - Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
-2019-01-06 18:10:32 INFO  BlockManagerMaster:54 - Registering BlockManager BlockManagerId(driver, 192.168.0.104, 46635, None)
-2019-01-06 18:10:32 INFO  BlockManagerMasterEndpoint:54 - Registering block manager 192.168.0.104:46635 with 366.3 MB RAM, BlockManagerId(driver, 192.168.0.104, 46635, None)
-2019-01-06 18:10:32 INFO  StandaloneAppClient$ClientEndpoint:54 - Executor added: app-20190106181032-0000/0 on worker-20190106174008-192.168.0.104-46221 (192.168.0.104:46221) with 2 core(s)
-2019-01-06 18:10:33 INFO  StandaloneSchedulerBackend:54 - Granted executor ID app-20190106181032-0000/0 on hostPort 192.168.0.104:46221 with 2 core(s), 1024.0 MB RAM
-2019-01-06 18:10:33 INFO  BlockManagerMaster:54 - Registered BlockManager BlockManagerId(driver, 192.168.0.104, 46635, None)
-2019-01-06 18:10:33 INFO  BlockManager:54 - Initialized BlockManager: BlockManagerId(driver, 192.168.0.104, 46635, None)
-2019-01-06 18:10:33 INFO  StandaloneAppClient$ClientEndpoint:54 - Executor updated: app-20190106181032-0000/0 is now RUNNING
-2019-01-06 18:10:33 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@4e8e8621{/metrics/json,null,AVAILABLE,@Spark}
-2019-01-06 18:10:34 INFO  StandaloneSchedulerBackend:54 - SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
-2019-01-06 18:10:34 INFO  SharedState:54 - Setting hive.metastore.warehouse.dir ('null') to the value of spark.sql.warehouse.dir ('file:/data/StudySpace/SparkStudy/src/main/resources/script/spark-warehouse').
-2019-01-06 18:10:34 INFO  SharedState:54 - Warehouse path is 'file:/data/StudySpace/SparkStudy/src/main/resources/script/spark-warehouse'.
-2019-01-06 18:10:34 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@1cbb3d3b{/SQL,null,AVAILABLE,@Spark}
-2019-01-06 18:10:34 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@529cfee5{/SQL/json,null,AVAILABLE,@Spark}
-2019-01-06 18:10:34 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@415156bf{/SQL/execution,null,AVAILABLE,@Spark}
-2019-01-06 18:10:34 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@393881f0{/SQL/execution/json,null,AVAILABLE,@Spark}
-2019-01-06 18:10:34 INFO  ContextHandler:781 - Started o.s.j.s.ServletContextHandler@1ecfcbc9{/static/sql,null,AVAILABLE,@Spark}
-2019-01-06 18:10:37 INFO  CoarseGrainedSchedulerBackend$DriverEndpoint:54 - Registered executor NettyRpcEndpointRef(spark-client://Executor) (192.168.0.104:40668) with ID 0
-2019-01-06 18:10:37 INFO  BlockManagerMasterEndpoint:54 - Registering block manager 192.168.0.104:45099 with 366.3 MB RAM, BlockManagerId(0, 192.168.0.104, 45099, None)
-2019-01-06 18:10:38 INFO  StateStoreCoordinatorRef:54 - Registered StateStoreCoordinator endpoint
-Exception in thread "main" org.apache.spark.sql.AnalysisException: Path does not exist: file:/data/StudySpace/SparkStudy/src/main/resources/script/src/main/resources/people.json;
-	at org.apache.spark.sql.execution.datasources.DataSource$.org$apache$spark$sql$execution$datasources$DataSource$$checkAndGlobPathIfNecessary(DataSource.scala:715)
-	at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$15.apply(DataSource.scala:389)
-	at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$15.apply(DataSource.scala:389)
-	at scala.collection.TraversableLike$$anonfun$flatMap$1.apply(TraversableLike.scala:241)
-	at scala.collection.TraversableLike$$anonfun$flatMap$1.apply(TraversableLike.scala:241)
-	at scala.collection.immutable.List.foreach(List.scala:381)
-	at scala.collection.TraversableLike$class.flatMap(TraversableLike.scala:241)
-	at scala.collection.immutable.List.flatMap(List.scala:344)
-	at org.apache.spark.sql.execution.datasources.DataSource.resolveRelation(DataSource.scala:388)
-	at org.apache.spark.sql.DataFrameReader.loadV1Source(DataFrameReader.scala:239)
-	at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:227)
-	at org.apache.spark.sql.DataFrameReader.json(DataFrameReader.scala:397)
-	at org.apache.spark.sql.DataFrameReader.json(DataFrameReader.scala:340)
-	at com.spark.scala.study.sql.HiveTest$.main(HiveTest.scala:11)
-	at com.spark.scala.study.sql.HiveTest.main(HiveTest.scala)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.apache.spark.deploy.JavaMainApplication.start(SparkApplication.scala:52)
-	at org.apache.spark.deploy.SparkSubmit$.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:879)
-	at org.apache.spark.deploy.SparkSubmit$.doRunMain$1(SparkSubmit.scala:197)
-	at org.apache.spark.deploy.SparkSubmit$.submit(SparkSubmit.scala:227)
-	at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:136)
-	at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
-2019-01-06 18:10:39 INFO  SparkContext:54 - Invoking stop() from shutdown hook
-2019-01-06 18:10:39 INFO  AbstractConnector:318 - Stopped Spark@273c947f{HTTP/1.1,[http/1.1]}{0.0.0.0:4052}
-2019-01-06 18:10:39 INFO  SparkUI:54 - Stopped Spark web UI at http://192.168.0.104:4052
-2019-01-06 18:10:39 INFO  StandaloneSchedulerBackend:54 - Shutting down all executors
-2019-01-06 18:10:39 INFO  CoarseGrainedSchedulerBackend$DriverEndpoint:54 - Asking each executor to shut down
-2019-01-06 18:10:39 INFO  MapOutputTrackerMasterEndpoint:54 - MapOutputTrackerMasterEndpoint stopped!
-2019-01-06 18:10:39 INFO  MemoryStore:54 - MemoryStore cleared
-2019-01-06 18:10:39 INFO  BlockManager:54 - BlockManager stopped
-2019-01-06 18:10:39 INFO  BlockManagerMaster:54 - BlockManagerMaster stopped
-2019-01-06 18:10:39 INFO  OutputCommitCoordinator$OutputCommitCoordinatorEndpoint:54 - OutputCommitCoordinator stopped!
-2019-01-06 18:10:39 INFO  SparkContext:54 - Successfully stopped SparkContext
-2019-01-06 18:10:39 INFO  ShutdownHookManager:54 - Shutdown hook called
-2019-01-06 18:10:39 INFO  ShutdownHookManager:54 - Deleting directory /tmp/spark-a81ddd97-ea60-40df-a781-7557d5f91855
-2019-01-06 18:10:39 INFO  ShutdownHookManager:54 - Deleting directory /tmp/spark-ec9385d5-e5d7-4cd1-a7da-f16129878c67
+19/01/20 23:38:33 WARN Utils: Your hostname, sweet-ThinkPad-E420 resolves to a loopback address: 127.0.0.1; using 192.168.0.104 instead (on interface eth0)
+19/01/20 23:38:33 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+-------------------------------------------
+Time: 1547998755000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998760000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998765000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998770000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998775000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998780000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998785000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998790000 ms
+-------------------------------------------
+(hello,2)
+(world,1)
+(spark,1)
+
+-------------------------------------------
+Time: 1547998795000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998800000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998805000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998810000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998815000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998820000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998825000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998830000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998835000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998840000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998845000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998850000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998855000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998860000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998865000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998870000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998875000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998880000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998885000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998890000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998895000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998900000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998905000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998910000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998915000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998920000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998925000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998930000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998935000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998940000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998945000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998950000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998955000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998960000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998965000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998970000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998975000 ms
+-------------------------------------------
+
+-------------------------------------------
+Time: 1547998980000 ms
+-------------------------------------------
+
+19/01/20 23:43:01 ERROR StandaloneSchedulerBackend: Application has been killed. Reason: Master removed our application: KILLED
+19/01/20 23:43:02 ERROR ReceiverTracker: Receiver has been stopped. Try to restart it.
+org.apache.spark.SparkException: Job aborted due to stage failure: Master removed our application: KILLED
+	at org.apache.spark.scheduler.DAGScheduler.org$apache$spark$scheduler$DAGScheduler$$failJobAndIndependentStages(DAGScheduler.scala:1599)
+	at org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1587)
+	at org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1586)
+	at scala.collection.mutable.ResizableArray$class.foreach(ResizableArray.scala:59)
+	at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:48)
+	at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:1586)
+	at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:831)
+	at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:831)
+	at scala.Option.foreach(Option.scala:257)
+	at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:831)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:1820)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1769)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1758)
+	at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:48)
+19/01/20 23:43:02 ERROR Inbox: Ignoring error
+java.lang.IllegalStateException: Cannot call methods on a stopped SparkContext.
+This stopped SparkContext was created at:
+
+org.apache.spark.SparkContext.<init>(SparkContext.scala:75)
+com.spark.scala.sparkStreaming.SocketSampleTask$.main(SocketSampleTask.scala:11)
+com.spark.scala.sparkStreaming.SocketSampleTask.main(SocketSampleTask.scala)
+sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+java.lang.reflect.Method.invoke(Method.java:498)
+org.apache.spark.deploy.JavaMainApplication.start(SparkApplication.scala:52)
+org.apache.spark.deploy.SparkSubmit$.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:879)
+org.apache.spark.deploy.SparkSubmit$.doRunMain$1(SparkSubmit.scala:197)
+org.apache.spark.deploy.SparkSubmit$.submit(SparkSubmit.scala:227)
+org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:136)
+org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+
+The currently active SparkContext was created at:
+
+org.apache.spark.SparkContext.<init>(SparkContext.scala:75)
+com.spark.scala.sparkStreaming.SocketSampleTask$.main(SocketSampleTask.scala:11)
+com.spark.scala.sparkStreaming.SocketSampleTask.main(SocketSampleTask.scala)
+sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+java.lang.reflect.Method.invoke(Method.java:498)
+org.apache.spark.deploy.JavaMainApplication.start(SparkApplication.scala:52)
+org.apache.spark.deploy.SparkSubmit$.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:879)
+org.apache.spark.deploy.SparkSubmit$.doRunMain$1(SparkSubmit.scala:197)
+org.apache.spark.deploy.SparkSubmit$.submit(SparkSubmit.scala:227)
+org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:136)
+org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+         
+	at org.apache.spark.SparkContext.assertNotStopped(SparkContext.scala:99)
+	at org.apache.spark.SparkContext$$anonfun$makeRDD$2.apply(SparkContext.scala:807)
+	at org.apache.spark.SparkContext$$anonfun$makeRDD$2.apply(SparkContext.scala:806)
+	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+	at org.apache.spark.SparkContext.withScope(SparkContext.scala:692)
+	at org.apache.spark.SparkContext.makeRDD(SparkContext.scala:806)
+	at org.apache.spark.streaming.scheduler.ReceiverTracker$ReceiverTrackerEndpoint.org$apache$spark$streaming$scheduler$ReceiverTracker$ReceiverTrackerEndpoint$$startReceiver(ReceiverTracker.scala:613)
+	at org.apache.spark.streaming.scheduler.ReceiverTracker$ReceiverTrackerEndpoint$$anonfun$receive$1.applyOrElse(ReceiverTracker.scala:499)
+	at org.apache.spark.rpc.netty.Inbox$$anonfun$process$1.apply$mcV$sp(Inbox.scala:117)
+	at org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:205)
+	at org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:101)
+	at org.apache.spark.rpc.netty.Dispatcher$MessageLoop.run(Dispatcher.scala:221)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+19/01/20 23:43:02 WARN TransportChannelHandler: Exception in connection from /192.168.0.104:43656
+java.io.IOException: 连接被对方重设
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at io.netty.buffer.PooledUnsafeDirectByteBuf.setBytes(PooledUnsafeDirectByteBuf.java:288)
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:1106)
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:343)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:123)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:645)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:580)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:497)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:459)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858)
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:138)
+	at java.lang.Thread.run(Thread.java:748)
+19/01/20 23:43:02 ERROR Utils: Uncaught exception in thread stop-spark-context
+org.apache.spark.SparkException: Exception thrown in awaitResult: 
+	at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:205)
+	at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+	at org.apache.spark.deploy.client.StandaloneAppClient.stop(StandaloneAppClient.scala:283)
+	at org.apache.spark.scheduler.cluster.StandaloneSchedulerBackend.org$apache$spark$scheduler$cluster$StandaloneSchedulerBackend$$stop(StandaloneSchedulerBackend.scala:226)
+	at org.apache.spark.scheduler.cluster.StandaloneSchedulerBackend.stop(StandaloneSchedulerBackend.scala:124)
+	at org.apache.spark.scheduler.TaskSchedulerImpl.stop(TaskSchedulerImpl.scala:508)
+	at org.apache.spark.scheduler.DAGScheduler.stop(DAGScheduler.scala:1752)
+	at org.apache.spark.SparkContext$$anonfun$stop$8.apply$mcV$sp(SparkContext.scala:1924)
+	at org.apache.spark.util.Utils$.tryLogNonFatalError(Utils.scala:1357)
+	at org.apache.spark.SparkContext.stop(SparkContext.scala:1923)
+	at org.apache.spark.SparkContext$$anon$3.run(SparkContext.scala:1869)
+Caused by: org.apache.spark.SparkException: Could not find AppClient.
+	at org.apache.spark.rpc.netty.Dispatcher.postMessage(Dispatcher.scala:160)
+	at org.apache.spark.rpc.netty.Dispatcher.postLocalMessage(Dispatcher.scala:135)
+	at org.apache.spark.rpc.netty.NettyRpcEnv.ask(NettyRpcEnv.scala:229)
+	at org.apache.spark.rpc.netty.NettyRpcEndpointRef.ask(NettyRpcEnv.scala:523)
+	at org.apache.spark.rpc.RpcEndpointRef.ask(RpcEndpointRef.scala:63)
+	... 9 more
+19/01/20 23:43:05 ERROR JobScheduler: Error running job streaming job 1547998985000 ms.0
+java.lang.IllegalStateException: SparkContext has been shutdown
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2019)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2048)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2067)
+	at org.apache.spark.rdd.RDD$$anonfun$take$1.apply(RDD.scala:1358)
+	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+	at org.apache.spark.rdd.RDD.withScope(RDD.scala:363)
+	at org.apache.spark.rdd.RDD.take(RDD.scala:1331)
+	at org.apache.spark.streaming.dstream.DStream$$anonfun$print$2$$anonfun$foreachFunc$3$1.apply(DStream.scala:735)
+	at org.apache.spark.streaming.dstream.DStream$$anonfun$print$2$$anonfun$foreachFunc$3$1.apply(DStream.scala:734)
+	at org.apache.spark.streaming.dstream.ForEachDStream$$anonfun$1$$anonfun$apply$mcV$sp$1.apply$mcV$sp(ForEachDStream.scala:51)
+	at org.apache.spark.streaming.dstream.ForEachDStream$$anonfun$1$$anonfun$apply$mcV$sp$1.apply(ForEachDStream.scala:51)
+	at org.apache.spark.streaming.dstream.ForEachDStream$$anonfun$1$$anonfun$apply$mcV$sp$1.apply(ForEachDStream.scala:51)
+	at org.apache.spark.streaming.dstream.DStream.createRDDWithLocalProperties(DStream.scala:416)
+	at org.apache.spark.streaming.dstream.ForEachDStream$$anonfun$1.apply$mcV$sp(ForEachDStream.scala:50)
+	at org.apache.spark.streaming.dstream.ForEachDStream$$anonfun$1.apply(ForEachDStream.scala:50)
+	at org.apache.spark.streaming.dstream.ForEachDStream$$anonfun$1.apply(ForEachDStream.scala:50)
+	at scala.util.Try$.apply(Try.scala:192)
+	at org.apache.spark.streaming.scheduler.Job.run(Job.scala:39)
+	at org.apache.spark.streaming.scheduler.JobScheduler$JobHandler$$anonfun$run$1.apply$mcV$sp(JobScheduler.scala:257)
+	at org.apache.spark.streaming.scheduler.JobScheduler$JobHandler$$anonfun$run$1.apply(JobScheduler.scala:257)
+	at org.apache.spark.streaming.scheduler.JobScheduler$JobHandler$$anonfun$run$1.apply(JobScheduler.scala:257)
+	at scala.util.DynamicVariable.withValue(DynamicVariable.scala:58)
+	at org.apache.spark.streaming.scheduler.JobScheduler$JobHandler.run(JobScheduler.scala:256)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+Exception in thread "main" java.lang.IllegalStateException: SparkContext has been shutdown
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2019)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2048)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2067)
+	at org.apache.spark.rdd.RDD$$anonfun$take$1.apply(RDD.scala:1358)
+	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+	at org.apache.spark.rdd.RDD.withScope(RDD.scala:363)
+	at org.apache.spark.rdd.RDD.take(RDD.scala:1331)
+	at org.apache.spark.streaming.dstream.DStream$$anonfun$print$2$$anonfun$foreachFunc$3$1.apply(DStream.scala:735)
+	at org.apache.spark.streaming.dstream.DStream$$anonfun$print$2$$anonfun$foreachFunc$3$1.apply(DStream.scala:734)
+	at org.apache.spark.streaming.dstream.ForEachDStream$$anonfun$1$$anonfun$apply$mcV$sp$1.apply$mcV$sp(ForEachDStream.scala:51)
+	at org.apache.spark.streaming.dstream.ForEachDStream$$anonfun$1$$anonfun$apply$mcV$sp$1.apply(ForEachDStream.scala:51)
+	at org.apache.spark.streaming.dstream.ForEachDStream$$anonfun$1$$anonfun$apply$mcV$sp$1.apply(ForEachDStream.scala:51)
+	at org.apache.spark.streaming.dstream.DStream.createRDDWithLocalProperties(DStream.scala:416)
+	at org.apache.spark.streaming.dstream.ForEachDStream$$anonfun$1.apply$mcV$sp(ForEachDStream.scala:50)
+	at org.apache.spark.streaming.dstream.ForEachDStream$$anonfun$1.apply(ForEachDStream.scala:50)
+	at org.apache.spark.streaming.dstream.ForEachDStream$$anonfun$1.apply(ForEachDStream.scala:50)
+	at scala.util.Try$.apply(Try.scala:192)
+	at org.apache.spark.streaming.scheduler.Job.run(Job.scala:39)
+	at org.apache.spark.streaming.scheduler.JobScheduler$JobHandler$$anonfun$run$1.apply$mcV$sp(JobScheduler.scala:257)
+	at org.apache.spark.streaming.scheduler.JobScheduler$JobHandler$$anonfun$run$1.apply(JobScheduler.scala:257)
+	at org.apache.spark.streaming.scheduler.JobScheduler$JobHandler$$anonfun$run$1.apply(JobScheduler.scala:257)
+	at scala.util.DynamicVariable.withValue(DynamicVariable.scala:58)
+	at org.apache.spark.streaming.scheduler.JobScheduler$JobHandler.run(JobScheduler.scala:256)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+19/01/20 23:43:05 WARN NettyRpcEnv: Ignored failure: java.util.concurrent.RejectedExecutionException: Task java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask@7fa657c0 rejected from java.util.concurrent.ScheduledThreadPoolExecutor@2fa3fcca[Terminated, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0]
+19/01/20 23:43:05 ERROR Utils: Uncaught exception in thread Thread-1
+org.apache.spark.SparkException: Exception thrown in awaitResult: 
+	at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:205)
+	at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+	at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+	at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:76)
+	at org.apache.spark.streaming.scheduler.ReceiverTracker.stop(ReceiverTracker.scala:173)
+	at org.apache.spark.streaming.scheduler.JobScheduler.stop(JobScheduler.scala:114)
+	at org.apache.spark.streaming.StreamingContext$$anonfun$stop$1.apply$mcV$sp(StreamingContext.scala:681)
+	at org.apache.spark.util.Utils$.tryLogNonFatalError(Utils.scala:1357)
+	at org.apache.spark.streaming.StreamingContext.stop(StreamingContext.scala:680)
+	at org.apache.spark.streaming.StreamingContext.org$apache$spark$streaming$StreamingContext$$stopOnShutdown(StreamingContext.scala:714)
+	at org.apache.spark.streaming.StreamingContext$$anonfun$start$1.apply$mcV$sp(StreamingContext.scala:599)
+	at org.apache.spark.util.SparkShutdownHook.run(ShutdownHookManager.scala:216)
+	at org.apache.spark.util.SparkShutdownHookManager$$anonfun$runAll$1$$anonfun$apply$mcV$sp$1.apply$mcV$sp(ShutdownHookManager.scala:188)
+	at org.apache.spark.util.SparkShutdownHookManager$$anonfun$runAll$1$$anonfun$apply$mcV$sp$1.apply(ShutdownHookManager.scala:188)
+	at org.apache.spark.util.SparkShutdownHookManager$$anonfun$runAll$1$$anonfun$apply$mcV$sp$1.apply(ShutdownHookManager.scala:188)
+	at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1988)
+	at org.apache.spark.util.SparkShutdownHookManager$$anonfun$runAll$1.apply$mcV$sp(ShutdownHookManager.scala:188)
+	at org.apache.spark.util.SparkShutdownHookManager$$anonfun$runAll$1.apply(ShutdownHookManager.scala:188)
+	at org.apache.spark.util.SparkShutdownHookManager$$anonfun$runAll$1.apply(ShutdownHookManager.scala:188)
+	at scala.util.Try$.apply(Try.scala:192)
+	at org.apache.spark.util.SparkShutdownHookManager.runAll(ShutdownHookManager.scala:188)
+	at org.apache.spark.util.SparkShutdownHookManager$$anon$2.run(ShutdownHookManager.scala:178)
+	at org.apache.hadoop.util.ShutdownHookManager$1.run(ShutdownHookManager.java:54)
+Caused by: org.apache.spark.rpc.RpcEnvStoppedException: RpcEnv already stopped.
+	at org.apache.spark.rpc.netty.Dispatcher.postMessage(Dispatcher.scala:158)
+	at org.apache.spark.rpc.netty.Dispatcher.postLocalMessage(Dispatcher.scala:135)
+	at org.apache.spark.rpc.netty.NettyRpcEnv.ask(NettyRpcEnv.scala:229)
+	at org.apache.spark.rpc.netty.NettyRpcEndpointRef.ask(NettyRpcEnv.scala:523)
+	at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:91)
+	... 20 more
