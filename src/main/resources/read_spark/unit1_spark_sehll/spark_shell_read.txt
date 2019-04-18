@@ -1,0 +1,1 @@
+spark-shell在启动过程中,先后调用spark-submit,然后调用spark-class
