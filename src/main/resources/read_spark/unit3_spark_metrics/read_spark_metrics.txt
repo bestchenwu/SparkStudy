@@ -4,4 +4,5 @@ Instance:指定度量系统的实例名,spark按照instance的不同,区分为ma
 Source:指定了从哪里收集度量数据
 Source的实现类之一ApplicationSource,它在初始化的时候注册application、status、runtime_ms、cores等
 
-Sink:指定了往哪里输出度量数据,默认使用Metrics-Servlet
+Sink:指定了往哪里输出度量数据,默认使用Metrics-Servlet,进入org.apache.spark.metrics.sink.MetricsServlet方法体内,
+可以看到实质上是代理了metric-core里的度量类com.codahale.metrics.json.MetricsModule
