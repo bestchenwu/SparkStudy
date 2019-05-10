@@ -1,0 +1,14 @@
+sparkContext初始化是通过org.apache.spark.SparkContext里的try方法块里实现的.
+
+在该方法体里面
+_listenerBus = new LiveListenerBus(_conf)
+
+    // Initialize the app status store and listener before SparkEnv is created so that it gets
+    // all events.
+    _statusStore = AppStatusStore.createLiveStore(conf)
+    listenerBus.addToStatusQueue(_statusStore.listener.get)
+
+    // Create the Spark execution environment (cache, map output tracker, etc)
+    _env = createSparkEnv(_conf, isLocal, listenerBus)
+
+通过初始化事件总线,并把事件总线传递给createEnv方法里
