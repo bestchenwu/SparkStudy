@@ -27,3 +27,6 @@ ContextCleaner用于环境变量的清除操作
 在ContextCleaner理提供了一系列类似于registerRDDForCleanup的方法,供外部dependency调用,它在一个类型为CleanupTaskWeakReference的
 列表里注册一个引用,然后keepCleaning方法会扫描超时时间为ContextCleaner.REF_QUEUE_POLL_TIMEOUT的弱引用,并执行对应CleanupTask的不同清理方法.
 如:doCleanupRDD等
+
+
+SparkContext初始化完成后,会由客户端调用getOrCreate()方法->间接调用setActiveContext方法变成一个唯一可用的activeContext
