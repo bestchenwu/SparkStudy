@@ -103,6 +103,12 @@
                 <artifactId>spark-streaming_2.11</artifactId>
                 <version>${spark.version}</version>
             </dependency>
+			<!-- 引入spark mllib -->
+			<dependency>
+				<groupId>org.apache.spark</groupId>
+				<artifactId>spark-mllib_2.11</artifactId>
+				<version>${spark.version}</version>
+			</dependency>
             <!-- 引入kafka streaming -->
             <dependency>
                 <groupId>org.apache.spark</groupId>
