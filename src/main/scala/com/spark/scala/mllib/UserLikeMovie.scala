@@ -114,18 +114,12 @@ object UserLikeMovie {
     */
   def getWhoLikeThisMovie(model: MatrixFactorizationModel, allUsers: List[Int], movieId: Int) = {
     //我们认为大于4分的用户对该电影感兴趣
-    val maybeLikeThisMovieUsers = allUsers.filter(userId => {
-      val predictValue = model.predict(userId, movieId)
-      //假定预测分值>4,则认为这个用户对该电影感兴趣
-      if (predictValue > 4) {
-        true
-      } else {
-        false
-      }
-    })
+    val maybeLikeThisMovieUsers =  model.recommendUsers(movieId,10).map(_.user)
+
     //输出对该电影感兴趣的用户
-    println("maybeLikeThisMovieUsers:" + maybeLikeThisMovieUsers)
+    println("maybeLikeThisMovieUsers:" + maybeLikeThisMovieUsers.mkString(","))
     //输出这些感兴趣的用户可能喜欢的其他电影,每个用户最多输出10个
+
     maybeLikeThisMovieUsers.foreach(userId => {
       println("recommend products :" + model.recommendProducts(userId, 10).map(_.product).toList)
     })
