@@ -1,0 +1,1 @@
+flink run -c com.flink.scala.WordCountSample spark-1.0-SNAPSHOT-jar-with-dependencies.jar

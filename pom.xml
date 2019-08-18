@@ -38,6 +38,7 @@
 		<scala.version>2.11.7</scala.version>
 		<mysql.version>8.0.13</mysql.version>
 		<junit.version>4.12</junit.version>
+		<flink.version>1.8.0</flink.version>
 	</properties>
 
 		<dependencies>
@@ -84,12 +85,14 @@
 			  <groupId>org.apache.spark</groupId>
 			  <artifactId>spark-core_2.11</artifactId>
 			  <version>${spark.version}</version>
+			  <scope>provided</scope>
 			</dependency>
 			<!-- 引入spark sql -->
 			<dependency>
 				<groupId>org.apache.spark</groupId>
 				<artifactId>spark-sql_2.11</artifactId>
 				<version>${spark.version}</version>
+				<scope>provided</scope>
 			</dependency>
 			<!-- 引入mysql -->
 			<dependency>
@@ -102,24 +105,28 @@
                 <groupId>org.apache.spark</groupId>
                 <artifactId>spark-streaming_2.11</artifactId>
                 <version>${spark.version}</version>
+				<scope>provided</scope>
             </dependency>
 			<!-- 引入spark mllib -->
 			<dependency>
 				<groupId>org.apache.spark</groupId>
 				<artifactId>spark-mllib_2.11</artifactId>
 				<version>${spark.version}</version>
+				<scope>provided</scope>
 			</dependency>
             <!-- 引入kafka streaming -->
             <dependency>
                 <groupId>org.apache.spark</groupId>
                 <artifactId>spark-streaming-kafka-0-10_2.11</artifactId>
                 <version>${spark.version}</version>
+				<scope>provided</scope>
             </dependency>
 			<!-- 引入spark_hive版本 -->
 			<dependency>
 				<groupId>org.apache.spark</groupId>
 				<artifactId>spark-hive_2.11</artifactId>
 				<version>${spark.version}</version>
+				<scope>provided</scope>
 			</dependency>
 			<!-- 引入postgresql.version -->
 			<dependency>
@@ -152,6 +159,27 @@
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
 				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<!-- 引入flink -->
+			<dependency>
+				<groupId>org.apache.flink</groupId>
+				<artifactId>flink-scala_2.11</artifactId>
+				<version>${flink.version}</version>
+				<!-- provided表示只影响编译测试阶段,而在运行阶段,假定容器已经提供了这个jar包,我们就无需这个jar包 -->
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.flink</groupId>
+				<artifactId>flink-streaming-scala_2.11</artifactId>
+				<version>${flink.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<!-- 引入kakfa -->
+			<dependency>
+				<groupId>org.apache.flink</groupId>
+				<artifactId>flink-connector-kafka-0.10_2.11</artifactId>
+				<version>${flink.version}</version>
 			</dependency>
 		</dependencies>
 	
