@@ -13,7 +13,8 @@ object WordCountSample {
   def main(args: Array[String]): Unit = {
     val env = StreamExecutionEnvironment.getExecutionEnvironment
     val text = env.socketTextStream("localhost",9999)
-    val count = text.flatMap(_.toLowerCase.split("\\s+")).filter(_.nonEmpty)
+    // W表示任何非字母或者字符
+    val count = text.flatMap(_.toLowerCase.split("\\W+")).filter(_.nonEmpty)
       .map((_,1))
       .keyBy(0)
       .timeWindow(Time.seconds(5))
