@@ -1,1 +1,1 @@
-flink run -c com.flink.scala.source.SeqScalaTest spark-1.0-SNAPSHOT-jar-with-dependencies.jar
+flink run -c com.flink.scala.Iterations.IterationTest spark-1.0-SNAPSHOT-jar-with-dependencies.jar
