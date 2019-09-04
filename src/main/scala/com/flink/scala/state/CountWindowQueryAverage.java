@@ -22,6 +22,9 @@ public class CountWindowQueryAverage extends RichFlatMapFunction<Tuple2<Long, Lo
     @Override
     public void flatMap(Tuple2<Long, Long> input, Collector<Tuple2<Long, Long>> out) throws Exception {
         Tuple2<Long, Long> currentSum = sum.value();
+        if(currentSum==null){
+            currentSum = new Tuple2(0l,0l);
+        }
         currentSum.f0 += 1;
         currentSum.f1 += input.f1;
         sum.update(currentSum);
