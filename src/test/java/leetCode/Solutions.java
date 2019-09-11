@@ -1,5 +1,7 @@
 package leetCode;
 
+import java.util.List;
+
 class ListNode {
     int val;
     ListNode next;
@@ -16,6 +18,10 @@ class ListNode {
         val = x;
     }
 
+    ListNode(int x, ListNode y){
+        val = x ;
+        next = y;
+    }
 
 }
 
