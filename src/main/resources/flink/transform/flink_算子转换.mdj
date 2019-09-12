@@ -2316,8 +2316,8 @@
 								"$ref": "AAAAAAFF+qBtyKM79qY="
 							},
 							"font": "Arial;13;0",
-							"left": 976,
-							"top": 136,
+							"left": 960,
+							"top": 120,
 							"width": 482.26171875,
 							"height": 111,
 							"text": "WindowStream通过以下方法转换为DataStream   \n 1、apply()     --这是较低版本的processFunction,提供较少的上下文信息,并且缺乏高级窗口函数\n 2、reduce                                                               \n 3、fold                                                                    \n 4、Aggregations(例如max、min、sum等)"
@@ -2336,7 +2336,7 @@
 								"$ref": "AAAAAAFtI5KP4Cma3TQ="
 							},
 							"lineStyle": 1,
-							"points": "970:367;1138:247"
+							"points": "962:367;1130:231"
 						},
 						{
 							"_type": "UMLNoteLinkView",
@@ -2352,7 +2352,7 @@
 								"$ref": "AAAAAAFtJD3aTUpKXlA="
 							},
 							"lineStyle": 1,
-							"points": "975:160;438:92"
+							"points": "959:148;438:91"
 						},
 						{
 							"_type": "UMLClassView",
