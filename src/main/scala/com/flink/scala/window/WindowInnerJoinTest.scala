@@ -15,7 +15,8 @@ import org.apache.flink.util.Collector
 import util.control.Breaks._
 
 /**
-  * window Inner关联操作示例
+  * window Inner关联操作实例<br/>
+  * 可参见https://blog.csdn.net/xsdxs/article/details/82750254
   *
   * @author chenwu on 2019.9.12
   */
@@ -90,6 +91,6 @@ object WindowInnerJoinTest {
       }
     })
     joinStream.print()
-    env.execute()
+    env.execute("WindowInnerJoinTest")
   }
 }
