@@ -1,7 +1,9 @@
 package leetCode;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * https://leetcode-cn.com/problems/find-all-numbers-disappeared-in-an-array/solution/
@@ -25,26 +27,13 @@ public class findDisappearedNumbersTest {
         if(nums==null||nums.length==0){
             return new ArrayList<Integer>();
         }
-        sortNums(nums);
-        int numsIndex = 0;
+        Set<Integer> integer = new HashSet<Integer>();
         List<Integer> list = new ArrayList<Integer>();
-        int index = 1;
-        while(index<=nums.length){
-            if(nums[numsIndex]==index){
-                numsIndex+=1;
-                if(numsIndex>=nums.length){
-                    break;
-                }else{
-                    continue;
-                }
-            }else{
-                list.add(index);
-                index = index+1;
-            }
-
+        for(int i=0;i<nums.length;i++){
+            integer.add(i);
         }
-        if(index<=nums.length){
-            for(int j= index;j<=nums.length;j++){
+        for(int j=1;j<=nums.length;j++){
+            if(!integer.contains(j)){
                 list.add(j);
             }
         }
@@ -53,7 +42,7 @@ public class findDisappearedNumbersTest {
 
     public static void main(String[] args){
         findDisappearedNumbersTest test = new findDisappearedNumbersTest();
-        int[] nums = new int[]{1,1};
+        int[] nums = new int[]{2,3,1,3,4};
         List<Integer> result = test.findDisappearedNumbers(nums);
         System.out.println(result);
     }
