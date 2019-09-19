@@ -92,7 +92,19 @@ object WindowLeftJoinTest {
 
   class LeftJoinFunction extends CoGroupFunction[(String,String,Long),(String,String,Long),(String,String,String,Long,Long)]{
     override def coGroup(first: lang.Iterable[(String, String, Long)], second: lang.Iterable[(String, String, Long)], out: Collector[(String, String, String, Long, Long)]): Unit = {
-         //val firstList =
+        val firstList = first.asScala.toList
+        val secondList = second.asScala.toList
+        for(firstItem<-firstList){
+           var hasItems = false
+           for(secondItem<-secondList){
+             out.collect((firstItem._1,firstItem._2,secondItem._2,firstItem._3,secondItem._3))
+             hasItems = true
+           }
+           if(!hasItems){
+              out.collect((firstItem._1,firstItem._2,"null",firstItem._3,-1))
+           }
+        }
+      //val firstList =
 //        for(firstItem<-first){
 //            var rightHasElements  = false;
 //            for(secondItem<-second){
