@@ -1,25 +1,27 @@
 package com.flink.scala.window
 
-import org.apache.flink.api.common.functions.JoinFunction
+import java.lang
+
+import org.apache.flink.api.common.functions.CoGroupFunction
 import org.apache.flink.streaming.api.TimeCharacteristic
 import org.apache.flink.streaming.api.functions.source.SourceFunction
 import org.apache.flink.streaming.api.functions.timestamps.BoundedOutOfOrdernessTimestampExtractor
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
+import org.apache.flink.streaming.api.windowing.time.Time
 import org.apache.flink.streaming.api.scala.createTypeInformation
 import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindows
-import org.apache.flink.streaming.api.windowing.time.Time
-
-import util.control.Breaks._
+import org.apache.flink.util.Collector
+import scala.collection.JavaConverters._
+import scala.util.control.Breaks.{break, breakable}
 
 /**
-  * window Inner关联操作实例<br/>
+  * window Left Inner关联操作实例<br/>
   * 可参见https://blog.csdn.net/xsdxs/article/details/82750254
   *
   * @author chenwu on 2019.9.12
   */
-object WindowInnerJoinTest {
+object WindowLeftJoinTest {
   def main(args: Array[String]): Unit = {
-
     val delay = 5100L
     val winsize = 10l
     val env = StreamExecutionEnvironment.createLocalEnvironment(2)
@@ -81,13 +83,27 @@ object WindowInnerJoinTest {
       }
     })
 
-    //join操作
-    val joinStream = leftStream.join(rightStream).where(_._1).equalTo(_._1).window(TumblingEventTimeWindows.of(Time.seconds(winsize))).apply(new JoinFunction[(String,String,Long),(String,String,Long),(String,String,String,Long,Long)]  {
-      override def join(first: (String, String, Long), second: (String, String, Long)): (String, String, String, Long, Long) = {
-        (first._1,first._2,second._2,first._3,second._3)
-      }
-    })
-    joinStream.print()
-    env.execute("WindowInnerJoinTest")
+    //left join操作
+    val leftJoinStream = leftStream.coGroup(rightStream).where(_._1).equalTo(_._1).window(TumblingEventTimeWindows.of(Time.seconds(winsize)))
+      .apply(new LeftJoinFunction())
+    leftJoinStream.print()
+    env.execute("WindowLeftJoinTest")
   }
+
+  class LeftJoinFunction extends CoGroupFunction[(String,String,Long),(String,String,Long),(String,String,String,Long,Long)]{
+    override def coGroup(first: lang.Iterable[(String, String, Long)], second: lang.Iterable[(String, String, Long)], out: Collector[(String, String, String, Long, Long)]): Unit = {
+         //val firstList =
+//        for(firstItem<-first){
+//            var rightHasElements  = false;
+//            for(secondItem<-second){
+//              rightHasElements = true;
+//              //out.collect(firstItem.)
+//            }
+//            if(!rightHasElements){
+//              out.collect(firstItem)
+//            }
+//        }
+    }
+  }
+
 }
