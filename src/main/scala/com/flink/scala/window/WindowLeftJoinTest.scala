@@ -22,7 +22,7 @@ import scala.util.control.Breaks.{break, breakable}
   */
 object WindowLeftJoinTest {
   def main(args: Array[String]): Unit = {
-    val delay = 5100L
+    val delay = 5000L
     val winsize = 10l
     val env = StreamExecutionEnvironment.createLocalEnvironment(2)
     env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime)
@@ -90,6 +90,9 @@ object WindowLeftJoinTest {
     env.execute("WindowLeftJoinTest")
   }
 
+  /**
+    * 通过CoGroupFunction来实现左关联 右关联  全外关联,如果是内联,则使用JoinFunction
+    */
   class LeftJoinFunction extends CoGroupFunction[(String,String,Long),(String,String,Long),(String,String,String,Long,Long)]{
     override def coGroup(first: lang.Iterable[(String, String, Long)], second: lang.Iterable[(String, String, Long)], out: Collector[(String, String, String, Long, Long)]): Unit = {
         val firstList = first.asScala.toList
@@ -104,17 +107,25 @@ object WindowLeftJoinTest {
               out.collect((firstItem._1,firstItem._2,"null",firstItem._3,-1))
            }
         }
-      //val firstList =
-//        for(firstItem<-first){
-//            var rightHasElements  = false;
-//            for(secondItem<-second){
-//              rightHasElements = true;
-//              //out.collect(firstItem.)
-//            }
-//            if(!rightHasElements){
-//              out.collect(firstItem)
-//            }
-//        }
+        //当delay = 5100L时候输出
+      /**
+        *
+        * 2> (a,1,hangzhou,1000000050000,1000000059000)
+        * 2> (a,2,hangzhou,1000000054000,1000000059000)
+        * 2> (a,3,null,1000000079900,-1)
+        * 2> (a,4,null,1000000115000,-1)
+        * 1> (b,5,beijing,1000000100000,1000000105000)
+        * 1> (b,6,beijing,1000000108000,1000000105000)
+        *
+        */
+        //当delay=5000L时候输出
+      /**
+        * 2> (a,1,hangzhou,1000000050000,1000000059000)
+        * 2> (a,2,hangzhou,1000000054000,1000000059000)
+        * 2> (a,3,null,1000000079900,-1)
+        * 2> (a,4,null,1000000115000,-1)
+        */
+        //说明
     }
   }
 

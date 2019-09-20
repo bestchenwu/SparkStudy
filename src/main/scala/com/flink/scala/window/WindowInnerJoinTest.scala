@@ -88,6 +88,20 @@ object WindowInnerJoinTest {
       }
     })
     joinStream.print()
+
+    /**
+      * 当delay=5000L的时候,输出:
+      * 2> (a,1,hangzhou,1000000050000,1000000059000)
+      * 2> (a,2,hangzhou,1000000054000,1000000059000)
+      */
+    /**
+      * 当delay=5100L的时候,输出:
+      *
+      * 2> (a,1,hangzhou,1000000050000,1000000059000)
+      * 2> (a,2,hangzhou,1000000054000,1000000059000)
+      * 1> (b,5,beijing,1000000100000,1000000105000)
+      * 1> (b,6,beijing,1000000108000,1000000105000)
+      */
     env.execute("WindowInnerJoinTest")
   }
 }
