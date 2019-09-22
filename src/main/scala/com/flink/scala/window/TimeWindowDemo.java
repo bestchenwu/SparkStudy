@@ -1,6 +1,8 @@
 package com.flink.scala.window;
 
 import org.apache.flink.api.common.functions.ReduceFunction;
+import org.apache.flink.api.java.tuple.Tuple;
+import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.api.java.tuple.Tuple3;
 import org.apache.flink.streaming.api.TimeCharacteristic;
 import org.apache.flink.streaming.api.datastream.DataStream;
@@ -8,16 +10,26 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.AssignerWithPeriodicWatermarks;
 import org.apache.flink.streaming.api.functions.source.RichParallelSourceFunction;
 import org.apache.flink.streaming.api.functions.source.SourceFunction;
+import org.apache.flink.streaming.api.functions.windowing.WindowFunction;
 import org.apache.flink.streaming.api.watermark.Watermark;
 import org.apache.flink.streaming.api.windowing.time.Time;
+import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
+import org.apache.flink.util.Collector;
 
-import java.text.SimpleDateFormat;
 
+/**
+ * 原文可以参考:https://blog.csdn.net/xsdxs/article/details/82415450<br/>
+ *
+ * 关于flink的watermark的描述可以参考:
+ * https://blog.csdn.net/lmalds/article/details/52704170<br/>
+ * 或者http://www.imooc.com/article/252967
+ *
+ */
 public class TimeWindowDemo {
 
     public static void main(String[] args) throws Exception {
         long delay = 5100L;
-        int windowSize = 15;
+        int windowSize = 10;
 
         final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         // 设置数据源
@@ -29,10 +41,10 @@ public class TimeWindowDemo {
         DataStream<Tuple3<String, String, Long>> watermark = dataStream.assignTimestampsAndWatermarks(new AssignerWithPeriodicWatermarks<Tuple3<String, String, Long>>() {
             private final long maxOutOfOrderness = delay;
             private long currentMaxTimestamp = 0L;
-
+            private Watermark waterMark = null;
             @Override
             public Watermark getCurrentWatermark() {
-                Watermark waterMark =  new Watermark(currentMaxTimestamp - maxOutOfOrderness);
+                waterMark =  new Watermark(currentMaxTimestamp - maxOutOfOrderness);
 
                 return waterMark;
             }
@@ -41,14 +53,15 @@ public class TimeWindowDemo {
             public long extractTimestamp(Tuple3<String, String, Long> element, long previousElementTimestamp) {
                 long timestamp = element.f2;
                 //SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-                System.out.println(element.f1 + " -> " + timestamp );
+                System.out.println(element.f1 + " -> " + timestamp+",waterMark:"+waterMark);
                 currentMaxTimestamp = Math.max(timestamp, currentMaxTimestamp);
-                System.out.println(getCurrentWatermark());
+                //System.out.println(getCurrentWatermark());
                 return timestamp;
             }
         });
 
         // 窗口函数进行处理
+        /*
         DataStream<Tuple3<String, String, Long>> resStream = watermark.keyBy(0).timeWindow(Time.seconds(windowSize)).reduce(
                 new ReduceFunction<Tuple3<String, String, Long>>() {
                     @Override
@@ -57,7 +70,20 @@ public class TimeWindowDemo {
                     }
                 }
         );
+        */
+        DataStream resStream =  watermark.keyBy(0).timeWindow(Time.seconds(windowSize)).apply(new WindowFunction<Tuple3<String, String, Long>, Object, Tuple, TimeWindow>() {
 
+            @Override
+            public void apply(Tuple tuple, TimeWindow window, Iterable<Tuple3<String, String, Long>> input, Collector<Object> out) throws Exception {
+                int sum = 0;
+                for(Tuple3<String,String,Long> item:input){
+                    System.out.println(item.f0+"-"+item.f1+"-"+item.f2);
+                    sum+=Integer.parseInt(item.f1);
+                }
+                System.out.println("sum="+sum);
+                out.collect(new Tuple2<Long,Long>(window.getStart(),window.getEnd()));
+            }
+        });
         resStream.print();
 
         env.execute("event time demo");

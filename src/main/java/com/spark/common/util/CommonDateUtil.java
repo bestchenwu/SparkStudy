@@ -38,6 +38,16 @@ public class CommonDateUtil {
         String dateStr = format.format(date);
         return dateStr;
     }
+
+    /**
+     * 获取当前系统时间戳
+     *
+     * @return long
+     * @author chenwu on 2019.9.22
+     */
+    public static long getCurrentTimeStamp(){
+        return new Date().getTime();
+    }
 }
 
 
