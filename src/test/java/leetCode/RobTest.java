@@ -36,9 +36,28 @@ public class RobTest {
         return maxSum(nums,0);
     }
 
+    public int rob1(int[] nums){
+        if(nums==null||nums.length==0){
+            return 0;
+        }
+        int sumOdd = 0,sumEven = 0;
+        for(int i=0;i<nums.length;i++){
+            if(i%2==0){
+                //is a odd number
+                sumOdd += nums[i];
+                sumOdd = Math.max(sumOdd,sumEven);
+            }else{
+                sumEven +=nums[i];
+                sumEven = Math.max(sumEven,sumOdd);
+            }
+        }
+        return Math.max(sumOdd,sumEven);
+    }
+
     public static void main(String[] args){
         int[] nums = new int[]{2,7,9,3,1};
         RobTest test = new RobTest();
-        System.out.println(test.rob(nums));
+        //System.out.println(test.rob(nums));
+        System.out.println(test.rob1(nums));
     }
 }
