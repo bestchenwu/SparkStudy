@@ -61,7 +61,7 @@ object KafkaWatermarkTest {
             kafkaConsumer.commitAsync()
           }
         } catch {
-          case e => e.printStackTrace()
+          case e:Exception => e.printStackTrace()
         } finally {
           try {
             kafkaConsumer.commitAsync()

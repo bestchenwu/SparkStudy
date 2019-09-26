@@ -22,7 +22,7 @@ class MysqlClient(host:String="localhost",port:Int=3306,username:String,password
       Class.forName("com.mysql.cj.jdbc.Driver")
       "jdbc:mysql://"+host+":"+port+"/"+databaseName
     }catch {
-      case e=>throw new IllegalStateException(e)
+      case e:Exception=>throw new IllegalStateException(e)
     }
   }
 
@@ -72,25 +72,22 @@ class MysqlClient(host:String="localhost",port:Int=3306,username:String,password
         resultSet.close()
       }catch{
         //ignore the exception
-        case e=>
+        case _:Exception=>
       }
     }
     if(statement!=null){
       try{
         statement.close()
       }catch{
-        case e=>
+        case _:Exception=>
       }
     }
     if(connection!=null){
       try{
         connection.close()
       }catch{
-        case e=>
+        case _:Exception=>
       }
     }
   }
-}
-object MysqlClient{
-
 }
