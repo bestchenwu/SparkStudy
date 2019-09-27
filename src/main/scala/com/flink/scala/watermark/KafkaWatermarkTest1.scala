@@ -6,7 +6,7 @@ import org.apache.flink.api.common.serialization.SimpleStringSchema
 import org.apache.flink.streaming.api.TimeCharacteristic
 import org.apache.flink.streaming.api.functions.timestamps.AscendingTimestampExtractor
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer010
+//import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer010
 import org.apache.flink.streaming.api.scala.createTypeInformation
 import org.apache.flink.streaming.api.scala.function.WindowFunction
 import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindows
@@ -20,19 +20,20 @@ object KafkaWatermarkTest1 {
     val property = new Properties()
     property.setProperty("bootstrap.servers", "localhost:9092")
     property.setProperty("group.id", "test-flink")
+    //todo:使用kafka 2.0.1
     val env = StreamExecutionEnvironment.createLocalEnvironment(2)
-    env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime)
-    val kafkaSourceStream = env.addSource(new FlinkKafkaConsumer010[String]("test-0", new SimpleStringSchema(), property))
-    val kafkaStream = kafkaSourceStream.map(item => {
-      val array = item.split(",")
-      val (id, value, timestamp) = (array(0), array(1).toLong, array(2).toInt)
-      (id, value, timestamp)
-    })
-    val waterStream = kafkaStream.assignTimestampsAndWatermarks(new AscendingTimestampExtractor[(String,Long,Int)]{
-      override def extractAscendingTimestamp(element: (String, Long, Int)): Long = element._2
-    })
-    val sumStream = waterStream.keyBy(_._1).window(TumblingEventTimeWindows.of(Time.seconds(3l)))
-    sumStream.apply(new WindowFunctionTest())
+//    env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime)
+//    val kafkaSourceStream = env.addSource(new FlinkKafkaConsumer010[String]("test-0", new SimpleStringSchema(), property))
+//    val kafkaStream = kafkaSourceStream.map(item => {
+//      val array = item.split(",")
+//      val (id, value, timestamp) = (array(0), array(1).toLong, array(2).toInt)
+//      (id, value, timestamp)
+//    })
+//    val waterStream = kafkaStream.assignTimestampsAndWatermarks(new AscendingTimestampExtractor[(String,Long,Int)]{
+//      override def extractAscendingTimestamp(element: (String, Long, Int)): Long = element._2
+//    })
+//    val sumStream = waterStream.keyBy(_._1).window(TumblingEventTimeWindows.of(Time.seconds(3l)))
+//    sumStream.apply(new WindowFunctionTest())
     env.execute("KafkaWatermarkTest1")
 
     /**

@@ -7,7 +7,7 @@ import com.mysql.MysqlClient
 import com.spark.constants.SymbolConstants
 import org.apache.flink.api.common.serialization.SimpleStringSchema
 import org.apache.flink.configuration.Configuration
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer010
+//import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer010
 import org.apache.flink.streaming.api.scala._
 import org.apache.flink.streaming.api.scala.async.{AsyncFunction, ResultFuture, RichAsyncFunction}
 
@@ -96,16 +96,17 @@ object AsyncMysqlRequest {
       val properties = new Properties()
       properties.setProperty("bootstrap.servers", "localhost:9092")
       properties.setProperty("group.id", "test-flink")
-      val kafkaStream = env.addSource(new FlinkKafkaConsumer010[String]("test-0",new SimpleStringSchema(),properties))
-      val input = kafkaStream.flatMap(_.split("\\s+")).map(item=>{
-          val array = item.split(SymbolConstants.SYMBOL_DH)
-          val user = User(array(0).toLong,array(1))
-          user
-      })
-//      val testWithoutTimeoutStream = AsyncDataStream.unorderedWait(input,new NonRichAsyncDataBaseRequest(),500,TimeUnit.SECONDS,10)
-//      testWithoutTimeoutStream.print()
-      val testWithTimeoutStream = AsyncDataStream.unorderedWait(input,new AysncDataBaseRequest(),50,TimeUnit.SECONDS,10)
-      testWithTimeoutStream.print()
+      //todo:使用kafka2.0.1
+//      val kafkaStream = env.addSource(new FlinkKafkaConsumer010[String]("test-0",new SimpleStringSchema(),properties))
+//      val input = kafkaStream.flatMap(_.split("\\s+")).map(item=>{
+//          val array = item.split(SymbolConstants.SYMBOL_DH)
+//          val user = User(array(0).toLong,array(1))
+//          user
+//      })
+////      val testWithoutTimeoutStream = AsyncDataStream.unorderedWait(input,new NonRichAsyncDataBaseRequest(),500,TimeUnit.SECONDS,10)
+////      testWithoutTimeoutStream.print()
+//      val testWithTimeoutStream = AsyncDataStream.unorderedWait(input,new AysncDataBaseRequest(),50,TimeUnit.SECONDS,10)
+//      testWithTimeoutStream.print()
       env.execute("AsyncMysqlRequest")
   }
 }

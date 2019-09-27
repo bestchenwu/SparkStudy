@@ -7,7 +7,7 @@ import org.apache.flink.api.common.serialization.SimpleStringSchema
 import org.apache.flink.streaming.api.TimeCharacteristic
 import org.apache.flink.streaming.api.functions.source.SourceFunction
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer010
+//import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer010
 import org.apache.flink.streaming.api.scala.createTypeInformation
 import org.apache.kafka.clients.consumer.{Consumer, ConsumerConfig, ConsumerRecord, KafkaConsumer}
 import java.util.{Arrays => JavaArrays}

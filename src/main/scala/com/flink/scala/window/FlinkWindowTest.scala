@@ -5,7 +5,7 @@ import java.util.Properties
 import org.apache.flink.api.common.serialization.SimpleStringSchema
 import org.apache.flink.streaming.api.TimeCharacteristic
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer010
+//import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer010
 import org.apache.flink.api.scala.createTypeInformation
 import org.apache.flink.streaming.api.windowing.time.Time
 
@@ -29,14 +29,15 @@ object FlinkWindowTest {
     val property = new Properties()
     property.setProperty("bootstrap.servers", "localhost:9092")
     property.setProperty("group.id", "test-flink")
-    val dataStream = env.addSource(new FlinkKafkaConsumer010[String]("test-010", new SimpleStringSchema(), property))
-    //基于时间  如果事先按照keyBy操作,那么使用timewindow,否则使用timeWindowAll
-    val stream = dataStream.keyBy(0).timeWindow(Time.hours(1l))
-    //比如这种方式就是定义窗口为1分钟,同时每次滑动30秒
-    //val stream = dataStream.keyBy(0).timeWindow(Time.minutes(1l),Time.seconds(30l));
-    //基于数量
-    //val stream = dataStream.keyBy(0).countWindow(11l)
-    stream.reduce(_ + _).addSink(println(_))
+    //todo:使用kafka2.0.1
+//    val dataStream = env.addSource(new FlinkKafkaConsumer010[String]("test-010", new SimpleStringSchema(), property))
+//    //基于时间  如果事先按照keyBy操作,那么使用timewindow,否则使用timeWindowAll
+//    val stream = dataStream.keyBy(0).timeWindow(Time.hours(1l))
+//    //比如这种方式就是定义窗口为1分钟,同时每次滑动30秒
+//    //val stream = dataStream.keyBy(0).timeWindow(Time.minutes(1l),Time.seconds(30l));
+//    //基于数量
+//    //val stream = dataStream.keyBy(0).countWindow(11l)
+//    stream.reduce(_ + _).addSink(println(_))
   }
 
 }

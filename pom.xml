@@ -178,12 +178,20 @@
 				<version>${flink.version}</version>
 				<scope>provided</scope>
 			</dependency>
-			<!-- 引入kakfa -->
+			<!-- 引入kafka 0.10 -->
+			<!--
 			<dependency>
 				<groupId>org.apache.flink</groupId>
 				<artifactId>flink-connector-kafka-0.10_2.11</artifactId>
 				<version>${flink.version}</version>
 				<scope>provided</scope>
+			</dependency>
+			-->
+			<!-- 引入flink1.8.1对应的kafka -->
+			<dependency>
+				<groupId>org.apache.flink</groupId>
+				<artifactId>flink-connector-kafka_2.11</artifactId>
+				<version>${flink.version}</version>
 			</dependency>
 			<!-- 引入flink state queryable -->
 			<dependency>
