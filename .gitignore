@@ -16,3 +16,4 @@ scalaStudy.iml
 spark.iml
 /metastore_db
 /spark-warehouse
+**/*.log

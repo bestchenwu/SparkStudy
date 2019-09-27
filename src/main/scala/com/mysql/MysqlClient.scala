@@ -19,8 +19,9 @@ class MysqlClient(host:String="localhost",port:Int=3306,username:String,password
 
   private val connectionUrl={
     try{
-      Class.forName("com.mysql.cj.jdbc.Driver")
-      "jdbc:mysql://"+host+":"+port+"/"+databaseName
+       //Class.forName("com.mysql.jdbc.Driver")
+       Class.forName("com.mysql.cj.jdbc.Driver")
+      "jdbc:mysql://"+host+":"+port+"/"+databaseName+"?serverTimezone=UTC"
     }catch {
       case e:Exception=>throw new IllegalStateException(e)
     }
@@ -33,7 +34,7 @@ class MysqlClient(host:String="localhost",port:Int=3306,username:String,password
     * @author chenwu on 2019.9.25
     */
   private def getConnection:Connection={
-    val connection = DriverManager.getConnection(connectionUrl)
+    val connection = DriverManager.getConnection(connectionUrl,username,password)
     connection
   }
 

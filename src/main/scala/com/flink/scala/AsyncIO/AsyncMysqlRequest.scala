@@ -9,7 +9,7 @@ import org.apache.flink.api.common.serialization.SimpleStringSchema
 import org.apache.flink.configuration.Configuration
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer010
 import org.apache.flink.streaming.api.scala._
-import org.apache.flink.streaming.api.scala.async.{ResultFuture, RichAsyncFunction}
+import org.apache.flink.streaming.api.scala.async.{AsyncFunction, ResultFuture, RichAsyncFunction}
 
 import scala.concurrent.duration.TimeUnit
 /**
@@ -20,22 +20,48 @@ import scala.concurrent.duration.TimeUnit
   */
 object AsyncMysqlRequest {
 
-  case class User(id:Long,userName:String,password:String="not found"){
+  case class User(id:Long,userName:String,var password:String="not found"){
     override def toString: String = {
         s"id=${id},userName=${userName},password=${password}"
     }
   }
 
+  /**
+    * 不支持timeout的异步请求处理类
+    *
+    * @author chenwu on 2019.9.27
+    */
+  class NonRichAsyncDataBaseRequest extends  AsyncFunction[User,User]{
+
+     lazy val mysqlClient:MysqlClient = new MysqlClient(username="test",password="123456",databaseName = "test")
+     lazy val executorService:ExecutorService = Executors.newFixedThreadPool(10)
+
+    override def asyncInvoke(input: User, resultFuture: ResultFuture[User]): Unit = {
+      executorService.submit(new Runnable{
+        override def run(): Unit = {
+          println(s"query id=${input.userName} begin")
+          val output = mysqlClient.querySingleObjectById("User",Array("password"),input.id)
+          val user = User(input.id,input.userName,output(0))
+          resultFuture.complete(List(user))
+        }
+      })
+    }
+  }
+
+  /**
+    * 支持timeout的异步请求处理类
+    *
+    * @author chenwu on 2019.9.27
+    */
   class AysncDataBaseRequest extends RichAsyncFunction[User,User]{
 
-    @transient var mysqlClient:MysqlClient = null
-    @transient var executorService:ExecutorService = null
-
+    lazy val mysqlClient:MysqlClient = new MysqlClient(username="test",password="123456",databaseName = "test")
+    lazy val executorService:ExecutorService = Executors.newFixedThreadPool(10)
 
     override def open(parameters: Configuration): Unit = {
       println("init AysncDataBaseRequest")
-      mysqlClient = new MysqlClient(username="test",password="123456",databaseName = "test")
-      executorService  = Executors.newFixedThreadPool(10)
+//      mysqlClient = new MysqlClient(username="test",password="123456",databaseName = "test")
+//      executorService  = Executors.newFixedThreadPool(10)
     }
 
     override def timeout(input: User, resultFuture: ResultFuture[User]): Unit = {
@@ -47,9 +73,12 @@ object AsyncMysqlRequest {
     override def asyncInvoke(input: User, resultFuture: ResultFuture[User]): Unit = {
         executorService.submit(new Runnable{
           override def run(): Unit = {
-            println(s"query ${input} begin")
+            println(s"query id=${input.userName} begin")
             val output = mysqlClient.querySingleObjectById("User",Array("password"),input.id)
-            val user = User(input.id,input.userName,output(0))
+            val user = output match{
+              case value if value.isEmpty =>input
+              case nonEmptyValue => input.password=nonEmptyValue(0);input
+            }
             resultFuture.complete(List(user))
           }
         })
@@ -73,8 +102,10 @@ object AsyncMysqlRequest {
           val user = User(array(0).toLong,array(1))
           user
       })
-      val testStream = AsyncDataStream.unorderedWait(input,new AysncDataBaseRequest(),500,TimeUnit.SECONDS,10)
-      testStream.print()
+//      val testWithoutTimeoutStream = AsyncDataStream.unorderedWait(input,new NonRichAsyncDataBaseRequest(),500,TimeUnit.SECONDS,10)
+//      testWithoutTimeoutStream.print()
+      val testWithTimeoutStream = AsyncDataStream.unorderedWait(input,new AysncDataBaseRequest(),50,TimeUnit.SECONDS,10)
+      testWithTimeoutStream.print()
       env.execute("AsyncMysqlRequest")
   }
 }
