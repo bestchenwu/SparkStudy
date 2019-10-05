@@ -16,7 +16,7 @@ object OutputTagTest {
   def main(args: Array[String]): Unit = {
       val env = StreamExecutionEnvironment.createLocalEnvironment(1)
       val outputTag = new OutputTag[String]("side-output")
-      val fileStream = env.readTextFile("D:\\brand.txt")
+      val fileStream = env.readTextFile("/data/problem/brand.txt")
       val dataStream = fileStream.flatMap(_.split("\\s+")).filter(!NumberUtils.isDigits(_))
       val afterProcessStream = dataStream.process(new ProcessFunction[String,String] {
         override def processElement(input: String, context: ProcessFunction[String, String]#Context, collector: Collector[String]): Unit = {
