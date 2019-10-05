@@ -1,6 +1,10 @@
 package com.flink.scala.stream.outputTag
 
+import java.util.concurrent.TimeUnit
+
 import org.apache.commons.lang.math.NumberUtils
+import org.apache.flink.api.common.restartstrategy.RestartStrategies
+import org.apache.flink.api.common.time.Time
 import org.apache.flink.streaming.api.functions.ProcessFunction
 import org.apache.flink.streaming.api.scala._
 import org.apache.flink.util.Collector
@@ -29,7 +33,11 @@ object OutputTagTest {
       //afterProcessStream.print()
       val outputTagStream = afterProcessStream.getSideOutput(outputTag)
      outputTagStream.print()
-      env.execute("OutputTagTest")
+      //env.execute("OutputTagTest")
+      //查看执行计划,可以打开https://flink.apache.org/visualizer/查看
+      //println(env.getExecutionPlan)
+      //如果发生故障,系统会尝试重新启动作业3次,并在连续重启尝试之间等待10秒
+      env.setRestartStrategy(RestartStrategies.fixedDelayRestart(3,Time.of(10,TimeUnit.SECONDS)))
       //val input:DataStream[String] =
   }
 }
