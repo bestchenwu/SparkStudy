@@ -1,6 +1,8 @@
 package com.java8Study.unit2;
 
 import java.io.*;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.Callable;
 
 /**
@@ -38,7 +40,14 @@ public class FileTest {
         //Object o = ()->System.out.println(33);
         //改成Runnable即可,因为Runnable实现了FunctionalInterface接口
         Runnable runnable = ()->System.out.println("");
+        //lambda表达式的等效方法引用
+        Runnable runnable1 = System.out::println;
         //Callable<Integer> callable = ()->42;
+        List<String> list = Arrays.asList("haha","jack");
+        //lambda写法
+        list.sort((String s1,String s2)->s1.compareTo(s2));
+        //等效方法引用写法
+        list.sort(String::compareTo);
         System.out.println(result);
     }
 }

@@ -3,7 +3,7 @@ package com.java8Study.unit2;
 public class Apple {
 
     private String color;
-    private int weight;
+    private Integer weight;
 
     public static Apple of(String color,int weight){
         Apple apple = new Apple();
@@ -20,11 +20,11 @@ public class Apple {
         this.color = color;
     }
 
-    public int getWeight() {
+    public Integer getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(Integer weight) {
         this.weight = weight;
     }
 
