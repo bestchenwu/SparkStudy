@@ -29,16 +29,21 @@ public class StreamTest {
                 .map(Dish::getName)
                 .limit(3)
                 .collect(toList());
-        System.out.println(resultList);
-        System.out.println(resultList1);
+        //System.out.println(resultList);
+        //System.out.println(resultList1);
         //流只能被遍历一次,如果要遍历第二次,则需要重新从源头建立流
         Stream<String> stream = resultList1.stream();
-        stream.forEach((String item)->System.out.println(item));
+        //stream.forEach((String item)->System.out.println(item));
         //在执行第二遍的时候会报stream has already been operated upon or closed的错误
         //stream.forEach(System.out::println);
-        dishList.stream().filter((Dish dish)->{
+        //limit操作在这里起了短路的作用,所以不用计算全部值,另外filter和map在一次遍历的过程中就做了合并操作,
+        //称之为循环合并
+        List<String> resultList2  = dishList.stream().filter((Dish dish)->{
             System.out.println("filter:"+dish);
             return dish.getCalories()>300;
-        });
+        }).map((Dish dish)->{
+            System.out.println("map:"+dish);
+            return dish.getName();
+        }).limit(2).collect(toList());
     }
 }
