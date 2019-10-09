@@ -4,8 +4,10 @@ import com.java8Study.unit4_Stream.Dish;
 import com.java8Study.unit4_Stream.Type;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
@@ -41,6 +43,9 @@ public class StreamOperationTest {
         stream = dishList.stream();
         //返回第一个
         //stream.filter((Dish dish)->dish.getCalories()>400).findFirst();
-
+        //元素求和
+        int[] ints = new int[]{1,3,5};
+        int result = Arrays.stream(ints).reduce(0,(int a,int b)->(a+b));
+        System.out.println(result);
     }
 }
