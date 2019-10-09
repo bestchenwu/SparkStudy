@@ -7,7 +7,9 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.toList;
 /**
  * 使用JAVA流式运算,Stream类似于scala中的stream,表示流式计算<br/>
- * 流式计算用collect触发计算操作
+ * 流式计算用collect触发计算操作<br/>
+ * 一个流通常包含一个数据源,一个中间操作链,一个终端操作(例如collect,count,foreach等等)<br/>
+ * 这些操作与流数据没有关系
  *
  * @author chenwu on 2019.10.7
  */

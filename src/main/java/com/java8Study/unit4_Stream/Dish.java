@@ -64,6 +64,3 @@ public class Dish {
     }
 }
 
-enum Type {
-    MEAT, FISH, OTHER;
-}
