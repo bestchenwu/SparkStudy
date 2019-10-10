@@ -29,6 +29,14 @@ public class Exercise_5_5 {
         //交易员都在哪些不同的城市工作过？
         //transactions.stream().map(Transaction::getTrader).map(Trader::getCity).distinct().forEach(System.out::println);
         //查找所有来自于剑桥的交易员，并按姓名排序
-        transactions.stream().map(Transaction::getTrader).filter((Trader trader)->"Cambridge".equals(trader.getCity())).distinct().sorted((Trader trader1,Trader trader2)->trader1.getName().compareTo(trader2.getName())).forEach(System.out::println);
+        //transactions.stream().map(Transaction::getTrader).filter((Trader trader)->"Cambridge".equals(trader.getCity())).distinct().sorted((Trader trader1,Trader trader2)->trader1.getName().compareTo(trader2.getName())).forEach(System.out::println);
+        //有没有交易员是在米兰工作的？ 输出true
+        //System.out.println(transactions.stream().map(Transaction::getTrader).anyMatch((Trader trader)->"Milan".equals(trader.getCity())));
+        //打印生活在剑桥的交易员的所有交易额
+        //System.out.println(transactions.stream().filter((Transaction transaction)->"Cambridge".equals(transaction.getTrader().getCity())).map(Transaction::getValue).reduce((a,b)->(a+b)).orElse(0)) ;
+        //所有交易中，最高的交易额是多少？
+        //System.out.println(transactions.stream().map(Transaction::getValue).max(Integer::compareTo).orElse(0));
+        //找到交易额最小的交易
+        //System.out.println(transactions.stream().min((t1,t2)->Integer.compare(t1.getValue(),t2.getValue())).get());
     }
 }
