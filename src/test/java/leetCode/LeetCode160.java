@@ -3,7 +3,7 @@ package leetCode;
 /**
  * https://leetcode-cn.com/problems/intersection-of-two-linked-lists/submissions/
  */
-public class LeetCode161 {
+public class LeetCode160 {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         if(headA==null&&headB==null){
             return null;
@@ -16,16 +16,10 @@ public class LeetCode161 {
         }
         ListNode pheadA = headA;
         ListNode pheadB = headB;
-        while(true){
-            if(pheadA.val==pheadB.val){
-                return pheadA;
-            }
-            pheadA = pheadA.next!=null?pheadA.next:headB;
-            pheadB = pheadB.next!=null?pheadB.next:headA;
-            if(pheadA==null||pheadB==null){
-                break;
-            }
+        while(pheadA!=pheadB){
+            pheadA = pheadA!=null?pheadA.next:headB;
+            pheadB = pheadB!=null?pheadB.next:headA;
         }
-        return null;
+        return pheadA;
     }
 }
