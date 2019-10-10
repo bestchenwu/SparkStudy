@@ -3,10 +3,7 @@ package com.java8Study.unit5_Stream_operation;
 import com.java8Study.unit4_Stream.Dish;
 import com.java8Study.unit4_Stream.Type;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -47,5 +44,19 @@ public class StreamOperationTest {
         int[] ints = new int[]{1,3,5};
         int result = Arrays.stream(ints).reduce(0,(int a,int b)->(a+b));
         System.out.println(result);
+        //或者使用不带初始值的情况
+        OptionalInt result1 = Arrays.stream(ints).reduce((int a, int b)->(a+b));
+        System.out.println("OptionalInt="+result1.getAsInt());
+        //获取最大、最小
+        OptionalInt maxInt = Arrays.stream(ints).max();
+        OptionalInt minInt = Arrays.stream(ints).min();
+        //等价于
+        OptionalInt maxInt2 = Arrays.stream(ints).reduce((a,b)->(Math.max(a,b)));
+        //或者简化为
+        //Arrays.stream(ints).reduce(Math::max);
+        //或者
+        //Arrays.stream(ints).reduce(Integer::max);
+        System.out.println("maxInt value = "+maxInt.getAsInt());
+        System.out.println("maxInt2 value = "+maxInt2.getAsInt());
     }
 }
