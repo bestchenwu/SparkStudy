@@ -4,10 +4,7 @@ import com.java8Study.unit4_Stream.Dish;
 import com.java8Study.unit4_Stream.Type;
 import scala.collection.immutable.Stream;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -59,8 +56,12 @@ public class CollectorTest {
         //IntStream.range(1,n).noneMatch((int i)->n%i==0);
         //List<Integer> list = IntStream.range(2,n).boxed().collect(partitioningBy((Integer i)->isPrime(i))).get(Boolean.TRUE);
         //System.out.println(list);
-        List<Integer> list = IntStream.range(0,5).boxed().collect(new MyToListCollector<Integer>());
-        System.out.println(list);
+        //使用自定义的toList 收集器
+//        List<Integer> list = IntStream.range(0,5).boxed().collect(new MyToListCollector<Integer>());
+//        System.out.println(list);
+          Map<Boolean,List<Integer>> resultMap = IntStream.range(0,100).boxed().collect(new IsPrimeCollector());
+          //简写形式
+         System.out.println("map:"+resultMap);
     }
 
     public static boolean isPrime(Integer n){
