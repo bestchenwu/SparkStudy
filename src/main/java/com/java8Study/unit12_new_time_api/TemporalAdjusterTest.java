@@ -12,10 +12,12 @@ import static java.time.temporal.TemporalAdjusters.*;
 public class TemporalAdjusterTest {
 
     public static void main(String[] args){
-        LocalDate localDate = LocalDate.of(2019,10,14);
-        LocalDate localDate1 = localDate.with(nextOrSame(DayOfWeek.MONDAY));
+        LocalDate localDate = LocalDate.of(2019,10,10);
+        //LocalDate localDate1 = localDate.with(nextOrSame(DayOfWeek.MONDAY));
         //输出2019-10-14 因为当天就是星期一
-        System.out.println(localDate1);
-
+        //System.out.println(localDate1);
+        //使用自定义的工具类,获取下一个工作日
+        LocalDate nextWorkDay = localDate.with(new NextWorkingDay());
+        System.out.println(nextWorkDay);
     }
 }
