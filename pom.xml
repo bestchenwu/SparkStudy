@@ -219,6 +219,8 @@
 				<version>${flink.version}</version>
 				<scope>provided</scope>
 			</dependency>
+
+			<!--  引入hadoop -->
 		</dependencies>
 	
 	<build>
