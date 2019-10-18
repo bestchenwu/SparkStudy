@@ -39,6 +39,7 @@
 		<mysql.version>8.0.13</mysql.version>
 		<junit.version>4.12</junit.version>
 		<flink.version>1.8.1</flink.version>
+		<hadoop.version>2.7.4</hadoop.version>
 	</properties>
 
 		<dependencies>
@@ -219,8 +220,25 @@
 				<version>${flink.version}</version>
 				<scope>provided</scope>
 			</dependency>
-
-			<!--  引入hadoop -->
+			<!--  引入hadoop mr unit -->
+			<dependency>
+				<groupId>org.apache.hadoop</groupId>
+				<artifactId>hadoop-client</artifactId>
+				<version>${hadoop.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.mrunit</groupId>
+				<artifactId>mrunit</artifactId>
+				<version>1.1.0</version>
+				<classifier>hadoop2</classifier>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.hadoop</groupId>
+				<artifactId>hadoop-minicluster</artifactId>
+				<version>${hadoop.version}</version>
+				<scope>provided</scope>
+			</dependency>
 		</dependencies>
 	
 	<build>

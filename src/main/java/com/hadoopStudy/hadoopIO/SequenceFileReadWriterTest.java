@@ -20,7 +20,7 @@ import java.net.URI;
 public class SequenceFileReadWriterTest {
 
     public static String[] strs = new String[]{"a","b","c","d","e"};
-    public static String OUTPUT_PATH = "hdfs://127.0.0.1:9000/user/chenwu/hadoop/sequence.txt";
+    public static String OUTPUT_PATH = "hdfs://10.40.11.12:8020/user/chenwu/hadoop/sequence.txt";
     public static Configuration conf = new Configuration();
 
     public static void write(){
@@ -60,6 +60,6 @@ public class SequenceFileReadWriterTest {
 
     public static void main(String[] args) {
         write();
-        read();
+        //read();
     }
 }
