@@ -20,12 +20,11 @@ import java.net.URI;
 public class SequenceFileReadWriterTest {
 
     public static String[] strs = new String[]{"a","b","c","d","e"};
-    public static String OUTPUT_PATH = "";
+    public static String OUTPUT_PATH = "hdfs://127.0.0.1:9000/user/chenwu/hadoop/sequence.txt";
     public static Configuration conf = new Configuration();
 
     public static void write(){
         try{
-            FileSystem fs = FileSystem.get(URI.create(OUTPUT_PATH),conf);
             Path path = new Path(OUTPUT_PATH);
             SequenceFile.Writer writer = SequenceFile.createWriter(conf, SequenceFile.Writer.keyClass(IntWritable.class), SequenceFile.Writer.valueClass(Text.class), SequenceFile.Writer.file(path));
             IntWritable it = new IntWritable();
@@ -46,7 +45,6 @@ public class SequenceFileReadWriterTest {
 
     public static void read(){
         try{
-            FileSystem fs = FileSystem.get(URI.create(OUTPUT_PATH),conf);
             Path path = new Path(OUTPUT_PATH);
             SequenceFile.Reader reader = new SequenceFile.Reader(conf, SequenceFile.Reader.file(path));
             Writable key = (Writable)ReflectionUtils.newInstance(reader.getKeyClass(),conf);
