@@ -1,5 +1,6 @@
 package com.hadoopStudy.mapReduce;
 
+import com.hadoopStudy.hadoopCommon.HadoopUtil;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.Path;
@@ -28,7 +29,9 @@ public class YearTemeratureJob extends Configured implements Tool {
         Job job = Job.getInstance(conf,"YearTemeratureJob");
         job.setJarByClass(getClass());
         FileInputFormat.addInputPath(job,new Path(args[0]));
-        FileOutputFormat.setOutputPath(job,new Path(args[1]));
+        Path outputPath = new Path(args[1]);
+        HadoopUtil.deletePath(outputPath);
+        FileOutputFormat.setOutputPath(job, outputPath);
         job.setMapperClass(YearTemeratureV2Mapper.class);
         job.setReducerClass(YearTemeratureV2Reducer.class);
         job.setCombinerClass(YearTemeratureV2Reducer.class);

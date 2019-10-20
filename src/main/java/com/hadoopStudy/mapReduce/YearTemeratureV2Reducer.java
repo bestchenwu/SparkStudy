@@ -26,7 +26,6 @@ public class YearTemeratureV2Reducer extends Reducer<Text, IntWritable,Text,IntW
         values.forEach((IntWritable intWritable) -> {
             max_value = Math.max(max_value, intWritable.get());
         });
-
-        super.reduce(key, values, context);
+        context.write(key,new IntWritable(max_value));
     }
 }
