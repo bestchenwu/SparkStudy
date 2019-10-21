@@ -16,6 +16,10 @@ import java.io.IOException;
  */
 public class YearTemeratureV2Mapper extends Mapper<LongWritable,Text, Text, IntWritable> {
 
+    enum MAX_TEMPERATURE{
+        OVER_100
+    }
+
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         String text = value.toString();
@@ -27,7 +31,12 @@ public class YearTemeratureV2Mapper extends Mapper<LongWritable,Text, Text, IntW
             return;
         }
         Text writeKey = new Text(array[0]);
-        IntWritable writeValue = new IntWritable(Integer.parseInt(array[1]));
+        int tempture = Integer.parseInt(array[1]);
+        if(tempture>100){
+            context.setStatus("wrong tempture:"+tempture);
+            context.getCounter(MAX_TEMPERATURE.OVER_100).increment(1l);
+        }
+        IntWritable writeValue = new IntWritable(tempture);
         context.write(writeKey,writeValue);
     }
 }
