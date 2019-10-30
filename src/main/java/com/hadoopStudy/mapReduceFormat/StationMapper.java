@@ -20,6 +20,7 @@ public class StationMapper extends Mapper<LongWritable, Text,Text,Text> {
         //温度
         String temperature = value.toString();
         String station = temperature.substring(0,temperature.indexOf(SymbolConstants.SYMBOL_XHX));
-        context.write(new Text(station),value);
+        String year_temperature = temperature.substring(temperature.indexOf(SymbolConstants.SYMBOL_XHX)+1);
+        context.write(new Text(station),new Text(year_temperature));
     }
 }

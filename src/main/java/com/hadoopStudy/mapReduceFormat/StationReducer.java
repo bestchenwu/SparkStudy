@@ -1,5 +1,6 @@
 package com.hadoopStudy.mapReduceFormat;
 
+import com.spark.constants.SymbolConstants;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapred.lib.MultipleOutputFormat;
@@ -29,7 +30,12 @@ public class StationReducer extends Reducer<Text, Text, NullWritable, Text> {
 
     protected void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
         for(Text value:values){
-            multipleOutputs.write(NullWritable.get(),value,key.toString());
+            String year_temperature = value.toString();
+            String year = year_temperature.substring(0,year_temperature.indexOf(SymbolConstants.SYMBOL_XHX));
+            String temperature = year_temperature.substring(year_temperature.indexOf(SymbolConstants.SYMBOL_XHX)+1);
+            String station = key.toString();
+            String basePath = String.format("%s/%s/part",station,year);
+            multipleOutputs.write(NullWritable.get(),new Text(temperature),basePath);
         }
     }
 }
