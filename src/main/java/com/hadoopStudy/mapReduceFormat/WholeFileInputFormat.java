@@ -83,7 +83,7 @@ class WholeFileRecordReader extends RecordReader<NullWritable, BytesWritable>{
 
     @Override
     public float getProgress() throws IOException, InterruptedException {
-        return 1.0f;
+        return isProcessed?1.0f:0f;
     }
 
     @Override
