@@ -38,6 +38,7 @@ public class SequenceFileJob extends Configured implements Tool {
         job.setMapOutputKeyClass(IntWritable.class);
         job.setMapOutputValueClass(Text.class);
         job.setNumReduceTasks(0);
+        job.setJarByClass(getClass());
         job.setOutputFormatClass(SequenceFileOutputFormat.class);
         SequenceFileOutputFormat.setCompressOutput(job,true);
         SequenceFileOutputFormat.setOutputCompressorClass(job, GzipCodec.class);

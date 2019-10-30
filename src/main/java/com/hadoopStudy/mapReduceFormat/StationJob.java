@@ -27,6 +27,7 @@ public class StationJob extends Configured implements Tool {
         Job job = Job.getInstance(conf,"StationJob");
         job.setMapperClass(StationMapper.class);
         job.setReducerClass(StationReducer.class);
+        job.setJarByClass(getClass());
         return job.waitForCompletion(true)?1:0;
     }
 

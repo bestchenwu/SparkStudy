@@ -23,7 +23,7 @@ public class SequenceFileJob extends Configured implements Tool {
     @Override
     public int run(String[] args) throws Exception {
         Configuration conf = new Configuration();
-        Job job = Job.getInstance(conf,"SequenceFileJob");
+        Job job = Job.getInstance(conf,"WholeFileJob");
         Path inputPath = new Path(args[0]);
         Path outputPath = new Path(args[1]);
         FileSystem fs = FileSystem.get(outputPath.toUri(),conf);
@@ -32,6 +32,7 @@ public class SequenceFileJob extends Configured implements Tool {
         }
         FileInputFormat.setInputPaths(job,inputPath);
         FileOutputFormat.setOutputPath(job,outputPath);
+        job.setJarByClass(getClass());
         job.setInputFormatClass(WholeFileInputFormat.class);
         job.setOutputFormatClass(SequenceFileOutputFormat.class);
         job.setOutputKeyClass(Text.class);
