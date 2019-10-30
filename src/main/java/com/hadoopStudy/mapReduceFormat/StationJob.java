@@ -5,6 +5,8 @@ import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.Tool;
 
 /**
@@ -25,6 +27,8 @@ public class StationJob extends Configured implements Tool {
             fs.delete(outputPath,true);
         }
         Job job = Job.getInstance(conf,"StationJob");
+        FileInputFormat.setInputPaths(job,inputPath);
+        FileOutputFormat.setOutputPath(job,outputPath);
         job.setMapperClass(StationMapper.class);
         job.setReducerClass(StationReducer.class);
         job.setJarByClass(getClass());
