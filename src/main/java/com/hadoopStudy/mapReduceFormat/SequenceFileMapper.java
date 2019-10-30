@@ -9,8 +9,12 @@ import org.apache.hadoop.mapreduce.Mapper;
 
 import java.io.IOException;
 
+/**
+ * 顺序读取每个文件,并不对文件做切分,原样输出
+ *
+ * @author chenwu on 2019.10.30
+ */
 public class SequenceFileMapper extends Mapper<NullWritable, BytesWritable, Text, BytesWritable> {
-
 
     private Text fileNameKey;
 

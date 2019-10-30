@@ -18,8 +18,6 @@ import org.apache.hadoop.util.Tool;
  */
 public class YearTemeratureJob extends Configured implements Tool {
 
-
-
     @Override
     public int run(String[] args) throws Exception {
         if(args.length<2){
