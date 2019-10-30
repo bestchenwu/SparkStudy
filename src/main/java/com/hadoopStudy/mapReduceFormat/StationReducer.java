@@ -3,7 +3,6 @@ package com.hadoopStudy.mapReduceFormat;
 import com.spark.constants.SymbolConstants;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapred.lib.MultipleOutputFormat;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.output.MultipleOutputs;
 
