@@ -1,6 +1,7 @@
 package com.hadoopStudy.mapReduceFormat;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.BytesWritable;
@@ -45,8 +46,8 @@ class WholeFileRecordReader extends RecordReader<NullWritable, BytesWritable>{
 
     private FileSplit fileSplit;
     private Configuration conf;
-    private BytesWritable bytesWritable;
-    private boolean isProcessed;
+    private BytesWritable bytesWritable = new BytesWritable();
+    private boolean isProcessed = false;
 
     @Override
     public void initialize(InputSplit split, TaskAttemptContext context) throws IOException, InterruptedException {
@@ -56,7 +57,24 @@ class WholeFileRecordReader extends RecordReader<NullWritable, BytesWritable>{
 
     @Override
     public boolean nextKeyValue() throws IOException, InterruptedException {
-        return false;
+        if(!isProcessed){
+            int length = (int)fileSplit.getLength();
+            byte[] content = new byte[length];
+            Path path = fileSplit.getPath();
+            FileSystem fs = FileSystem.get(path.toUri(),conf);
+            FSDataInputStream fis = null;
+            try{
+                fis = fs.open(path);
+                IOUtils.readFully(fis,content,0,length);
+                bytesWritable.set(content,0,length);
+            }finally {
+                IOUtils.closeStream(fis);
+            }
+            isProcessed = true;
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
@@ -66,16 +84,6 @@ class WholeFileRecordReader extends RecordReader<NullWritable, BytesWritable>{
 
     @Override
     public BytesWritable getCurrentValue() throws IOException, InterruptedException {
-        if(!isProcessed){
-            int length = (int)fileSplit.getLength();
-            byte[] content = new byte[length];
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            Path path = fileSplit.getPath();
-            FileSystem fs = FileSystem.get(path.toUri(),conf);
-            IOUtils.readFully(fs.open(path),content,0,length);
-            bytesWritable.set(content,0,length);
-            isProcessed = true;
-        }
         return bytesWritable;
     }
 

@@ -34,8 +34,8 @@ public class SequenceFileJob extends Configured implements Tool {
         FileInputFormat.setInputPaths(job,inputPath);
         FileOutputFormat.setOutputPath(job,outputPath);
         job.setMapperClass(TemperatureMapper.class);
-        job.setMapOutputKeyClass(IntWritable.class);
-        job.setMapOutputValueClass(Text.class);
+        job.setOutputKeyClass(IntWritable.class);
+        job.setOutputValueClass(Text.class);
         job.setNumReduceTasks(0);
         job.setJarByClass(getClass());
         job.setOutputFormatClass(SequenceFileOutputFormat.class);
