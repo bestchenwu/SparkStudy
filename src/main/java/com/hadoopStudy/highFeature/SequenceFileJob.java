@@ -34,6 +34,8 @@ public class SequenceFileJob extends Configured implements Tool {
         FileInputFormat.setInputPaths(job,inputPath);
         FileOutputFormat.setOutputPath(job,outputPath);
         job.setMapperClass(TemperatureMapper.class);
+        //当只有mapper的时候或者mapper与reducer类型一致的时候,那么这里设置outputKeyClass即可
+        //如果不一致,则需要分开设置outputKeyClass和mapOutputKeyClass
         job.setOutputKeyClass(IntWritable.class);
         job.setOutputValueClass(Text.class);
         job.setNumReduceTasks(0);
