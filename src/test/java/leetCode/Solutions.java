@@ -2,28 +2,7 @@ package leetCode;
 
 import java.util.List;
 
-class ListNode {
-    int val;
-    ListNode next;
 
-    @Override
-    public String toString() {
-        return "ListNode{" +
-                "val=" + val +
-                ", next=" + next +
-                '}';
-    }
-
-    ListNode(int x) {
-        val = x;
-    }
-
-    ListNode(int x, ListNode y){
-        val = x ;
-        next = y;
-    }
-
-}
 
 public class Solutions {
 
