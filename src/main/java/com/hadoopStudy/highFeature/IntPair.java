@@ -15,22 +15,22 @@ import java.io.IOException;
  */
 public class IntPair implements WritableComparable<IntPair> {
 
-    private IntWritable first;
-    private IntWritable second;
+    private int first;
+    private int second;
 
     public IntPair(){
-        first = new IntWritable();
-        second = new IntWritable();
+        first = 0;
+        second = 0;
     }
 
-    public IntPair(IntWritable first,IntWritable second){
+    public IntPair(int first,int second){
         this.first = first;
         this.second = second;
     }
 
     @Override
     public int hashCode() {
-        return 31*first.hashCode()+second.hashCode();
+        return 31*first+second;
     }
 
     @Override
@@ -39,33 +39,45 @@ public class IntPair implements WritableComparable<IntPair> {
             return false;
         }
         IntPair other = (IntPair)obj;
-        return this.first.equals(other.first)&&this.second.equals(other.second);
+        return this.first==other.first&&this.second==other.second;
     }
 
     @Override
-    public int compareTo(IntPair o) {
-        IntPair other = (IntPair)o;
-        int firstResult = first.compareTo(other.first);
-        return firstResult==0?second.compareTo(other.second):firstResult;
+    public int compareTo(IntPair other) {
+      int firstResult = Integer.valueOf(first).compareTo(other.first);
+      if(firstResult!=0){
+          return firstResult;
+      }else{
+          return -Integer.valueOf(second).compareTo(other.second);
+      }
     }
 
     @Override
     public void write(DataOutput out) throws IOException {
-        first.write(out);
-        second.write(out);
+        out.writeInt(first);
+        out.writeInt(second);
     }
 
     @Override
     public void readFields(DataInput in) throws IOException {
-        first.readFields(in);
-        second.readFields(in);
+        first = in.readInt();
+        second = in.readInt();
     }
 
-    public IntWritable getFirst() {
+    public int getFirst() {
         return first;
     }
 
-    public IntWritable getSecond() {
+    public int getSecond() {
         return second;
+    }
+
+    public static int compare(int first,int second){
+        return Integer.valueOf(first).compareTo(Integer.valueOf(second));
+    }
+
+    @Override
+    public String toString() {
+        return String.format("IntPair[first=%d,seconde=%d",first,second);
     }
 }

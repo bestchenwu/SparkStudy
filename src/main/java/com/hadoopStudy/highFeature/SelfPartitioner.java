@@ -7,6 +7,12 @@ public class SelfPartitioner extends Partitioner<IntPair, NullWritable> {
 
     @Override
     public int getPartition(IntPair intPair, NullWritable nullWritable, int numPartitions) {
-        return Math.abs(intPair.getFirst().get()%numPartitions);
+        int year = intPair.getFirst();
+        System.err.println("====================getPartition:"+year);
+        if(year>1990){
+            return 2;
+        }else{
+            return 1;
+        }
     }
 }

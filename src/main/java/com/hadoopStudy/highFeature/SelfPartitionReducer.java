@@ -1,5 +1,6 @@
 package com.hadoopStudy.highFeature;
 
+import com.spark.constants.SymbolConstants;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
@@ -11,10 +12,10 @@ import java.io.IOException;
  *
  * @author chenwu on 2019.11.1
  */
-public class SelfPartitionReducer extends Reducer<IntPair, Text, IntPair, NullWritable> {
+public class SelfPartitionReducer extends Reducer<IntPair, NullWritable, NullWritable, Text> {
 
     @Override
-    protected void reduce(IntPair key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
-        context.write(key, NullWritable.get());
+    protected void reduce(IntPair key, Iterable<NullWritable> values, Context context) throws IOException, InterruptedException {
+        context.write(NullWritable.get(),new Text(key.getFirst()+ SymbolConstants.SYMBOL_TAB+key.getSecond()));
     }
 }
