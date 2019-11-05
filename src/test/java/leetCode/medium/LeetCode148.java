@@ -13,6 +13,15 @@ import leetCode.ListNode;
  */
 public class LeetCode148 {
 
+    class Pair<T>{
+        T first;
+        T second;
+        public Pair(T first,T second){
+            this.first = first;
+            this.second = second;
+        }
+    }
+
     /**
      * 拿root和newNode进行比较
      *
@@ -55,6 +64,42 @@ public class LeetCode148 {
         return root;
     }
 
+    /**
+     * 始终在头节点和尾部节点之间插入一个新的节点
+     *
+     * @param root
+     * @param newNode
+     * @return
+     */
+    private Pair<ListNode> insertList(ListNode root,ListNode newNode){
+        ListNode firstNode = root;
+        ListNode previousNode = null;
+        while(firstNode!=null&&firstNode.val<=newNode.val){
+            previousNode = firstNode;
+            firstNode = firstNode.next;
+        }
+        if(firstNode==null){
+            root.next = newNode.next;
+            previousNode.next = newNode;
+            newNode.next = null;
+            return new Pair<>(root,root.next!=null?root.next.next:null);
+        }
+        if(previousNode==null){
+            ListNode temp = root;
+            root.val = newNode.val;
+            root.next = temp;
+            newNode = temp.next;
+            return new Pair<>(root,newNode);
+        }else{
+            //这个时候是拿newNode.val和firstNode的val进行交换
+            int tempValue = newNode.val;
+            newNode.val = firstNode.val;
+            firstNode.val = tempValue;
+            newNode = firstNode.next;
+            return new Pair<>(root,newNode);
+        }
+    }
+
     public ListNode sortList1(ListNode head) {
         if(head==null){
             return null;
@@ -64,24 +109,13 @@ public class LeetCode148 {
             return root;
         }
         ListNode newNode = head.next;
-        ListNode firstNode = head;
-        ListNode previousNode = null;
-        while(newNode!=null){
-            if(root.val>newNode.val){
-                newNode.next = root;
-                root = newNode;
-            }else{
-                firstNode = root;
-                while(root!=null&&root.val<newNode.val){
-                    previousNode = root;
-                    root = root.next;
-                }
-                previousNode.next = newNode;
-                newNode.next = root;
-            }
-            newNode = newNode.next;
-        }
-        return firstNode;
+        Pair<ListNode> pair = null;
+        do{
+            pair = insertList(root,newNode);
+            root = pair.first;
+            newNode = pair.second;
+        }while(newNode!=null);
+        return root;
     }
 
 
