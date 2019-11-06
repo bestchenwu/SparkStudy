@@ -91,11 +91,11 @@ public class LeetCode148 {
             newNode = temp.next;
             return new Pair<>(root,newNode);
         }else{
-            //这个时候是拿newNode.val和firstNode的val进行交换
-            int tempValue = newNode.val;
-            newNode.val = firstNode.val;
+            //这个时候是拿previousNode.val和newNode的val进行交换
+            int tempValue = previousNode.val;
+            newNode.val = previousNode.val;
             firstNode.val = tempValue;
-            newNode = firstNode.next;
+            newNode = previousNode;
             return new Pair<>(root,newNode);
         }
     }
@@ -104,24 +104,37 @@ public class LeetCode148 {
         if(head==null){
             return null;
         }
-        ListNode root = head;
-        if(head.next==null){
-            return root;
+        ListNode first = head;
+        ListNode fast = null;
+        ListNode low = null;
+        int temp = 0;
+        ListNode minNode = null;
+        while(first!=null){
+            low = first;
+            fast = low.next;
+            minNode = first;
+            while(fast!=null){
+                if(fast.val<minNode.val){
+                    minNode = fast;
+                }
+                fast = fast.next;
+            }
+            //将minNode和first的值进行交换
+            if(minNode!=first){
+                temp = minNode.val;
+                minNode.val = first.val;
+                first.val = temp;
+            }
+            first = first.next;
         }
-        ListNode newNode = head.next;
-        Pair<ListNode> pair = null;
-        do{
-            pair = insertList(root,newNode);
-            root = pair.first;
-            newNode = pair.second;
-        }while(newNode!=null);
-        return root;
+        return head;
     }
 
 
     public static void main(String[] args) {
         LeetCode148 leetCode148 = new LeetCode148();
         ListNode listNode = new ListNode(-1,new ListNode(5,new ListNode(3,new ListNode(4,new ListNode(0,null)))));
+        //ListNode listNode = new ListNode(4,new ListNode(2,new ListNode(1,new ListNode(3,null))));
         ListNode node = leetCode148.sortList1(listNode);
         System.out.println(node);
     }
