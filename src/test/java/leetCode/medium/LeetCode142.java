@@ -56,21 +56,57 @@ public class LeetCode142 {
         return null;
     }
 
+    /**
+     * [-1,-7,7,-4,19,6,-9,-5,-2,-5]
+     * 6
+     * 这一组测试用例超出时间限制
+     *
+     * @param head
+     * @return
+     */
+    //todo:
+    public ListNode detectCycle1(ListNode head) {
+        if(head==null||head.next==null){
+            return null;
+        }
+        ListNode start = head;
+        ListNode nextNode ;
+        ListNode circleStartNode ;
+        while(start!=null){
+            nextNode = start.next;
+            circleStartNode = nextNode;
+            while(true){
+                nextNode = nextNode.next;
+                if(nextNode==null){
+                    return null;
+                }
+                if(nextNode==start){
+                    return start;
+                }
+                if(nextNode==circleStartNode){
+                    break;
+                }
+            }
+            start = start.next;
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
         LeetCode142 leetCode142 = new LeetCode142();
-//        ListNode listNode1 = new ListNode(3);
-//        ListNode listNode2 = new ListNode(2);
-//        ListNode listNode3 = new ListNode(0);
-//        ListNode listNode4 = new ListNode(-4);
-//        listNode1.next = listNode2;
-//        listNode2.next = listNode3;
-//        listNode3.next = listNode4;
-//        listNode4.next=listNode2;
-        ListNode listNode1 = new ListNode(1);
+        ListNode listNode1 = new ListNode(3);
         ListNode listNode2 = new ListNode(2);
+        ListNode listNode3 = new ListNode(0);
+        ListNode listNode4 = new ListNode(-4);
         listNode1.next = listNode2;
-        listNode2.next = listNode1;
-        ListNode node = leetCode142.detectCycle(listNode1);
-        System.out.println(node!=null?node.val:0);
+        listNode2.next = listNode3;
+        listNode3.next = listNode4;
+        listNode4.next=null;
+//        ListNode listNode1 = new ListNode(1);
+//        ListNode listNode2 = new ListNode(2);
+//        listNode1.next = listNode2;
+//        listNode2.next = listNode1;
+        ListNode node = leetCode142.detectCycle1(listNode1);
+        System.out.println(node!=null?node.val:-999);
     }
 }
