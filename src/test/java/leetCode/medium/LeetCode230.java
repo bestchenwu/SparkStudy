@@ -10,9 +10,9 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 给定一个二叉搜索树，编写一个函数 kthSmallest 来查找其中第 k 个最小的元素。
  * <p>
  * 输入: root = [3,1,4,null,2], k = 1
- * 3
+ *   5
  * / \
- * 1   4
+ * 3   8
  * \
  * 2
  * 输出: 1
@@ -23,16 +23,13 @@ public class LeetCode230 {
         Integer result = null;
         if (root == null) {
             return null;
-        } else {
-            index.addAndGet(1);
-        }
-        if(index.get()==k){
-            result = root.val;
-            return result;
         }
         result = kth_find(root.left, index, k);
         if(result!=null){
             return result;
+        }
+        if(root!=null){
+            index.addAndGet(1);
         }
         if(index.get()==k){
             return root.val;
@@ -67,8 +64,10 @@ public class LeetCode230 {
 
     public static void main(String[] args) {
         LeetCode230 leetCode230 = new LeetCode230();
-        TreeNode root = new TreeNode(3, new TreeNode(1, null, new TreeNode(2)), new TreeNode(4));
-        int result = leetCode230.kthSmallest(root, 4);
+        //TreeNode root = new TreeNode(5, new TreeNode(3, new TreeNode(1), new TreeNode(4)), new TreeNode(8));
+        //TreeNode root = new TreeNode(5, new TreeNode(3, null, new TreeNode(2)), new TreeNode(8));
+        TreeNode root = new TreeNode(5,new TreeNode(3,new TreeNode(2,new TreeNode(1),null),new TreeNode(4)),new TreeNode(6));
+        int result = leetCode230.kthSmallest(root, 3);
         System.out.println(result);
     }
 }
