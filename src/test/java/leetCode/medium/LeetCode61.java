@@ -10,11 +10,51 @@ import java.util.List;
  * 旋转链表<br/>
  * 给定一个链表，旋转链表，将链表每个节点向右移动 k 个位置，其中 k 是非负数。
  * 输入: 1->2->3->4->5->NULL, k = 2
- * 输出: 4->5->1->2->3->NULL<br/>
+ * 移动一次则变成5->1->2->3->4
+ * 移动两次则变成4->5->1->2->3<br/>
  *
  * @author chenwu on 2019.11.1
  */
 public class LeetCode61 {
+
+    private ListNode moveOnes(ListNode root){
+        if(root.next==null){
+            return root;
+        }
+        ListNode lastNode = root;
+        ListNode previousNode = root;
+        while(lastNode.next!=null){
+            previousNode = lastNode;
+            lastNode = lastNode.next;
+        }
+        //lastNode指向了尾部节点
+        previousNode.next=null;
+        lastNode.next = root;
+        return lastNode;
+    }
+
+    private int calculateLength(ListNode root){
+        ListNode head = root;
+        int length = 1;
+        while(head.next!=null){
+            length+=1;
+            head = head.next;
+        }
+        return length;
+    }
+
+    public ListNode rotateRight1(ListNode head, int k) {
+        if(head==null||head.next==null||k<=0){
+            return head;
+        }
+        int length = calculateLength(head);
+        k = k%length;
+        ListNode root = head;
+        for(int i=1;i<=k;i++){
+            root = moveOnes(root);
+        }
+        return root;
+    }
 
     /**
      * 这个方法实质上是把头节点往后挪K位，但是题目的意思是尾结点往后挪K位
@@ -64,7 +104,7 @@ public class LeetCode61 {
         ListNode listNode = new ListNode(1,new ListNode(2,new ListNode(3,new ListNode(4,new ListNode(5,null)))));
         //ListNode listNode = new ListNode(0,new ListNode(1,new ListNode(2,null)));
         //ListNode listNode = new ListNode(1,null);
-        ListNode result = leetCode61.rotateRight(listNode,2);
+        ListNode result = leetCode61.rotateRight1(listNode,2);
         System.out.println(result);
     }
 }
