@@ -18,7 +18,53 @@ import leetCode.TreeNode;
  */
 public class LeetCode236 {
 
+    private boolean find_node(TreeNode root,TreeNode node){
+        if(root == null){
+            return false;
+        }
+        if(root==node){
+            return false;
+        }
+        boolean leftFlag = find_node(root.left,node);
+        boolean rightFlag = find_node(root.right,node);
+        return leftFlag || rightFlag;
+    }
+
+    private TreeNode find0(TreeNode root,TreeNode p,TreeNode q){
+        if(root == p){
+            boolean flag = find_node(root,q);
+            if(flag){
+                return root;
+            }
+        }
+        if(root == q){
+            boolean flag = find_node(root,p);
+            if(flag){
+                return root;
+            }
+        }
+        return null;
+    }
+
+    private TreeNode find(TreeNode root,TreeNode p,TreeNode q){
+
+
+        //root = p
+        //那么q是root的某个节点吗？
+        //root = q
+        //那么p是root的某个节点吗？
+        //p只在root的左节点 q只在root的右节点
+        //root.right 找不到p
+        //root.left 找不到q
+        //或者
+        //root.left 找不到q
+        //root.right找不到p
+
+        return null;
+    }
+
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+
         return null;
     }
 }
