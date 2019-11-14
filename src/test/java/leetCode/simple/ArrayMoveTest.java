@@ -25,20 +25,9 @@ public class ArrayMoveTest {
         }
         int length = nums.length;
         k = k%length;
-        int temp ;
         for(int i = 1;i<=k;i++){
             moveOnes(nums);
         }
-//        for(int i=length-1;i>=length-k;i--){
-//            int j = i+k;
-//            if(j>=length){
-//                j = j%length;
-//            }
-//            //将nums[i]与nums[j]进行交换
-//            temp = nums[i];
-//            nums[i]=nums[j];
-//            nums[j]=temp;
-//        }
         return nums;
     }
 

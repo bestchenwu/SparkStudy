@@ -16,6 +16,20 @@ public class TreeNode {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if(! (obj instanceof TreeNode)){
+            return false;
+        }
+        TreeNode other = (TreeNode)obj;
+        return this.val==other.val;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.val;
+    }
+
+    @Override
     public String toString() {
         return "TreeNode[val="+val+"]";
     }
