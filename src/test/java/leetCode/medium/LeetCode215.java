@@ -33,7 +33,15 @@ public class LeetCode215 {
         }
     }
 
-    public int findKthLargest(int[] nums, int k) {
+    /**
+     * 使用分治算法
+     *
+     * @param nums
+     * @param k
+     * @return
+     */
+    @Deprecated
+    public int findKthLargest0(int[] nums, int k) {
         if(nums.length==1){
             return nums[0];
         }
@@ -43,6 +51,69 @@ public class LeetCode215 {
             end = end-1;
         }
         return nums[end+1];
+    }
+
+    /**
+     * 使用堆排序算法
+     *
+     * @param nums
+     * @param k
+     * @return int 第K大的数字
+     * @author chenwu on 2019.11.15
+     */
+    public int findKthLargest(int[] nums, int k) {
+        if(nums==null||nums.length==0||k<=0){
+            throw new IllegalStateException("nums or k is not valid");
+        }
+        if(nums.length==1){
+            return nums[0];
+        }
+        for(int length = nums.length;length>0;length--){
+            buildHeapByCylcle(nums,length);
+        }
+        int end = nums.length-k;
+        return nums[end];
+    }
+
+    /**
+     * size是这一次要堆排序的数组长度,每次排序完成后都将第一个元素与最后一个元素交换,然后数组长度-1
+     *
+     * @param nums
+     * @param size
+     * @author chenwu on 2019.11.15
+     */
+    private void buildHeapByCylcle(int[] nums,int size){
+        int half = (int)Math.floor((float)size/2);
+        for(int i=half;i>=0;i--){
+            buildHeap(nums,i,size);
+        }
+        swap(size-1,0,nums);
+    }
+
+    private void buildHeap(int[] nums,int rootIndex,int size){
+        int leftIndex = rootIndex*2+1;
+        int rightIndex = rootIndex*2+2;
+        int largestIndex = rootIndex;
+        if(leftIndex<size){
+            if(nums[leftIndex]>nums[largestIndex]){
+                largestIndex=leftIndex;
+            }
+        }
+        if(rightIndex<size){
+            if(nums[rightIndex]>nums[largestIndex]){
+                largestIndex = rightIndex;
+            }
+        }
+        if(largestIndex!=rootIndex){
+            swap(largestIndex,rootIndex,nums);
+            buildHeap(nums,largestIndex,size);
+        }
+    }
+
+    private void swap(int i,int j,int[] nums){
+        int temp = nums[i];
+        nums[i]=nums[j];
+        nums[j]=temp;
     }
 
     public static void main(String[] args) {

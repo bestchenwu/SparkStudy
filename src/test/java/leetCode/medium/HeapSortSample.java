@@ -49,7 +49,7 @@ public class HeapSortSample {
     }
 
     public static void main(String[] args) {
-        int[] arrays = new int[]{3,5,7,2,8};
+        int[] arrays = new int[]{3,1,6,7,4,8,5};
         for (int i = 0; i < arrays.length; i++) {
 
             //每次建堆就可以排除一个元素了
