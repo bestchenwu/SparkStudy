@@ -37,19 +37,23 @@ public class LeetCode15 {
             }
             j = i +1;
             k = length-1;
-            if(nums[i]+nums[k]+nums[j]==0){
-                List<Integer> list = Arrays.asList(nums[i],nums[j],nums[k]);
-                result.add(list);
-                while(j<length && nums[j]==nums[j+1]){
+            while(j<k){
+                if(nums[i]+nums[k]+nums[j]==0){
+                    List<Integer> list = Arrays.asList(nums[i],nums[j],nums[k]);
+                    result.add(list);
+                    while(j<k && nums[j]==nums[j+1]){
+                        j+=1;
+                    }
+                    while(k>i && nums[k]==nums[k-1]){
+                        k-=1;
+                    }
+                    j+=1;
+                    k-=1;
+                }else if(nums[i]+nums[k]+nums[j]>0){
+                    k-=1;
+                }else{
                     j+=1;
                 }
-                while(k>i && nums[k]==nums[k-1]){
-                    k-=1;
-                }
-            }else if(nums[i]+nums[k]+nums[j]>0){
-                 k-=1;
-            }else{
-                j+=1;
             }
         }
         return result;
