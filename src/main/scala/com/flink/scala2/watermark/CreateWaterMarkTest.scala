@@ -13,6 +13,7 @@ class CreateWaterMarkTest {
   def main(args: Array[String]): Unit = {
       val env = StreamExecutionEnvironment.createLocalEnvironment()
       env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime)
+
   }
 
 }
