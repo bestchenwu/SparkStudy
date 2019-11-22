@@ -15,9 +15,9 @@ import org.apache.flink.streaming.api.scala._
 object SelfDefinedKafkaWaterMark {
 
   def main(args: Array[String]): Unit = {
-    val kafkaSource = new FlinkKafkaConsumer[MyEvent[String]]("topic", new MyEventDeserializationSchema[String](), new Properties());
-    kafkaSource.assignTimestampsAndWatermarks(new AscendingTimestampExtractor[MyEvent[String]] {
-      override def extractAscendingTimestamp(element: MyEvent[String]): Long = element.time
+    val kafkaSource = new FlinkKafkaConsumer[MyEvent]("topic", new MyEventDeserializationSchema(), new Properties());
+    kafkaSource.assignTimestampsAndWatermarks(new AscendingTimestampExtractor[MyEvent] {
+      override def extractAscendingTimestamp(element: MyEvent): Long = element.time
     })
     val env = StreamExecutionEnvironment.createLocalEnvironment()
     val stream = env.addSource(kafkaSource)

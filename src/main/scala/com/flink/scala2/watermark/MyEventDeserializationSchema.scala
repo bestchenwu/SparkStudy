@@ -8,12 +8,16 @@ import org.apache.flink.api.common.typeinfo.{TypeHint, TypeInformation}
   *
   * @tparam T
   */
-class MyEventDeserializationSchema[T] extends DeserializationSchema[MyEvent[T]] {
-  override def deserialize(message: Array[Byte]): MyEvent[T] = {
-    null
+class MyEventDeserializationSchema extends DeserializationSchema[MyEvent] {
+  override def deserialize(message: Array[Byte]): MyEvent = {
+    val charArray = message.map(item => item.toChar)
+    val str = charArray.mkString("")
+    val time = str.split(",")(0).toLong
+    val data = str.split(",")(1)
+    MyEvent(time, data)
   }
 
-  override def isEndOfStream(nextElement: MyEvent[T]): Boolean = {
+  override def isEndOfStream(nextElement: MyEvent): Boolean = {
     false
   }
 
