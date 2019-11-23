@@ -8,7 +8,7 @@ import org.apache.flink.streaming.api.watermark.Watermark
   *
   * @tparam T
   */
-class InOrderWatermarkGenerator[T] extends AssignerWithPeriodicWatermarks[MyEvent[T]] {
+class InOrderWatermarkGenerator extends AssignerWithPeriodicWatermarks[MyEvent] {
 
   val maxOutOfOrderTimeStamp = 3500l
 
@@ -16,7 +16,7 @@ class InOrderWatermarkGenerator[T] extends AssignerWithPeriodicWatermarks[MyEven
     new Watermark(System.currentTimeMillis() - maxOutOfOrderTimeStamp)
   }
 
-  override def extractTimestamp(element: MyEvent[T], previousElementTimestamp: Long): Long = {
+  override def extractTimestamp(element: MyEvent, previousElementTimestamp: Long): Long = {
     element.time
   }
 }

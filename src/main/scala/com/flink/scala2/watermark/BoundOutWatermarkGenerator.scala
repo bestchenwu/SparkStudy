@@ -6,7 +6,7 @@ import org.apache.flink.streaming.api.watermark.Watermark
 /**
   * 乱序的水印生成器
   */
-class BoundOutWatermarkGenerator[T] extends AssignerWithPeriodicWatermarks[MyEvent[T]] {
+class BoundOutWatermarkGenerator[T] extends AssignerWithPeriodicWatermarks[MyEvent] {
 
   var currentMaxTimeStamp: Long = _
   //表示最大的乱序允许的延迟时间
@@ -24,7 +24,7 @@ class BoundOutWatermarkGenerator[T] extends AssignerWithPeriodicWatermarks[MyEve
     *   表示当前事件的事件时间
     */
 
-  override def extractTimestamp(t: MyEvent[T], l: Long): Long = {
+  override def extractTimestamp(t: MyEvent, l: Long): Long = {
     val timestamp = t.time
     currentMaxTimeStamp = timestamp max currentMaxTimeStamp
     timestamp
