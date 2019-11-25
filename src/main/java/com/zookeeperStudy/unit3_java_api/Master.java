@@ -13,6 +13,46 @@ public class Master implements Watcher {
     private Random random = new Random(47);
     private String serverId;
     private volatile boolean isLeader = false;
+    private AsyncCallback.StringCallback stringCallback = new AsyncCallback.StringCallback() {
+        @Override
+        public void processResult(int rc, String path, Object ctx, String name) {
+            //获取状态码
+            KeeperException.Code code = KeeperException.Code.get(rc);
+            switch (code) {
+                //如果连接丢失,则会返回CONNECTIONLOSS状态码,而不是异常
+                case CONNECTIONLOSS:
+                    checkMasterForAsync();
+                    return;
+                case OK:
+                    isLeader = true;
+                    break;
+                default:
+                    isLeader = false;
+            }
+            System.out.println("I am " + (isLeader ? "" : "not") + " the leader");
+        }
+    };
+
+    /**
+     * 异步检查数据
+     */
+    private AsyncCallback.DataCallback masterCheckCallBack = new AsyncCallback.DataCallback() {
+        @Override
+        public void processResult(int rc, String path, Object ctx, byte[] data, Stat stat) {
+            switch (KeeperException.Code.get(rc)) {
+                case CONNECTIONLOSS:
+                    checkMasterForAsync();
+                    return;
+                case NONODE:
+                    runForMasterAsync();
+                    return;
+            }
+        }
+    };
+
+    public void checkMasterForAsync() {
+        zk.getData("/masters", false, masterCheckCallBack, null);
+    }
 
     public Master(String hostPort) {
         this.hostPort = hostPort;
@@ -27,6 +67,7 @@ public class Master implements Watcher {
     public void stopZK() throws InterruptedException {
         zk.close();
     }
+
 
     private boolean checkIsMaster() {
         while (true) {
@@ -52,7 +93,7 @@ public class Master implements Watcher {
     }
 
     /**
-     * 创建节点
+     * 同步创建节点
      */
     public void runForMaster() {
         while (true) {
@@ -75,6 +116,13 @@ public class Master implements Watcher {
 
     }
 
+    /**
+     * 异步创建节点
+     */
+    public void runForMasterAsync() {
+        zk.create("/masters", serverId.getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL, stringCallback, null);
+    }
+
     @Override
     public void process(WatchedEvent watchedEvent) {
         System.out.println(watchedEvent);
@@ -84,13 +132,17 @@ public class Master implements Watcher {
     public static void main(String[] args) throws Exception {
         Master master = new Master("127.0.0.1:2181");
         master.startZK();
-        master.runForMaster();
-        //睡眠10分钟,避免节点被立即删除了
+        //同步创建节点
+        //master.runForMaster();
+        //异步创建节点
+        master.runForMasterAsync();
         if (master.isLeader) {
             System.out.println("I am the leader");
         } else {
             System.out.println("someone else is the leader");
         }
+        //睡眠30秒,避免节点被立即删除了
+        Thread.sleep(30 * 1000);
         master.stopZK();
         //master.stopZK();
     }
