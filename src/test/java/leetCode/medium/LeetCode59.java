@@ -35,6 +35,7 @@ public class LeetCode59 {
                 int rowTemp=row+rowUpdate;
                 if(rowTemp==n||nums[rowTemp][column]!=0){
                     //说明到达了数组的拐角
+                    //尝试性先将column+1,判断是否存在值,如果存在则回溯
                     int columnUpdateTemp=column+1;
                     if(columnUpdateTemp<n&&nums[row][columnUpdateTemp]==0){
                         columnUpdate=1;

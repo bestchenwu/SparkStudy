@@ -1,6 +1,7 @@
 package com.zookeeperStudy.unit3_java_api;
 
 import org.apache.zookeeper.*;
+import org.apache.zookeeper.data.Stat;
 
 import java.io.IOException;
 import java.util.Random;
@@ -15,6 +16,34 @@ public class MetaDataTest implements Watcher {
 
     private Random random = new Random(47);
     private ZooKeeper zk;
+    private String status;//状态
+
+    public void setStatus(String newStatus){
+        this.status = newStatus;
+        updateStatus(newStatus);
+    }
+
+    private void updateStatus(String status){
+        if(status.equals(this.status)){
+            //第三个参数为-1,表示禁止版本号校验
+            zk.setData("/workers",status.getBytes(),-1,statCallback,status);
+        }
+    }
+
+    private AsyncCallback.StatCallback statCallback = new AsyncCallback.StatCallback(){
+        @Override
+        public void processResult(int rc, String path, Object ctx, Stat stat) {
+            switch (KeeperException.Code.get(rc)){
+                case CONNECTIONLOSS:
+                        updateStatus((String)ctx);
+                        return;
+                case OK:
+                    System.out.println("new status:"+(String)ctx);
+            }
+        }
+    };
+
+
 
     private AsyncCallback.StringCallback stringCallback = new AsyncCallback.StringCallback() {
         @Override
@@ -98,9 +127,10 @@ public class MetaDataTest implements Watcher {
         final MetaDataTest metaDataTest = new MetaDataTest();
         metaDataTest.startZK("127.0.0.1:2181", 6000, metaDataTest);
 //        metaDataTest.bootstrap();
-        IntStream.range(0, 10).forEach(number -> {
-            metaDataTest.registerWorkers();
-        });
+//        IntStream.range(0, 10).forEach(number -> {
+//            metaDataTest.registerWorkers();
+//        });
+        metaDataTest.setStatus("success");
         try {
             Thread.sleep(1000 * 30);
         } catch (InterruptedException e) {
