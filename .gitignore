@@ -17,3 +17,4 @@ spark.iml
 /metastore_db
 /spark-warehouse
 **/*.log
+**/tree.txt
