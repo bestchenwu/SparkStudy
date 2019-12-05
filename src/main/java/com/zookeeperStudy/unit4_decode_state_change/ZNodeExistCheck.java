@@ -6,6 +6,7 @@ import org.apache.zookeeper.data.Stat;
 
 import java.io.IOException;
 import java.util.Random;
+import java.util.function.Predicate;
 
 /**
  * 检查znode的状态
@@ -96,14 +97,21 @@ public class ZNodeExistCheck implements Watcher {
     Watcher existsWatcher = new Watcher() {
         @Override
         public void process(WatchedEvent event) {
-            System.out.println(event);
+            if(event.getType() == Event.EventType.NodeDeleted){
+                assert "/masters".equals(event.getPath());
+                runForMaster();
+            }
         }
     };
 
     AsyncCallback.StatCallback statCallback = new AsyncCallback.StatCallback() {
         @Override
         public void processResult(int rc, String path, Object ctx, Stat stat) {
-
+            switch (KeeperException.Code.get(rc)){
+                case CONNECTIONLOSS:
+                    checkPathIsExisted(path);
+                    break;
+            }
         }
     };
 
