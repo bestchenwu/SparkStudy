@@ -63,14 +63,14 @@ public class QueryableState {
     public static void main(String[] args) {
         try{
             //这里指定主机的名称
-            QueryableStateClient queryableStateClient = new QueryableStateClient("",8577);
+            QueryableStateClient queryableStateClient = new QueryableStateClient("127.0.0.1",65188);
             ValueStateDescriptor<Tuple2<Long, Long>> descriptor = new ValueStateDescriptor<Tuple2<Long, Long>>("average", TypeInformation.of(new TypeHint<Tuple2<Long, Long>>() {
 
             }));
-            CompletableFuture<ValueState<Tuple2<Long, Long>>> kvState = queryableStateClient.getKvState(new JobID("11".getBytes()), "average", 13l, BasicTypeInfo.LONG_TYPE_INFO, descriptor);
+            CompletableFuture<ValueState<Tuple2<Long, Long>>> kvState = queryableStateClient.getKvState(JobID.fromHexString("a8fe284a7938e2d88fab732f791e943d"), "CountWindowCoverage", 1l, BasicTypeInfo.LONG_TYPE_INFO, descriptor);
             kvState.thenAccept(response -> {
                 try{
-                    response.value();
+                    System.out.println(response.value());
                 }catch(IOException e){
                     e.printStackTrace();
                 }

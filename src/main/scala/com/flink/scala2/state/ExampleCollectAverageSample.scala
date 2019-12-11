@@ -53,14 +53,16 @@ object ExampleCollectAverageSample {
         * ReturnExpiredIfNotCleanedUp 即使过期仍然可以返回状态
         * NeverReturnExpired 从不返回过期状态
         */
-      val ttlStateConfig = StateTtlConfig.newBuilder(Time.seconds(1l)).setUpdateType(StateTtlConfig.UpdateType.OnCreateAndWrite).setStateVisibility(StateTtlConfig.StateVisibility.NeverReturnExpired).build()
-      valueStateDescriptor.enableTimeToLive(ttlStateConfig)
+      //val ttlStateConfig = StateTtlConfig.newBuilder(Time.seconds(1l)).setUpdateType(StateTtlConfig.UpdateType.OnCreateAndWrite).setStateVisibility(StateTtlConfig.StateVisibility.NeverReturnExpired).build()
+      //valueStateDescriptor.enableTimeToLive(ttlStateConfig)
+      valueStateDescriptor.setQueryable("CountWindowCoverage")
       sum = getRuntimeContext.getState(valueStateDescriptor)
     }
   }
 
   def main(args: Array[String]): Unit = {
-    val env = StreamExecutionEnvironment.createLocalEnvironment(1)
+    //val env = StreamExecutionEnvironment.createLocalEnvironment(1)
+    val env = StreamExecutionEnvironment.getExecutionEnvironment
     val dataStream = env.fromCollection(List((1l, 1l), (1l, 2l), (1l, 3l), (1l, 4l)))
     val outputStream = dataStream.keyBy(_._1).flatMap(new AverageCollectFunction())
     outputStream.print()
