@@ -3,10 +3,10 @@ package com.flink.scala2.state
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
 import org.apache.flink.streaming.api.scala.createTypeInformation
 import org.apache.flink.api.common.functions.RichFlatMapFunction
-import org.apache.flink.api.common.state.{StateTtlConfig, ValueState, ValueStateDescriptor}
-import org.apache.flink.api.common.time.Time
-import org.apache.flink.api.scala.ExecutionEnvironment
+import org.apache.flink.api.common.state.{ ValueState, ValueStateDescriptor}
+import org.apache.flink.configuration.ConfigConstants
 import org.apache.flink.configuration.Configuration
+import org.apache.flink.configuration.{ConfigConstants, Configuration, QueryableStateOptions}
 import org.apache.flink.util.Collector
 
 /**
@@ -61,8 +61,14 @@ object ExampleCollectAverageSample {
   }
 
   def main(args: Array[String]): Unit = {
-    //val env = StreamExecutionEnvironment.createLocalEnvironment(1)
-    val env = StreamExecutionEnvironment.getExecutionEnvironment
+    System.setProperty("log.file","D:\\logs1\\local.log")
+    val config = new Configuration()
+    config.setBoolean(ConfigConstants.LOCAL_START_WEBSERVER, true)
+    config.setBoolean(QueryableStateOptions.ENABLE_QUERYABLE_STATE_PROXY_SERVER, true)
+    config.setString("web.log.path","D:\\logs1\\local.log")
+    val env = StreamExecutionEnvironment.createLocalEnvironmentWithWebUI(config)
+    env.setParallelism(1)
+    //val env = StreamExecutionEnvironment.getExecutionEnvironment
     val dataStream = env.fromCollection(List((1l, 1l), (1l, 2l), (1l, 3l), (1l, 4l)))
     val outputStream = dataStream.keyBy(_._1).flatMap(new AverageCollectFunction())
     outputStream.print()

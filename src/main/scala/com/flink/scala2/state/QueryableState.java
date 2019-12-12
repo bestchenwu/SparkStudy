@@ -7,14 +7,89 @@ import org.apache.flink.api.common.state.ValueStateDescriptor;
 import org.apache.flink.api.common.typeinfo.BasicTypeInfo;
 import org.apache.flink.api.common.typeinfo.TypeHint;
 import org.apache.flink.api.common.typeinfo.TypeInformation;
+import org.apache.flink.api.common.typeutils.TypeSerializer;
+import org.apache.flink.api.common.typeutils.TypeSerializerSnapshot;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.configuration.Configuration;
+import org.apache.flink.core.memory.DataInputView;
+import org.apache.flink.core.memory.DataOutputView;
 import org.apache.flink.queryablestate.client.QueryableStateClient;
 import org.apache.flink.util.Collector;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.concurrent.CompletableFuture;
+
+
+/**
+ * 自定义序列化
+ */
+class CustomerTypeSerializer extends TypeSerializer<Tuple2<Long,Long>>{
+    @Override
+    public boolean isImmutableType() {
+        return false;
+    }
+
+    @Override
+    public TypeSerializer<Tuple2<Long, Long>> duplicate() {
+        return null;
+    }
+
+    @Override
+    public Tuple2<Long, Long> createInstance() {
+        return null;
+    }
+
+    @Override
+    public Tuple2<Long, Long> copy(Tuple2<Long, Long> from) {
+        return null;
+    }
+
+    @Override
+    public Tuple2<Long, Long> copy(Tuple2<Long, Long> from, Tuple2<Long, Long> reuse) {
+        return null;
+    }
+
+    @Override
+    public int getLength() {
+        return 0;
+    }
+
+    @Override
+    public void serialize(Tuple2<Long, Long> record, DataOutputView target) throws IOException {
+
+    }
+
+    @Override
+    public Tuple2<Long, Long> deserialize(DataInputView source) throws IOException {
+        return null;
+    }
+
+    @Override
+    public Tuple2<Long, Long> deserialize(Tuple2<Long, Long> reuse, DataInputView source) throws IOException {
+        return null;
+    }
+
+    @Override
+    public void copy(DataInputView source, DataOutputView target) throws IOException {
+
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
+    }
+
+    @Override
+    public TypeSerializerSnapshot<Tuple2<Long, Long>> snapshotConfiguration() {
+        return null;
+    }
+}
 
 /**
  * 支持状态查询的flapFlapFunction

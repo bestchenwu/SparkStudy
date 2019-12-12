@@ -2186,9 +2186,9 @@
 							"font": "Arial;13;0",
 							"left": 32,
 							"top": 352,
-							"width": 241.14990234375,
+							"width": 361,
 							"height": 51,
-							"text": "1、KeyBy  针对元组格式,可以使用keyBy(n:Int*) 针对类格式,可以使用keyBy(field:String*)"
+							"text": "1、KeyBy  针对元组格式,可以使用keyBy(n:Int*) 计数从0开始针对类格式,可以使用 keyBy(field:String*)"
 						},
 						{
 							"_type": "UMLNoteView",
