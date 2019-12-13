@@ -2,6 +2,7 @@ package com.flink.scala2.operaters
 
 import org.apache.flink.api.common.functions.JoinFunction
 import org.apache.flink.streaming.api.TimeCharacteristic
+import org.apache.flink.streaming.api.functions.timestamps.BoundedOutOfOrdernessTimestampExtractor
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
 import org.apache.flink.streaming.api.scala.createTypeInformation
 import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindows
@@ -18,16 +19,26 @@ object JoinStreamTest {
   def main(args: Array[String]): Unit = {
     val env = StreamExecutionEnvironment.createLocalEnvironment(1)
     env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime)
-    val dataStream1 = env.fromElements((1, 2), (2, 3), (3, 4))
-    dataStream1.assignAscendingTimestamps(item=>item._1)
-    val dataStream2 = env.fromElements((1, 20), (2, 30), (3, 40))
-    dataStream2.assignAscendingTimestamps(item=>item._1)
-    val joinStream = dataStream1.join(dataStream2).where(_._1).equalTo(_._1).window(TumblingEventTimeWindows.of(Time.seconds(5l)))
-    val joinResult = joinStream.apply(new JoinFunction[(Int, Int), (Int, Int), (Int, Int, Int)] {
-      override def join(first: (Int, Int), second: (Int, Int)): (Int, Int, Int) = {
-        (first._1, first._2, second._2)
+    val dataStream1 = env.fromElements((1, 2,1000000050000L), (2, 3,1000000054000L), (3, 4,1000000079900L))
+    val leftStream = dataStream1.assignTimestampsAndWatermarks(new BoundedOutOfOrdernessTimestampExtractor[(Int,Int,Long)](Time.milliseconds(5100l)){
+      override def extractTimestamp(element: (Int, Int,Long)): Long = {
+          element._3
       }
     })
+    //dataStream1.assignAscendingTimestamps(item=>item._1)
+    val dataStream2 = env.fromElements((1, 20,1000000059000L), (2, 30,1000000105000L))
+    val rightStream = dataStream2.assignTimestampsAndWatermarks(new BoundedOutOfOrdernessTimestampExtractor[(Int,Int,Long)](Time.milliseconds(5100l)){
+      override def extractTimestamp(element: (Int, Int,Long)): Long = {
+        element._3
+      }
+    })
+    val joinStream = leftStream.join(rightStream).where(_._1).equalTo(_._1).window(TumblingEventTimeWindows.of(Time.seconds(10l)))
+    val joinResult = joinStream.apply(new JoinFunction[(Int, Int,Long), (Int, Int,Long), (Int, Int, Int,Long)] {
+      override def join(first: (Int, Int,Long), second: (Int, Int,Long)): (Int, Int, Int,Long) = {
+        (first._1, first._2, second._2,first._3)
+      }
+    })
+    //输出(1,2,20,1000000050000)
     joinResult.print()
     env.execute("JoinStreamTest")
   }

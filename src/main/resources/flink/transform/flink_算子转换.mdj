@@ -2187,8 +2187,8 @@
 							"left": 32,
 							"top": 352,
 							"width": 361,
-							"height": 51,
-							"text": "1、KeyBy  针对元组格式,可以使用keyBy(n:Int*) 计数从0开始针对类格式,可以使用 keyBy(field:String*)"
+							"height": 53,
+							"text": "1、KeyBy  针对元组格式,可以使用keyBy(n:Int*) 计数从0开始\n                                                                                              针对类格式,可以使用 keyBy(field:String*)"
 						},
 						{
 							"_type": "UMLNoteView",
@@ -2632,9 +2632,9 @@
 							},
 							"font": "Arial;13;0",
 							"top": 72,
-							"width": 272.83984375,
-							"height": 40,
-							"text": "DataStream可以通过Split转换为SplitStream  SplitStream可以通过select转为DataStream"
+							"width": 298.154296875,
+							"height": 51,
+							"text": "DataStream可以通过process转换为SplitStream  SplitStream可以通过getsideoutt转为DataStream"
 						},
 						{
 							"_type": "UMLNoteLinkView",
@@ -2650,7 +2650,7 @@
 								"$ref": "AAAAAAFtI3bzVSdy9YU="
 							},
 							"lineStyle": 1,
-							"points": "303:85;273:86"
+							"points": "303:87;298:88"
 						},
 						{
 							"_type": "UMLNoteLinkView",
@@ -2666,7 +2666,7 @@
 								"$ref": "AAAAAAFtJF5ZulSs9Ss="
 							},
 							"lineStyle": 1,
-							"points": "133:112;130:159"
+							"points": "142:123;133:159"
 						},
 						{
 							"_type": "UMLClassView",
@@ -4027,6 +4027,243 @@
 							},
 							"lineStyle": 1,
 							"points": "738:420;823:419"
+						},
+						{
+							"_type": "UMLClassView",
+							"_id": "AAAAAAFu/jvLlQI7Gfk=",
+							"_parent": {
+								"$ref": "AAAAAAFF+qBtyKM79qY="
+							},
+							"model": {
+								"$ref": "AAAAAAFu/jvLlAI5X98="
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "AAAAAAFu/jvLlQI8J90=",
+									"_parent": {
+										"$ref": "AAAAAAFu/jvLlQI7Gfk="
+									},
+									"model": {
+										"$ref": "AAAAAAFu/jvLlAI5X98="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFu/jvLlQI99Oo=",
+											"_parent": {
+												"$ref": "AAAAAAFu/jvLlQI8J90="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": -16,
+											"height": 13
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFu/jvLlQI+jzw=",
+											"_parent": {
+												"$ref": "AAAAAAFu/jvLlQI8J90="
+											},
+											"font": "Arial;13;1",
+											"left": 149,
+											"top": 591,
+											"width": 80.57080078125,
+											"height": 13,
+											"text": "DataStream"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFu/jvLlQI/W9M=",
+											"_parent": {
+												"$ref": "AAAAAAFu/jvLlQI8J90="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": -16,
+											"width": 90.27001953125,
+											"height": 13,
+											"text": "(from 算子转换)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFu/jvLlQJAyIQ=",
+											"_parent": {
+												"$ref": "AAAAAAFu/jvLlQI8J90="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": -16,
+											"height": 13,
+											"horizontalAlignment": 1
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 144,
+									"top": 584,
+									"width": 90.57080078125,
+									"height": 25,
+									"stereotypeLabel": {
+										"$ref": "AAAAAAFu/jvLlQI99Oo="
+									},
+									"nameLabel": {
+										"$ref": "AAAAAAFu/jvLlQI+jzw="
+									},
+									"namespaceLabel": {
+										"$ref": "AAAAAAFu/jvLlQI/W9M="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAFu/jvLlQJAyIQ="
+									}
+								},
+								{
+									"_type": "UMLAttributeCompartmentView",
+									"_id": "AAAAAAFu/jvLlQJBrp0=",
+									"_parent": {
+										"$ref": "AAAAAAFu/jvLlQI7Gfk="
+									},
+									"model": {
+										"$ref": "AAAAAAFu/jvLlAI5X98="
+									},
+									"font": "Arial;13;0",
+									"left": 144,
+									"top": 609,
+									"width": 90.57080078125,
+									"height": 10
+								},
+								{
+									"_type": "UMLOperationCompartmentView",
+									"_id": "AAAAAAFu/jvLlQJCJD0=",
+									"_parent": {
+										"$ref": "AAAAAAFu/jvLlQI7Gfk="
+									},
+									"model": {
+										"$ref": "AAAAAAFu/jvLlAI5X98="
+									},
+									"subViews": [
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAFu/jxUmgMpwis=",
+											"_parent": {
+												"$ref": "AAAAAAFu/jvLlQJCJD0="
+											},
+											"model": {
+												"$ref": "AAAAAAFu/jxUOAMX5HU="
+											},
+											"font": "Arial;13;0",
+											"left": 149,
+											"top": 624,
+											"width": 80.57080078125,
+											"height": 13,
+											"text": "+join()",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAFu/j8+/wPVIbc=",
+											"_parent": {
+												"$ref": "AAAAAAFu/jvLlQJCJD0="
+											},
+											"model": {
+												"$ref": "AAAAAAFu/j8+pAPDTbo="
+											},
+											"font": "Arial;13;0",
+											"left": 149,
+											"top": 639,
+											"width": 80.57080078125,
+											"height": 13,
+											"text": "+coGroup()",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAFu/lN+swjXmR0=",
+											"_parent": {
+												"$ref": "AAAAAAFu/jvLlQJCJD0="
+											},
+											"model": {
+												"$ref": "AAAAAAFu/lN+UAjFQ1k="
+											},
+											"font": "Arial;13;0",
+											"left": 149,
+											"top": 654,
+											"width": 80.57080078125,
+											"height": 13,
+											"text": "+connect()",
+											"horizontalAlignment": 0
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 144,
+									"top": 619,
+									"width": 90.57080078125,
+									"height": 53
+								},
+								{
+									"_type": "UMLReceptionCompartmentView",
+									"_id": "AAAAAAFu/jvLlQJDNg8=",
+									"_parent": {
+										"$ref": "AAAAAAFu/jvLlQI7Gfk="
+									},
+									"model": {
+										"$ref": "AAAAAAFu/jvLlAI5X98="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": -8,
+									"width": 10,
+									"height": 10
+								},
+								{
+									"_type": "UMLTemplateParameterCompartmentView",
+									"_id": "AAAAAAFu/jvLlQJEx84=",
+									"_parent": {
+										"$ref": "AAAAAAFu/jvLlQI7Gfk="
+									},
+									"model": {
+										"$ref": "AAAAAAFu/jvLlAI5X98="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": -8,
+									"width": 10,
+									"height": 10
+								}
+							],
+							"font": "Arial;13;0",
+							"containerChangeable": true,
+							"left": 144,
+							"top": 584,
+							"width": 90.57080078125,
+							"height": 88,
+							"nameCompartment": {
+								"$ref": "AAAAAAFu/jvLlQI8J90="
+							},
+							"attributeCompartment": {
+								"$ref": "AAAAAAFu/jvLlQJBrp0="
+							},
+							"operationCompartment": {
+								"$ref": "AAAAAAFu/jvLlQJCJD0="
+							},
+							"receptionCompartment": {
+								"$ref": "AAAAAAFu/jvLlQJDNg8="
+							},
+							"templateParameterCompartment": {
+								"$ref": "AAAAAAFu/jvLlQJEx84="
+							}
+						},
+						{
+							"_type": "UMLNoteView",
+							"_id": "AAAAAAFu/kKXoQSrLRg=",
+							"_parent": {
+								"$ref": "AAAAAAFF+qBtyKM79qY="
+							},
+							"font": "Arial;13;0",
+							"left": 296,
+							"top": 608,
+							"width": 481.55078125,
+							"height": 51,
+							"text": "1、join只能对匹配上的数据进行计算,coGroup还包括左边匹配上,右边未匹配上的 2、如果需要对匹配上的数据进行过滤、排序,则优先使用coGroup                           3、connect可以连接两个不同类型的流,join只能连接两个相同的流"
 						}
 					]
 				},
@@ -4425,6 +4662,40 @@
 									"$ref": "AAAAAAFtI5LHTiqhKNc="
 								}
 							}
+						}
+					]
+				},
+				{
+					"_type": "UMLClass",
+					"_id": "AAAAAAFu/jvLlAI5X98=",
+					"_parent": {
+						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
+					},
+					"name": "DataStream",
+					"operations": [
+						{
+							"_type": "UMLOperation",
+							"_id": "AAAAAAFu/jxUOAMX5HU=",
+							"_parent": {
+								"$ref": "AAAAAAFu/jvLlAI5X98="
+							},
+							"name": "join"
+						},
+						{
+							"_type": "UMLOperation",
+							"_id": "AAAAAAFu/j8+pAPDTbo=",
+							"_parent": {
+								"$ref": "AAAAAAFu/jvLlAI5X98="
+							},
+							"name": "coGroup"
+						},
+						{
+							"_type": "UMLOperation",
+							"_id": "AAAAAAFu/lN+UAjFQ1k=",
+							"_parent": {
+								"$ref": "AAAAAAFu/jvLlAI5X98="
+							},
+							"name": "connect"
 						}
 					]
 				}
