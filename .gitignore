@@ -18,3 +18,5 @@ spark.iml
 /spark-warehouse
 **/*.log
 **/tree.txt
+/**/tree.log
+tree.log
