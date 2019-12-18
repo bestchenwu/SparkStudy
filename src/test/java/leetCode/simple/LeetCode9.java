@@ -23,6 +23,14 @@ package leetCode.simple;
  */
 public class LeetCode9 {
 
+    /**
+     * 对于1000021无法判断出来
+     *
+     * @param x
+     * @return
+     * @author chenwu on 2019.12.18
+     */
+    @Deprecated
     private boolean checkXISPalindrome(int x){
         if(x<0){
             return false;
@@ -43,19 +51,36 @@ public class LeetCode9 {
         if(x/(int)Math.pow(10,j)!=x%(int)Math.pow(10,1)){
             return false;
         }else{
-            x = (x-(int)Math.pow(10,j))/10;
+            x = (x%(int)Math.pow(10,j))/10;
             return checkXISPalindrome(x);
         }
     }
 
-    public boolean isPalindrome(int x) {
+    @Deprecated
+    public boolean isPalindrome0(int x) {
        return checkXISPalindrome(x);
+    }
+
+    public boolean isPalindrome(int x) {
+        //说明x为120 10这样的类型
+        if(x<0 || (x%10==0 & x!=0)){
+            return false;
+        }
+        int reverseNumber = 0;
+        //从末尾获取数字的一半,并反转，再与剩下的进行判断
+        while(x>reverseNumber){
+            reverseNumber = reverseNumber*10+x%10;
+            x = x/10;
+        }
+        //如果x的长度为偶数,则反转的数字与剩下的进行比较
+        //如果x的长度为奇数,例如x为32123，循环退出的时候x=32,reverseNumber = 321,此时/10即可
+        return x == reverseNumber || x == reverseNumber/10;
     }
 
     public static void main(String[] args) {
         LeetCode9 leetCode9 = new LeetCode9();
-        int x = 303;
+        int x = 32123;
         boolean result = leetCode9.isPalindrome(x);
-        System.out.println(result);
+        System.out.println("result="+result);
     }
 }
