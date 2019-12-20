@@ -40,7 +40,7 @@
 		<junit.version>4.12</junit.version>
 		<flink.version>1.8.1</flink.version>
 		<hadoop.version>2.7.4</hadoop.version>
-		<zookeeper.version>3.5.5</zookeeper.version>
+		<zookeeper.version>3.4.13</zookeeper.version>
 		<hbase.version>1.0.0</hbase.version>
 	</properties>
 
