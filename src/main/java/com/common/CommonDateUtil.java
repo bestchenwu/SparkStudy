@@ -9,6 +9,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
@@ -373,7 +374,8 @@ public class CommonDateUtil {
      * @author chenwu on 2019.12.24
      */
     public static String getNowTimeBySeconds(){
-        LocalDate now = LocalDate.now();
-        return DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(now);
+        LocalTime localTime = LocalTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        return formatter.format(localTime);
     }
 }

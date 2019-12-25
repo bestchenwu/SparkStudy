@@ -19,7 +19,7 @@ object KafkaCommitReader {
   def main(args: Array[String]): Unit = {
     val properties = new Properties()
     properties.setProperty("bootstrap.servers", "127.0.0.1:9092")
-    properties.setProperty("group.id", "flink-uncommit-read")
+    properties.setProperty("group.id", "flink-commit-read")
     properties.setProperty("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
     properties.setProperty("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
     properties.setProperty("isolation.level", "read_committed")
@@ -29,7 +29,7 @@ object KafkaCommitReader {
       val records = consumer.poll(Duration.ofMillis(100))
       val nowDate = CommonDateUtil.getNowTimeBySeconds
       for (record <- records) {
-        println(s"now date is ${nowDate},record is ${record}")
+        println(s"read commit records,date is ${nowDate},record is ${record}")
       }
     }
   }

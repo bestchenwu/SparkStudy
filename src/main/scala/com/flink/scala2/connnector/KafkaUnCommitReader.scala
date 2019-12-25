@@ -27,7 +27,7 @@ object KafkaUnCommitReader {
       val records = consumer.poll(Duration.ofMillis(100))
       val nowDate = CommonDateUtil.getNowTimeBySeconds
       for (record <- records) {
-        println(s"now date is ${nowDate},record is ${record}")
+        println(s"read uncommit messages,date is ${nowDate},record is ${record}")
       }
     }
   }
