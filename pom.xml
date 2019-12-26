@@ -245,6 +245,12 @@
 				<version>${flink.version}</version>
 				<scope>provided</scope>
 			</dependency>
+			<!-- 引入flink fileSystem -->
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-connector-filesystem_2.11</artifactId>
+                <version>${flink.version}</version>
+            </dependency>
 			<!--  引入hadoop mr unit -->
 			<dependency>
 				<groupId>org.apache.hadoop</groupId>
