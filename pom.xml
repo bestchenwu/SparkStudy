@@ -43,6 +43,7 @@
 		<zookeeper.version>3.4.13</zookeeper.version>
 		<hbase.version>1.0.0</hbase.version>
 		<kafka.version>2.0.1</kafka.version>
+		<curator-recipes.version>4.1.0</curator-recipes.version>
 	</properties>
 
 		<dependencies>
@@ -281,6 +282,18 @@
 				<groupId>org.apache.zookeeper</groupId>
 				<artifactId>zookeeper</artifactId>
 				<version>${zookeeper.version}</version>
+			</dependency>
+			<!-- 引入zookeeper的高级API curator -->
+			<dependency>
+				<groupId>org.apache.curator</groupId>
+				<artifactId>curator-recipes</artifactId>
+				<version>${curator-recipes.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.apache.zookeeper</groupId>
+						<artifactId>zookeeper</artifactId>
+					</exclusion>
+				</exclusions>
 			</dependency>
 			<!-- 引入hbase -->
 			<dependency>
