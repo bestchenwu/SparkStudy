@@ -1,4 +1,4 @@
-package com.flink.scala2.watermark;
+package com.flink.scala2.dataStream.watermark;
 
 public class BytesTest {
 

@@ -1,4 +1,4 @@
-package com.flink.scala2.state;
+package com.flink.scala2.dataStream.state;
 
 import org.apache.flink.api.common.state.MapStateDescriptor;
 import org.apache.flink.api.common.typeinfo.BasicTypeInfo;
