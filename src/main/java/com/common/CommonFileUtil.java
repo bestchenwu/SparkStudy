@@ -25,13 +25,13 @@ public class CommonFileUtil {
         FileReader fileReader = new FileReader(inputFileName);
         BufferedReader br = new BufferedReader(fileReader);
         if (isDistinct) {
-            Set<String> set = br.lines().distinct().collect(Collectors.toSet());
+            Set<String> set = br.lines().collect(Collectors.toSet());
             List<String> list = new ArrayList<>(set);
             br.close();
             fileReader.close();
             return list;
         } else {
-            List<String> list = br.lines().distinct().collect(Collectors.toList());
+            List<String> list = br.lines().collect(Collectors.toList());
             br.close();
             fileReader.close();
             return list;
