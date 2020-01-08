@@ -11,6 +11,7 @@ import org.apache.flink.table.sources.{DefinedProctimeAttribute, StreamTableSour
 import org.apache.flink.types.Row
 import org.apache.flink.streaming.api.scala.{createTypeInformation, StreamExecutionEnvironment => ScalaStreamExecutionEnvironment}
 import org.apache.flink.table.api.scala.StreamTableEnvironment
+import org.apache.flink.table.sinks.CsvTableSink
 
 
 /**
@@ -58,9 +59,12 @@ object UserActionSourceTest {
     val env = ScalaStreamExecutionEnvironment.createLocalEnvironment(1)
     val tableEnv = StreamTableEnvironment.create(env)
     tableEnv.registerTableSource("UserActions", new UserActionSource)
+    val csvTableSink = new CsvTableSink("", "")
+    tableEnv.registerTableSink("result",csvTableSink)
     val windowTable = tableEnv.scan("UserActions").window(Tumble.over("10.minutes").on("UserActionTime").as("userActionWindow"))
     //val windowTable = tableEnv.scan("UserActions").window(Tumble over 10.minutes on 'UserActionTime as 'userActionWindow)
-    //todo:这里的Table怎么使用呢?不能识别table类型
+    //windowTable.table
+    //todo:这里的Table怎么使用呢?调用.table提示table是私有域,无法访问
 
   }
 }
