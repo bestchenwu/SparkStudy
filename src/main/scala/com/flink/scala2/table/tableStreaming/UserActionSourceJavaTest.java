@@ -20,6 +20,7 @@ import org.apache.flink.table.sources.StreamTableSource;
 import org.apache.flink.types.Row;
 
 import javax.annotation.Nullable;
+import java.sql.Timestamp;
 import java.util.Properties;
 
 /**
@@ -31,13 +32,13 @@ import java.util.Properties;
  */
 class UserActionSourceJava implements StreamTableSource<Row>, DefinedProctimeAttribute {
 
-    private String[] names = new String[]{"username", "data"};
-    private TypeInformation[] types = new TypeInformation[]{BasicTypeInfo.STRING_TYPE_INFO, BasicTypeInfo.STRING_TYPE_INFO};
+    private String[] names = new String[]{"username", "data","userActionTime"};
+    private TypeInformation[] types = new TypeInformation[]{BasicTypeInfo.STRING_TYPE_INFO, BasicTypeInfo.STRING_TYPE_INFO,Types.SQL_TIMESTAMP};
 
     @Nullable
     @Override
     public String getProctimeAttribute() {
-        return "UserActionTime";
+        return "userActionTime";
     }
 
     @Override
@@ -49,9 +50,11 @@ class UserActionSourceJava implements StreamTableSource<Row>, DefinedProctimeAtt
         DataStream<String> kafkaStream = env.addSource(flinkKafkaConsumer);
         SingleOutputStreamOperator<Row> rowStream = kafkaStream.map((String str) -> {
             String[] splitArray = str.split(",");
-            Row row = new Row(2);
+            Row row = new Row(3);
             row.setField(0, splitArray[0]);
             row.setField(1, splitArray[1]);
+            long timestamp = Long.parseLong(splitArray[2]);
+            row.setField(2,new Timestamp(timestamp));
             return row;
         });
         return rowStream;
@@ -77,8 +80,8 @@ public class UserActionSourceJavaTest {
         //tEnv.registerTableSource("UserActions", new UserActionSource());
         GroupWindowedTable windowedTable = tEnv
                 .scan("UserActions")
-                .window(Tumble.over("10.minutes").on("UserActionTime").as("userActionWindow"));
-        CsvTableSink csvTableSink = new CsvTableSink("", "");
+                .window(Tumble.over("5.seconds").on("UserActionTime").as("userActionWindow"));
+        CsvTableSink csvTableSink = new CsvTableSink("D:\\logs\\flinkSink\\userActions.csv", "\\|");
         tEnv.registerTableSink("result",csvTableSink);
         windowedTable.table().insertInto("result");
         //指定查询配置
