@@ -31,6 +31,6 @@ public class TreeNode {
 
     @Override
     public String toString() {
-        return "TreeNode[val="+val+"]";
+        return "root[val="+val+"],left=["+left+"],right=["+right+"]";
     }
 }
