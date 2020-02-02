@@ -1,0 +1,3 @@
+在kafka 0.9+版本中,不再由zookeeper来管理offset,改为一个内部topic:__consumer_offsets
+来管理各个topic的offset
+该内部topic默认有50个partition,编号从0到49

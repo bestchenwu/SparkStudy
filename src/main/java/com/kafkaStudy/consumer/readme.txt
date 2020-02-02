@@ -1,0 +1,5 @@
+本章是描述kafka consumer
+
+Kafka同时支持消息按照队列和发布/订阅的消息模式，原因在于consumer group
+1、同一条消息只能被发送到同一个group的某个消费者实例上
+2、同一条消息可以被多个group消费
