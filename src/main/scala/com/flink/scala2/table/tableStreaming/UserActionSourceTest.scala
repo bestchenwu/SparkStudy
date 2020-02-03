@@ -59,7 +59,7 @@ object UserActionSourceTest {
     val env = ScalaStreamExecutionEnvironment.createLocalEnvironment(1)
     val tableEnv = StreamTableEnvironment.create(env)
     tableEnv.registerTableSource("UserActions", new UserActionSource)
-    val csvTableSink = new CsvTableSink("", "")
+    val csvTableSink = new CsvTableSink("D:\\logs\\flinkSink\\UserActionTime.log", "\\|")
     tableEnv.registerTableSink("result",csvTableSink)
     val windowTable = tableEnv.scan("UserActions").window(Tumble.over("10.minutes").on("UserActionTime").as("userActionWindow"))
     //val windowTable = tableEnv.scan("UserActions").window(Tumble over 10.minutes on 'UserActionTime as 'userActionWindow)

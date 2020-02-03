@@ -6,12 +6,12 @@ import org.apache.spark.{SparkConf}
 object PeopleReadTask {
 
   def main(args: Array[String]): Unit = {
-    val conf = new SparkConf()
-    val sparkSession = SparkSession.builder().appName("").master("local").config(conf).getOrCreate()
-    // 使用json读取数据
-    val df = sparkSession.read.json("src/main/resources/people.json")
-    import sparkSession.implicits._
-    //df.createOrReplaceTempView("people")
+      val conf = new SparkConf()
+      val sparkSession = SparkSession.builder().appName("").master("local").config(conf).getOrCreate()
+      // 使用json读取数据
+      val df = sparkSession.read.json("src/main/resources/people.json")
+      import sparkSession.implicits._
+      //df.createOrReplaceTempView("people")
 
     // 可以将df作为临时表供其他人查询
 //    val dataFrame = sparkSession.sql("select name,age from people")
