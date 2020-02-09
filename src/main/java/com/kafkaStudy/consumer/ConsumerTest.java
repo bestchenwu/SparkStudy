@@ -25,6 +25,8 @@ public class ConsumerTest {
         properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,"earliest");
         properties.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,"org.apache.kafka.common.serialization.StringDeserializer");
         properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,"org.apache.kafka.common.serialization.StringDeserializer");
+        //是否自动提交位移,如果需要exactly once语义,这里需要设置为false
+        //properties.setProperty(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG,"false");
         KafkaConsumer<String,String> consumer = new KafkaConsumer<String, String>(properties);
         consumer.subscribe(Arrays.asList("test-flink"));
         try{
