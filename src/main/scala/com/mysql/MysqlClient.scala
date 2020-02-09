@@ -108,8 +108,8 @@ class MysqlClient(host: String = "localhost", port: Int = 3306, username: String
     val connection = getConnection
     connection.setAutoCommit(false)
     val preparedStatement = connection.prepareStatement(insertUpdateSql)
-    val index = new AtomicInteger(1)
     for (valueList <- columnValueList) {
+      val index = new AtomicInteger(1)
       for (value <- valueList) {
         val clazz = value.getClass
         clazz.getSimpleName match {
@@ -120,6 +120,7 @@ class MysqlClient(host: String = "localhost", port: Int = 3306, username: String
       }
       preparedStatement.addBatch()
     }
+    preparedStatement.executeBatch()
     connection.commit()
     if (preparedStatement != null) {
       preparedStatement.close()

@@ -7691,6 +7691,473 @@
 							},
 							"lineStyle": 1,
 							"points": "443:504;442:575"
+						},
+						{
+							"_type": "UMLPackageView",
+							"_id": "AAAAAAFwKm0qtc3e6VM=",
+							"_parent": {
+								"$ref": "AAAAAAFwJMpx4DKr4j8="
+							},
+							"model": {
+								"$ref": "AAAAAAFwKm0qs83cLxw="
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "AAAAAAFwKm0qts3fWcU=",
+									"_parent": {
+										"$ref": "AAAAAAFwKm0qtc3e6VM="
+									},
+									"model": {
+										"$ref": "AAAAAAFwKm0qs83cLxw="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFwKm0qts3gi7o=",
+											"_parent": {
+												"$ref": "AAAAAAFwKm0qts3fWcU="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 32,
+											"top": -112,
+											"height": 13
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFwKm0qts3h/KA=",
+											"_parent": {
+												"$ref": "AAAAAAFwKm0qts3fWcU="
+											},
+											"font": "Arial;13;1",
+											"left": 125,
+											"top": 846,
+											"width": 463,
+											"height": 13,
+											"text": "kafka consumer reblance"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFwKm0qts3ibcQ=",
+											"_parent": {
+												"$ref": "AAAAAAFwKm0qts3fWcU="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 32,
+											"top": -112,
+											"width": 169.0317840576172,
+											"height": 13,
+											"text": "(from kafka consumer类结构)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFwKm0qts3jB7g=",
+											"_parent": {
+												"$ref": "AAAAAAFwKm0qts3fWcU="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 32,
+											"top": -112,
+											"height": 13,
+											"horizontalAlignment": 1
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 120,
+									"top": 839,
+									"width": 473,
+									"height": 25,
+									"stereotypeLabel": {
+										"$ref": "AAAAAAFwKm0qts3gi7o="
+									},
+									"nameLabel": {
+										"$ref": "AAAAAAFwKm0qts3h/KA="
+									},
+									"namespaceLabel": {
+										"$ref": "AAAAAAFwKm0qts3ibcQ="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAFwKm0qts3jB7g="
+									}
+								}
+							],
+							"font": "Arial;13;0",
+							"containerChangeable": true,
+							"left": 120,
+							"top": 824,
+							"width": 473,
+							"height": 321,
+							"nameCompartment": {
+								"$ref": "AAAAAAFwKm0qts3fWcU="
+							}
+						},
+						{
+							"_type": "UMLTextView",
+							"_id": "AAAAAAFwKm1+/s59duU=",
+							"_parent": {
+								"$ref": "AAAAAAFwJMpx4DKr4j8="
+							},
+							"font": "Arial;13;0",
+							"left": 136,
+							"top": 792,
+							"width": 452.13348388671875,
+							"height": 25,
+							"text": "当有新的consumer加入到group或者有consumer离开group,都会触发reblance"
+						},
+						{
+							"_type": "UMLModelView",
+							"_id": "AAAAAAFwKm3yKs8D5Jc=",
+							"_parent": {
+								"$ref": "AAAAAAFwJMpx4DKr4j8="
+							},
+							"model": {
+								"$ref": "AAAAAAFwKm3yKc8BfkI="
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "AAAAAAFwKm3yKs8El40=",
+									"_parent": {
+										"$ref": "AAAAAAFwKm3yKs8D5Jc="
+									},
+									"model": {
+										"$ref": "AAAAAAFwKm3yKc8BfkI="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFwKm3yKs8FV+M=",
+											"_parent": {
+												"$ref": "AAAAAAFwKm3yKs8El40="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"height": 13
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFwKm3yKs8Gcm0=",
+											"_parent": {
+												"$ref": "AAAAAAFwKm3yKs8El40="
+											},
+											"font": "Arial;13;1",
+											"left": 181,
+											"top": 926,
+											"width": 44.78271484375,
+											"height": 13,
+											"text": "range"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFwKm3yKs8HN0E=",
+											"_parent": {
+												"$ref": "AAAAAAFwKm3yKs8El40="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"width": 169.0317840576172,
+											"height": 13,
+											"text": "(from kafka consumer类结构)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFwKm3yKs8IR0A=",
+											"_parent": {
+												"$ref": "AAAAAAFwKm3yKs8El40="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"height": 13,
+											"horizontalAlignment": 1
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 176,
+									"top": 919,
+									"width": 54.78271484375,
+									"height": 25,
+									"stereotypeLabel": {
+										"$ref": "AAAAAAFwKm3yKs8FV+M="
+									},
+									"nameLabel": {
+										"$ref": "AAAAAAFwKm3yKs8Gcm0="
+									},
+									"namespaceLabel": {
+										"$ref": "AAAAAAFwKm3yKs8HN0E="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAFwKm3yKs8IR0A="
+									}
+								}
+							],
+							"font": "Arial;13;0",
+							"containerChangeable": true,
+							"left": 176,
+							"top": 904,
+							"width": 54.78271484375,
+							"height": 40,
+							"nameCompartment": {
+								"$ref": "AAAAAAFwKm3yKs8El40="
+							}
+						},
+						{
+							"_type": "UMLModelView",
+							"_id": "AAAAAAFwKm4Ipc9TyoA=",
+							"_parent": {
+								"$ref": "AAAAAAFwJMpx4DKr4j8="
+							},
+							"model": {
+								"$ref": "AAAAAAFwKm4Ipc9RXts="
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "AAAAAAFwKm4Ipc9Uq0c=",
+									"_parent": {
+										"$ref": "AAAAAAFwKm4Ipc9TyoA="
+									},
+									"model": {
+										"$ref": "AAAAAAFwKm4Ipc9RXts="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFwKm4Ipc9Vs9w=",
+											"_parent": {
+												"$ref": "AAAAAAFwKm4Ipc9Uq0c="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": -48,
+											"top": -48,
+											"height": 13
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFwKm4Ips9WDps=",
+											"_parent": {
+												"$ref": "AAAAAAFwKm4Ipc9Uq0c="
+											},
+											"font": "Arial;13;1",
+											"left": 285,
+											"top": 926,
+											"width": 73.6455078125,
+											"height": 13,
+											"text": "round-robin"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFwKm4Ips9XX8s=",
+											"_parent": {
+												"$ref": "AAAAAAFwKm4Ipc9Uq0c="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": -48,
+											"top": -48,
+											"width": 169.0317840576172,
+											"height": 13,
+											"text": "(from kafka consumer类结构)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFwKm4Ips9Y0f8=",
+											"_parent": {
+												"$ref": "AAAAAAFwKm4Ipc9Uq0c="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": -48,
+											"top": -48,
+											"height": 13,
+											"horizontalAlignment": 1
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 280,
+									"top": 919,
+									"width": 83.6455078125,
+									"height": 25,
+									"stereotypeLabel": {
+										"$ref": "AAAAAAFwKm4Ipc9Vs9w="
+									},
+									"nameLabel": {
+										"$ref": "AAAAAAFwKm4Ips9WDps="
+									},
+									"namespaceLabel": {
+										"$ref": "AAAAAAFwKm4Ips9XX8s="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAFwKm4Ips9Y0f8="
+									}
+								}
+							],
+							"font": "Arial;13;0",
+							"containerChangeable": true,
+							"left": 280,
+							"top": 904,
+							"width": 83.6455078125,
+							"height": 40,
+							"nameCompartment": {
+								"$ref": "AAAAAAFwKm4Ipc9Uq0c="
+							}
+						},
+						{
+							"_type": "UMLModelView",
+							"_id": "AAAAAAFwKm4svM//ZUY=",
+							"_parent": {
+								"$ref": "AAAAAAFwJMpx4DKr4j8="
+							},
+							"model": {
+								"$ref": "AAAAAAFwKm4svM/9Ero="
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "AAAAAAFwKm4svNAAUZU=",
+									"_parent": {
+										"$ref": "AAAAAAFwKm4svM//ZUY="
+									},
+									"model": {
+										"$ref": "AAAAAAFwKm4svM/9Ero="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFwKm4svNAB08Q=",
+											"_parent": {
+												"$ref": "AAAAAAFwKm4svNAAUZU="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": -16,
+											"top": -16,
+											"height": 13
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFwKm4svNACq8k=",
+											"_parent": {
+												"$ref": "AAAAAAFwKm4svNAAUZU="
+											},
+											"font": "Arial;13;1",
+											"left": 429,
+											"top": 926,
+											"width": 44.78271484375,
+											"height": 13,
+											"text": "sticky"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFwKm4svdAD21Q=",
+											"_parent": {
+												"$ref": "AAAAAAFwKm4svNAAUZU="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": -16,
+											"top": -16,
+											"width": 169.0317840576172,
+											"height": 13,
+											"text": "(from kafka consumer类结构)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFwKm4svdAEIFM=",
+											"_parent": {
+												"$ref": "AAAAAAFwKm4svNAAUZU="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": -16,
+											"top": -16,
+											"height": 13,
+											"horizontalAlignment": 1
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 424,
+									"top": 919,
+									"width": 54.78271484375,
+									"height": 25,
+									"stereotypeLabel": {
+										"$ref": "AAAAAAFwKm4svNAB08Q="
+									},
+									"nameLabel": {
+										"$ref": "AAAAAAFwKm4svNACq8k="
+									},
+									"namespaceLabel": {
+										"$ref": "AAAAAAFwKm4svdAD21Q="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAFwKm4svdAEIFM="
+									}
+								}
+							],
+							"font": "Arial;13;0",
+							"containerChangeable": true,
+							"left": 424,
+							"top": 904,
+							"width": 54.78271484375,
+							"height": 40,
+							"nameCompartment": {
+								"$ref": "AAAAAAFwKm4svNAAUZU="
+							}
+						},
+						{
+							"_type": "UMLTextView",
+							"_id": "AAAAAAFwKm54d9CE8tQ=",
+							"_parent": {
+								"$ref": "AAAAAAFwJMpx4DKr4j8="
+							},
+							"font": "Arial;13;0",
+							"left": 416,
+							"top": 872,
+							"width": 68.89358520507812,
+							"height": 25,
+							"text": "0.10版本+"
+						},
+						{
+							"_type": "UMLTextView",
+							"_id": "AAAAAAFwKm6gWdDpXKw=",
+							"_parent": {
+								"$ref": "AAAAAAFwJMpx4DKr4j8="
+							},
+							"font": "Arial;13;0",
+							"left": 120,
+							"top": 984,
+							"width": 193.46014404296875,
+							"height": 53,
+							"text": "将topic的所有分区划分成固定的                                     \n分段范围,再分给consumer"
+						},
+						{
+							"_type": "UMLNoteView",
+							"_id": "AAAAAAFwKm+E9tHq4Zw=",
+							"_parent": {
+								"$ref": "AAAAAAFwJMpx4DKr4j8="
+							},
+							"font": "Arial;13;0",
+							"left": 232,
+							"top": 1040,
+							"width": 194.07826232910156,
+							"height": 51,
+							"text": "将topic的所有分区依次摆开,                                                再轮询的方式分发给consumer"
+						},
+						{
+							"_type": "UMLNoteView",
+							"_id": "AAAAAAFwKnCO2tKxyCk=",
+							"_parent": {
+								"$ref": "AAAAAAFwJMpx4DKr4j8="
+							},
+							"font": "Arial;13;0",
+							"left": 440,
+							"top": 984,
+							"width": 124.0001220703125,
+							"height": 40,
+							"text": "采取有黏性的方式"
 						}
 					]
 				},
@@ -7954,6 +8421,1202 @@
 						"$ref": "AAAAAAFwJMpx4DKqK2U="
 					},
 					"name": "5"
+				},
+				{
+					"_type": "UMLPackage",
+					"_id": "AAAAAAFwKm0qs83cLxw=",
+					"_parent": {
+						"$ref": "AAAAAAFwJMpx4DKqK2U="
+					},
+					"name": "kafka consumer reblance"
+				},
+				{
+					"_type": "UMLModel",
+					"_id": "AAAAAAFwKm3yKc8BfkI=",
+					"_parent": {
+						"$ref": "AAAAAAFwJMpx4DKqK2U="
+					},
+					"name": "range"
+				},
+				{
+					"_type": "UMLModel",
+					"_id": "AAAAAAFwKm4Ipc9RXts=",
+					"_parent": {
+						"$ref": "AAAAAAFwJMpx4DKqK2U="
+					},
+					"name": "round-robin"
+				},
+				{
+					"_type": "UMLModel",
+					"_id": "AAAAAAFwKm4svM/9Ero=",
+					"_parent": {
+						"$ref": "AAAAAAFwJMpx4DKqK2U="
+					},
+					"name": "sticky"
+				}
+			]
+		},
+		{
+			"_type": "UMLCollaboration",
+			"_id": "AAAAAAFwKnM/UddT+Wc=",
+			"_parent": {
+				"$ref": "AAAAAAFF+h6SjaM2Hec="
+			},
+			"name": "kafka consumer group reblance流程",
+			"ownedElements": [
+				{
+					"_type": "UMLInteraction",
+					"_id": "AAAAAAFwKnM/UtdUcQw=",
+					"_parent": {
+						"$ref": "AAAAAAFwKnM/UddT+Wc="
+					},
+					"name": "reblance流程",
+					"ownedElements": [
+						{
+							"_type": "UMLSequenceDiagram",
+							"_id": "AAAAAAFwKnM/U9dVc+w=",
+							"_parent": {
+								"$ref": "AAAAAAFwKnM/UtdUcQw="
+							},
+							"name": "consumer reblance流程图",
+							"ownedViews": [
+								{
+									"_type": "UMLFrameView",
+									"_id": "AAAAAAFwKnM/VddWdj0=",
+									"_parent": {
+										"$ref": "AAAAAAFwKnM/U9dVc+w="
+									},
+									"model": {
+										"$ref": "AAAAAAFwKnM/U9dVc+w="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFwKnM/VtdXXuA=",
+											"_parent": {
+												"$ref": "AAAAAAFwKnM/VddWdj0="
+											},
+											"font": "Arial;13;0",
+											"left": 70.97900390625,
+											"top": 5,
+											"width": 150.5571746826172,
+											"height": 13,
+											"text": "consumer reblance流程图"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFwKnM/VtdYTOk=",
+											"_parent": {
+												"$ref": "AAAAAAFwKnM/VddWdj0="
+											},
+											"font": "Arial;13;1",
+											"left": 5,
+											"top": 5,
+											"width": 60.97900390625,
+											"height": 13,
+											"text": "interaction"
+										}
+									],
+									"font": "Arial;13;0",
+									"width": 905,
+									"height": 595,
+									"nameLabel": {
+										"$ref": "AAAAAAFwKnM/VtdXXuA="
+									},
+									"frameTypeLabel": {
+										"$ref": "AAAAAAFwKnM/VtdYTOk="
+									}
+								},
+								{
+									"_type": "UMLSeqLifelineView",
+									"_id": "AAAAAAFwKnTq39eGzFo=",
+									"_parent": {
+										"$ref": "AAAAAAFwKnM/U9dVc+w="
+									},
+									"model": {
+										"$ref": "AAAAAAFwKnTq39eFUGM="
+									},
+									"subViews": [
+										{
+											"_type": "UMLNameCompartmentView",
+											"_id": "AAAAAAFwKnTq4NeHkqA=",
+											"_parent": {
+												"$ref": "AAAAAAFwKnTq39eGzFo="
+											},
+											"model": {
+												"$ref": "AAAAAAFwKnTq39eFUGM="
+											},
+											"subViews": [
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAFwKnTq4NeI/wc=",
+													"_parent": {
+														"$ref": "AAAAAAFwKnTq4NeHkqA="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"height": 13
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAFwKnTq4NeJEvw=",
+													"_parent": {
+														"$ref": "AAAAAAFwKnTq4NeHkqA="
+													},
+													"font": "Arial;13;1",
+													"left": 77,
+													"top": 47,
+													"width": 100.28274536132812,
+													"height": 13,
+													"text": "确定cordinator"
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAFwKnTq4NeKRlg=",
+													"_parent": {
+														"$ref": "AAAAAAFwKnTq4NeHkqA="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"width": 114.13723754882812,
+													"height": 13,
+													"text": "(from reblance流程)"
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAFwKnTq4NeLYzc=",
+													"_parent": {
+														"$ref": "AAAAAAFwKnTq4NeHkqA="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"height": 13,
+													"horizontalAlignment": 1
+												}
+											],
+											"font": "Arial;13;0",
+											"left": 72,
+											"top": 40,
+											"width": 110.28274536132812,
+											"height": 40,
+											"stereotypeLabel": {
+												"$ref": "AAAAAAFwKnTq4NeI/wc="
+											},
+											"nameLabel": {
+												"$ref": "AAAAAAFwKnTq4NeJEvw="
+											},
+											"namespaceLabel": {
+												"$ref": "AAAAAAFwKnTq4NeKRlg="
+											},
+											"propertyLabel": {
+												"$ref": "AAAAAAFwKnTq4NeLYzc="
+											}
+										},
+										{
+											"_type": "UMLLinePartView",
+											"_id": "AAAAAAFwKnTq4NeMLpw=",
+											"_parent": {
+												"$ref": "AAAAAAFwKnTq39eGzFo="
+											},
+											"model": {
+												"$ref": "AAAAAAFwKnTq39eFUGM="
+											},
+											"font": "Arial;13;0",
+											"left": 127,
+											"top": 80,
+											"width": 1,
+											"height": 513
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 72,
+									"top": 40,
+									"width": 110.28274536132812,
+									"height": 553,
+									"nameCompartment": {
+										"$ref": "AAAAAAFwKnTq4NeHkqA="
+									},
+									"linePart": {
+										"$ref": "AAAAAAFwKnTq4NeMLpw="
+									}
+								},
+								{
+									"_type": "UMLSeqMessageView",
+									"_id": "AAAAAAFwKnVUWNemXQQ=",
+									"_parent": {
+										"$ref": "AAAAAAFwKnM/U9dVc+w="
+									},
+									"model": {
+										"$ref": "AAAAAAFwKnVUWNelhyc="
+									},
+									"subViews": [
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFwKnVUWNencc8=",
+											"_parent": {
+												"$ref": "AAAAAAFwKnVUWNemXQQ="
+											},
+											"model": {
+												"$ref": "AAAAAAFwKnVUWNelhyc="
+											},
+											"font": "Arial;13;0",
+											"left": 122,
+											"top": 152,
+											"width": 211.7134246826172,
+											"height": 13,
+											"alpha": 1.2962200821132153,
+											"distance": 73.76313442364011,
+											"hostEdge": {
+												"$ref": "AAAAAAFwKnVUWNemXQQ="
+											},
+											"edgePosition": 1,
+											"text": "1 : 确定consumer group的condinator"
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFwKnVUWdeoYfo=",
+											"_parent": {
+												"$ref": "AAAAAAFwKnVUWNemXQQ="
+											},
+											"model": {
+												"$ref": "AAAAAAFwKnVUWNelhyc="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 181,
+											"top": 131,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 25,
+											"hostEdge": {
+												"$ref": "AAAAAAFwKnVUWNemXQQ="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFwKnVUWdepWF0=",
+											"_parent": {
+												"$ref": "AAAAAAFwKnVUWNemXQQ="
+											},
+											"model": {
+												"$ref": "AAAAAAFwKnVUWNelhyc="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 147,
+											"top": 132,
+											"height": 13,
+											"alpha": -1.5707963267948966,
+											"distance": 10,
+											"hostEdge": {
+												"$ref": "AAAAAAFwKnVUWNemXQQ="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "UMLActivationView",
+											"_id": "AAAAAAFwKnVUWdeqHmc=",
+											"_parent": {
+												"$ref": "AAAAAAFwKnVUWNemXQQ="
+											},
+											"model": {
+												"$ref": "AAAAAAFwKnVUWNelhyc="
+											},
+											"font": "Arial;13;0",
+											"left": 120,
+											"top": 148,
+											"width": 14,
+											"height": 29
+										}
+									],
+									"font": "Arial;13;0",
+									"head": {
+										"$ref": "AAAAAAFwKnTq4NeMLpw="
+									},
+									"tail": {
+										"$ref": "AAAAAAFwKnTq4NeMLpw="
+									},
+									"points": "127:128;157:128;157:148;133:148",
+									"nameLabel": {
+										"$ref": "AAAAAAFwKnVUWNencc8="
+									},
+									"stereotypeLabel": {
+										"$ref": "AAAAAAFwKnVUWdeoYfo="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAFwKnVUWdepWF0="
+									},
+									"activation": {
+										"$ref": "AAAAAAFwKnVUWdeqHmc="
+									}
+								},
+								{
+									"_type": "UMLNoteView",
+									"_id": "AAAAAAFwKna95te/kBw=",
+									"_parent": {
+										"$ref": "AAAAAAFwKnM/U9dVc+w="
+									},
+									"font": "Arial;13;0",
+									"top": 192,
+									"width": 357.130615234375,
+									"height": 81,
+									"text": "1、int brokerId = Math.abs(groupId.hashCode)              \n               %offsets.topic.num.partitions          \n 2、假设第一步计算出来的是10,那么将__consumer_offsets            分区10所在的broker作为cordinator"
+								},
+								{
+									"_type": "UMLSeqLifelineView",
+									"_id": "AAAAAAFwKnmMZ9fWw+g=",
+									"_parent": {
+										"$ref": "AAAAAAFwKnM/U9dVc+w="
+									},
+									"model": {
+										"$ref": "AAAAAAFwKnmMZ9fVDMs="
+									},
+									"subViews": [
+										{
+											"_type": "UMLNameCompartmentView",
+											"_id": "AAAAAAFwKnmMZ9fXol4=",
+											"_parent": {
+												"$ref": "AAAAAAFwKnmMZ9fWw+g="
+											},
+											"model": {
+												"$ref": "AAAAAAFwKnmMZ9fVDMs="
+											},
+											"subViews": [
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAFwKnmMZ9fYDSg=",
+													"_parent": {
+														"$ref": "AAAAAAFwKnmMZ9fXol4="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"left": -64,
+													"height": 13
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAFwKnmMZ9fZjhc=",
+													"_parent": {
+														"$ref": "AAAAAAFwKnmMZ9fXol4="
+													},
+													"font": "Arial;13;1",
+													"left": 405,
+													"top": 47,
+													"width": 139.2827911376953,
+													"height": 13,
+													"text": "cordinator执行加入组"
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAFwKnmMZ9fatEw=",
+													"_parent": {
+														"$ref": "AAAAAAFwKnmMZ9fXol4="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"left": -64,
+													"width": 114.13723754882812,
+													"height": 13,
+													"text": "(from reblance流程)"
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAFwKnmMZ9fbcSM=",
+													"_parent": {
+														"$ref": "AAAAAAFwKnmMZ9fXol4="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"left": -64,
+													"height": 13,
+													"horizontalAlignment": 1
+												}
+											],
+											"font": "Arial;13;0",
+											"left": 400,
+											"top": 40,
+											"width": 149.2827911376953,
+											"height": 40,
+											"stereotypeLabel": {
+												"$ref": "AAAAAAFwKnmMZ9fYDSg="
+											},
+											"nameLabel": {
+												"$ref": "AAAAAAFwKnmMZ9fZjhc="
+											},
+											"namespaceLabel": {
+												"$ref": "AAAAAAFwKnmMZ9fatEw="
+											},
+											"propertyLabel": {
+												"$ref": "AAAAAAFwKnmMZ9fbcSM="
+											}
+										},
+										{
+											"_type": "UMLLinePartView",
+											"_id": "AAAAAAFwKnmMaNfc0FI=",
+											"_parent": {
+												"$ref": "AAAAAAFwKnmMZ9fWw+g="
+											},
+											"model": {
+												"$ref": "AAAAAAFwKnmMZ9fVDMs="
+											},
+											"font": "Arial;13;0",
+											"left": 475,
+											"top": 80,
+											"width": 1,
+											"height": 505
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 400,
+									"top": 40,
+									"width": 149.2827911376953,
+									"height": 545,
+									"nameCompartment": {
+										"$ref": "AAAAAAFwKnmMZ9fXol4="
+									},
+									"linePart": {
+										"$ref": "AAAAAAFwKnmMaNfc0FI="
+									}
+								},
+								{
+									"_type": "UMLSeqMessageView",
+									"_id": "AAAAAAFwKnpMJ9f6rGE=",
+									"_parent": {
+										"$ref": "AAAAAAFwKnM/U9dVc+w="
+									},
+									"model": {
+										"$ref": "AAAAAAFwKnpMJtf5hE4="
+									},
+									"subViews": [
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFwKnpMJ9f7Nf8=",
+											"_parent": {
+												"$ref": "AAAAAAFwKnpMJ9f6rGE="
+											},
+											"model": {
+												"$ref": "AAAAAAFwKnpMJtf5hE4="
+											},
+											"font": "Arial;13;0",
+											"left": 144,
+											"top": 296,
+											"width": 345.3189697265625,
+											"height": 13,
+											"alpha": 0.811033309107102,
+											"distance": 27.586228448267445,
+											"hostEdge": {
+												"$ref": "AAAAAAFwKnpMJ9f6rGE="
+											},
+											"edgePosition": 1,
+											"text": "2 : 组内所有consumer实例向cordinator发送joinGroup的请求"
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFwKnpMJ9f8Hnw=",
+											"_parent": {
+												"$ref": "AAAAAAFwKnpMJ9f6rGE="
+											},
+											"model": {
+												"$ref": "AAAAAAFwKnpMJtf5hE4="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 297,
+											"top": 291,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 25,
+											"hostEdge": {
+												"$ref": "AAAAAAFwKnpMJ9f6rGE="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFwKnpMJ9f9FKs=",
+											"_parent": {
+												"$ref": "AAAAAAFwKnpMJ9f6rGE="
+											},
+											"model": {
+												"$ref": "AAAAAAFwKnpMJtf5hE4="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 297,
+											"top": 326,
+											"height": 13,
+											"alpha": -1.5707963267948966,
+											"distance": 10,
+											"hostEdge": {
+												"$ref": "AAAAAAFwKnpMJ9f6rGE="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "UMLActivationView",
+											"_id": "AAAAAAFwKnpMJ9f+xmI=",
+											"_parent": {
+												"$ref": "AAAAAAFwKnpMJ9f6rGE="
+											},
+											"model": {
+												"$ref": "AAAAAAFwKnpMJtf5hE4="
+											},
+											"font": "Arial;13;0",
+											"left": 468,
+											"top": 322,
+											"width": 14,
+											"height": 29
+										}
+									],
+									"font": "Arial;13;0",
+									"head": {
+										"$ref": "AAAAAAFwKnmMaNfc0FI="
+									},
+									"tail": {
+										"$ref": "AAAAAAFwKnTq4NeMLpw="
+									},
+									"points": "127:322;468:322",
+									"nameLabel": {
+										"$ref": "AAAAAAFwKnpMJ9f7Nf8="
+									},
+									"stereotypeLabel": {
+										"$ref": "AAAAAAFwKnpMJ9f8Hnw="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAFwKnpMJ9f9FKs="
+									},
+									"activation": {
+										"$ref": "AAAAAAFwKnpMJ9f+xmI="
+									}
+								},
+								{
+									"_type": "UMLSeqMessageView",
+									"_id": "AAAAAAFwKnusZNgTDRU=",
+									"_parent": {
+										"$ref": "AAAAAAFwKnM/U9dVc+w="
+									},
+									"model": {
+										"$ref": "AAAAAAFwKnusZNgS+1U="
+									},
+									"subViews": [
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFwKnusZNgUbvc=",
+											"_parent": {
+												"$ref": "AAAAAAFwKnusZNgTDRU="
+											},
+											"model": {
+												"$ref": "AAAAAAFwKnusZNgS+1U="
+											},
+											"font": "Arial;13;0",
+											"left": 231,
+											"top": 359,
+											"width": 358.33807373046875,
+											"height": 13,
+											"alpha": -1.7782935744502606,
+											"distance": 97.082439194738,
+											"hostEdge": {
+												"$ref": "AAAAAAFwKnusZNgTDRU="
+											},
+											"edgePosition": 1,
+											"text": "3 : cordinator从中选择一个consumer实例作为该group的leader"
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFwKnusZNgVWYQ=",
+											"_parent": {
+												"$ref": "AAAAAAFwKnusZNgTDRU="
+											},
+											"model": {
+												"$ref": "AAAAAAFwKnusZNgS+1U="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 529,
+											"top": 379,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 25,
+											"hostEdge": {
+												"$ref": "AAAAAAFwKnusZNgTDRU="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFwKnusZNgWe8Q=",
+											"_parent": {
+												"$ref": "AAAAAAFwKnusZNgTDRU="
+											},
+											"model": {
+												"$ref": "AAAAAAFwKnusZNgS+1U="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 495,
+											"top": 380,
+											"height": 13,
+											"alpha": -1.5707963267948966,
+											"distance": 10,
+											"hostEdge": {
+												"$ref": "AAAAAAFwKnusZNgTDRU="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "UMLActivationView",
+											"_id": "AAAAAAFwKnusZNgXim4=",
+											"_parent": {
+												"$ref": "AAAAAAFwKnusZNgTDRU="
+											},
+											"model": {
+												"$ref": "AAAAAAFwKnusZNgS+1U="
+											},
+											"font": "Arial;13;0",
+											"left": 468,
+											"top": 396,
+											"width": 14,
+											"height": 29
+										}
+									],
+									"font": "Arial;13;0",
+									"head": {
+										"$ref": "AAAAAAFwKnmMaNfc0FI="
+									},
+									"tail": {
+										"$ref": "AAAAAAFwKnmMaNfc0FI="
+									},
+									"points": "475:376;505:376;505:396;481:396",
+									"nameLabel": {
+										"$ref": "AAAAAAFwKnusZNgUbvc="
+									},
+									"stereotypeLabel": {
+										"$ref": "AAAAAAFwKnusZNgVWYQ="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAFwKnusZNgWe8Q="
+									},
+									"activation": {
+										"$ref": "AAAAAAFwKnusZNgXim4="
+									}
+								},
+								{
+									"_type": "UMLSeqLifelineView",
+									"_id": "AAAAAAFwKnycS9gu91g=",
+									"_parent": {
+										"$ref": "AAAAAAFwKnM/U9dVc+w="
+									},
+									"model": {
+										"$ref": "AAAAAAFwKnycS9gtVc8="
+									},
+									"subViews": [
+										{
+											"_type": "UMLNameCompartmentView",
+											"_id": "AAAAAAFwKnycS9gv7NQ=",
+											"_parent": {
+												"$ref": "AAAAAAFwKnycS9gu91g="
+											},
+											"model": {
+												"$ref": "AAAAAAFwKnycS9gtVc8="
+											},
+											"subViews": [
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAFwKnycS9gwtS4=",
+													"_parent": {
+														"$ref": "AAAAAAFwKnycS9gv7NQ="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"left": -16,
+													"height": 13
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAFwKnycS9gx5fg=",
+													"_parent": {
+														"$ref": "AAAAAAFwKnycS9gv7NQ="
+													},
+													"font": "Arial;13;1",
+													"left": 645,
+													"top": 47,
+													"width": 170.37359619140625,
+													"height": 13,
+													"text": "consumerLeader 分配分区"
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAFwKnycS9gy6to=",
+													"_parent": {
+														"$ref": "AAAAAAFwKnycS9gv7NQ="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"left": -16,
+													"width": 114.13723754882812,
+													"height": 13,
+													"text": "(from reblance流程)"
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAFwKnycTNgzQd0=",
+													"_parent": {
+														"$ref": "AAAAAAFwKnycS9gv7NQ="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"left": -16,
+													"height": 13,
+													"horizontalAlignment": 1
+												}
+											],
+											"font": "Arial;13;0",
+											"left": 640,
+											"top": 40,
+											"width": 180.37359619140625,
+											"height": 40,
+											"stereotypeLabel": {
+												"$ref": "AAAAAAFwKnycS9gwtS4="
+											},
+											"nameLabel": {
+												"$ref": "AAAAAAFwKnycS9gx5fg="
+											},
+											"namespaceLabel": {
+												"$ref": "AAAAAAFwKnycS9gy6to="
+											},
+											"propertyLabel": {
+												"$ref": "AAAAAAFwKnycTNgzQd0="
+											}
+										},
+										{
+											"_type": "UMLLinePartView",
+											"_id": "AAAAAAFwKnycTNg0yRc=",
+											"_parent": {
+												"$ref": "AAAAAAFwKnycS9gu91g="
+											},
+											"model": {
+												"$ref": "AAAAAAFwKnycS9gtVc8="
+											},
+											"font": "Arial;13;0",
+											"left": 730,
+											"top": 80,
+											"width": 1,
+											"height": 505
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 640,
+									"top": 40,
+									"width": 180.37359619140625,
+									"height": 545,
+									"nameCompartment": {
+										"$ref": "AAAAAAFwKnycS9gv7NQ="
+									},
+									"linePart": {
+										"$ref": "AAAAAAFwKnycTNg0yRc="
+									}
+								},
+								{
+									"_type": "UMLSeqMessageView",
+									"_id": "AAAAAAFwKn0rF9hQWy8=",
+									"_parent": {
+										"$ref": "AAAAAAFwKnM/U9dVc+w="
+									},
+									"model": {
+										"$ref": "AAAAAAFwKn0rF9hPvEU="
+									},
+									"subViews": [
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFwKn0rF9hRr8Q=",
+											"_parent": {
+												"$ref": "AAAAAAFwKn0rF9hQWy8="
+											},
+											"model": {
+												"$ref": "AAAAAAFwKn0rF9hPvEU="
+											},
+											"font": "Arial;13;0",
+											"left": 494,
+											"top": 432,
+											"width": 210.20281982421875,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 10,
+											"hostEdge": {
+												"$ref": "AAAAAAFwKn0rF9hQWy8="
+											},
+											"edgePosition": 1,
+											"text": "4 : leader根据分配策略重新分配分区"
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFwKn0rGNhSuwc=",
+											"_parent": {
+												"$ref": "AAAAAAFwKn0rF9hQWy8="
+											},
+											"model": {
+												"$ref": "AAAAAAFwKn0rF9hPvEU="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 599,
+											"top": 417,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 25,
+											"hostEdge": {
+												"$ref": "AAAAAAFwKn0rF9hQWy8="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFwKn0rGNhTIw8=",
+											"_parent": {
+												"$ref": "AAAAAAFwKn0rF9hQWy8="
+											},
+											"model": {
+												"$ref": "AAAAAAFwKn0rF9hPvEU="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 599,
+											"top": 452,
+											"height": 13,
+											"alpha": -1.5707963267948966,
+											"distance": 10,
+											"hostEdge": {
+												"$ref": "AAAAAAFwKn0rF9hQWy8="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "UMLActivationView",
+											"_id": "AAAAAAFwKn0rGNhU1so=",
+											"_parent": {
+												"$ref": "AAAAAAFwKn0rF9hQWy8="
+											},
+											"model": {
+												"$ref": "AAAAAAFwKn0rF9hPvEU="
+											},
+											"font": "Arial;13;0",
+											"left": 723,
+											"top": 448,
+											"width": 14,
+											"height": 29
+										}
+									],
+									"font": "Arial;13;0",
+									"head": {
+										"$ref": "AAAAAAFwKnycTNg0yRc="
+									},
+									"tail": {
+										"$ref": "AAAAAAFwKnmMaNfc0FI="
+									},
+									"points": "475:448;723:448",
+									"nameLabel": {
+										"$ref": "AAAAAAFwKn0rF9hRr8Q="
+									},
+									"stereotypeLabel": {
+										"$ref": "AAAAAAFwKn0rGNhSuwc="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAFwKn0rGNhTIw8="
+									},
+									"activation": {
+										"$ref": "AAAAAAFwKn0rGNhU1so="
+									}
+								},
+								{
+									"_type": "UMLSeqMessageView",
+									"_id": "AAAAAAFwKn2hL9hm59s=",
+									"_parent": {
+										"$ref": "AAAAAAFwKnM/U9dVc+w="
+									},
+									"model": {
+										"$ref": "AAAAAAFwKn2hL9hltBo="
+									},
+									"subViews": [
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFwKn2hL9hncBo=",
+											"_parent": {
+												"$ref": "AAAAAAFwKn2hL9hm59s="
+											},
+											"model": {
+												"$ref": "AAAAAAFwKn2hL9hltBo="
+											},
+											"font": "Arial;13;0",
+											"left": 496,
+											"top": 504,
+											"width": 216.0108642578125,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 10,
+											"hostEdge": {
+												"$ref": "AAAAAAFwKn2hL9hm59s="
+											},
+											"edgePosition": 1,
+											"text": "5 : leader将分配方案发回给cordinator"
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFwKn2hL9hoYRQ=",
+											"_parent": {
+												"$ref": "AAAAAAFwKn2hL9hm59s="
+											},
+											"model": {
+												"$ref": "AAAAAAFwKn2hL9hltBo="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 604,
+											"top": 519,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 25,
+											"hostEdge": {
+												"$ref": "AAAAAAFwKn2hL9hm59s="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFwKn2hL9hpDIY=",
+											"_parent": {
+												"$ref": "AAAAAAFwKn2hL9hm59s="
+											},
+											"model": {
+												"$ref": "AAAAAAFwKn2hL9hltBo="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 605,
+											"top": 484,
+											"height": 13,
+											"alpha": -1.5707963267948966,
+											"distance": 10,
+											"hostEdge": {
+												"$ref": "AAAAAAFwKn2hL9hm59s="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "UMLActivationView",
+											"_id": "AAAAAAFwKn2hL9hq9z4=",
+											"_parent": {
+												"$ref": "AAAAAAFwKn2hL9hm59s="
+											},
+											"model": {
+												"$ref": "AAAAAAFwKn2hL9hltBo="
+											},
+											"font": "Arial;13;0",
+											"left": 468,
+											"top": 500,
+											"width": 14,
+											"height": 29
+										}
+									],
+									"font": "Arial;13;0",
+									"head": {
+										"$ref": "AAAAAAFwKnmMaNfc0FI="
+									},
+									"tail": {
+										"$ref": "AAAAAAFwKnycTNg0yRc="
+									},
+									"points": "730:500;481:500",
+									"nameLabel": {
+										"$ref": "AAAAAAFwKn2hL9hncBo="
+									},
+									"stereotypeLabel": {
+										"$ref": "AAAAAAFwKn2hL9hoYRQ="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAFwKn2hL9hpDIY="
+									},
+									"activation": {
+										"$ref": "AAAAAAFwKn2hL9hq9z4="
+									}
+								},
+								{
+									"_type": "UMLTextView",
+									"_id": "AAAAAAFwKn6JWdh7t4c=",
+									"_parent": {
+										"$ref": "AAAAAAFwKnM/U9dVc+w="
+									},
+									"font": "Arial;13;0",
+									"left": 472,
+									"top": 536,
+									"width": 273,
+									"height": 38,
+									"text": "分配完成后产生一个新的reblance generation ,表示当前reblance的序号"
+								},
+								{
+									"_type": "UMLNoteView",
+									"_id": "AAAAAAFwKoAOaNiDric=",
+									"_parent": {
+										"$ref": "AAAAAAFwKnM/U9dVc+w="
+									},
+									"font": "Arial;13;0",
+									"left": 208,
+									"top": 416,
+									"width": 141.3672637939453,
+									"height": 40,
+									"text": "这一步称为joinGroup"
+								},
+								{
+									"_type": "UMLNoteView",
+									"_id": "AAAAAAFwKoA/U9iIMVA=",
+									"_parent": {
+										"$ref": "AAAAAAFwKnM/U9dVc+w="
+									},
+									"font": "Arial;13;0",
+									"left": 536,
+									"top": 376,
+									"width": 147.8609161376953,
+									"height": 40,
+									"text": "这一步称为syncGroup"
+								}
+							]
+						}
+					],
+					"messages": [
+						{
+							"_type": "UMLMessage",
+							"_id": "AAAAAAFwKnVUWNelhyc=",
+							"_parent": {
+								"$ref": "AAAAAAFwKnM/UtdUcQw="
+							},
+							"name": "确定consumer group的condinator",
+							"source": {
+								"$ref": "AAAAAAFwKnTq39eFUGM="
+							},
+							"target": {
+								"$ref": "AAAAAAFwKnTq39eFUGM="
+							}
+						},
+						{
+							"_type": "UMLMessage",
+							"_id": "AAAAAAFwKnpMJtf5hE4=",
+							"_parent": {
+								"$ref": "AAAAAAFwKnM/UtdUcQw="
+							},
+							"name": "组内所有consumer实例向cordinator发送joinGroup的请求",
+							"source": {
+								"$ref": "AAAAAAFwKnTq39eFUGM="
+							},
+							"target": {
+								"$ref": "AAAAAAFwKnmMZ9fVDMs="
+							}
+						},
+						{
+							"_type": "UMLMessage",
+							"_id": "AAAAAAFwKnusZNgS+1U=",
+							"_parent": {
+								"$ref": "AAAAAAFwKnM/UtdUcQw="
+							},
+							"name": "cordinator从中选择一个consumer实例作为该group的leader",
+							"source": {
+								"$ref": "AAAAAAFwKnmMZ9fVDMs="
+							},
+							"target": {
+								"$ref": "AAAAAAFwKnmMZ9fVDMs="
+							}
+						},
+						{
+							"_type": "UMLMessage",
+							"_id": "AAAAAAFwKn0rF9hPvEU=",
+							"_parent": {
+								"$ref": "AAAAAAFwKnM/UtdUcQw="
+							},
+							"name": "leader根据分配策略重新分配分区",
+							"source": {
+								"$ref": "AAAAAAFwKnmMZ9fVDMs="
+							},
+							"target": {
+								"$ref": "AAAAAAFwKnycS9gtVc8="
+							}
+						},
+						{
+							"_type": "UMLMessage",
+							"_id": "AAAAAAFwKn2hL9hltBo=",
+							"_parent": {
+								"$ref": "AAAAAAFwKnM/UtdUcQw="
+							},
+							"name": "leader将分配方案发回给cordinator",
+							"source": {
+								"$ref": "AAAAAAFwKnycS9gtVc8="
+							},
+							"target": {
+								"$ref": "AAAAAAFwKnmMZ9fVDMs="
+							}
+						}
+					],
+					"participants": [
+						{
+							"_type": "UMLLifeline",
+							"_id": "AAAAAAFwKnTq39eFUGM=",
+							"_parent": {
+								"$ref": "AAAAAAFwKnM/UtdUcQw="
+							},
+							"name": "确定cordinator",
+							"represent": {
+								"$ref": "AAAAAAFwKnTq39eEUZA="
+							},
+							"isMultiInstance": false
+						},
+						{
+							"_type": "UMLLifeline",
+							"_id": "AAAAAAFwKnmMZ9fVDMs=",
+							"_parent": {
+								"$ref": "AAAAAAFwKnM/UtdUcQw="
+							},
+							"name": "cordinator执行加入组",
+							"represent": {
+								"$ref": "AAAAAAFwKnmMZ9fUKTw="
+							},
+							"isMultiInstance": false
+						},
+						{
+							"_type": "UMLLifeline",
+							"_id": "AAAAAAFwKnycS9gtVc8=",
+							"_parent": {
+								"$ref": "AAAAAAFwKnM/UtdUcQw="
+							},
+							"name": "consumerLeader 分配分区",
+							"represent": {
+								"$ref": "AAAAAAFwKnycS9gslnw="
+							},
+							"isMultiInstance": false
+						}
+					]
+				}
+			],
+			"attributes": [
+				{
+					"_type": "UMLAttribute",
+					"_id": "AAAAAAFwKnTq39eEUZA=",
+					"_parent": {
+						"$ref": "AAAAAAFwKnM/UddT+Wc="
+					},
+					"name": "Role1"
+				},
+				{
+					"_type": "UMLAttribute",
+					"_id": "AAAAAAFwKnmMZ9fUKTw=",
+					"_parent": {
+						"$ref": "AAAAAAFwKnM/UddT+Wc="
+					},
+					"name": "Role2"
+				},
+				{
+					"_type": "UMLAttribute",
+					"_id": "AAAAAAFwKnycS9gslnw=",
+					"_parent": {
+						"$ref": "AAAAAAFwKnM/UddT+Wc="
+					},
+					"name": "Role3"
 				}
 			]
 		}

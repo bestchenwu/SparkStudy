@@ -9,3 +9,8 @@ create table `student`(
 insert into student(name,age) value('jack',18);
 insert into student(name,age) value('mary',22);
 insert into student(name,age) value('tom',35);
+
+--改变表结构,便于插入失败
+alter table student modify column age tinyint(2);
+--插入失败后改回来
+alter table student modify column age int(5);

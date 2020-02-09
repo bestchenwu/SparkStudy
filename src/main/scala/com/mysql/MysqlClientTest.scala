@@ -1,5 +1,7 @@
 package com.mysql
 
+import scala.collection.mutable.Buffer
+
 object MysqlClientTest {
 
   def main(args: Array[String]): Unit = {
@@ -7,7 +9,7 @@ object MysqlClientTest {
     //      val array = mysqlClient.querySingleObjectById("User",Array[String]("password"),3l)
     //      array.foreach(println)
 
-    val sql = mysqlClient.getInsertOrUpdateSql("student", List("name", "age"))
+    val sql = mysqlClient.getInsertOrUpdateSql("student", Buffer("name", "age"))
     println(sql)
   }
 
