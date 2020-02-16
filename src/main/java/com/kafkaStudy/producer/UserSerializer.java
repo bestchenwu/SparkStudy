@@ -24,10 +24,11 @@ public class UserSerializer implements Serializer {
         byte[] bytes = null;
         try{
             bytes = objectMapper.writeValueAsString(data).getBytes();
+            return bytes;
         }catch(Exception e){
             e.printStackTrace();
+            return null;
         }
-        return new byte[0];
     }
 
     @Override

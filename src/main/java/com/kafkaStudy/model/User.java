@@ -9,6 +9,10 @@ public class User implements Serializable {
     private int age;
     private String address;
 
+    public User(){
+        super();
+    }
+
     public User(String firstName, String lastName, int age, String address) {
         this.firstName = firstName;
         this.lastName = lastName;

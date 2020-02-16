@@ -5,6 +5,9 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Properties;
 
 /**
@@ -22,9 +25,24 @@ public class UserProducer {
         //指定partitioner class
         //props.setProperty(ProducerConfig.PARTITIONER_CLASS_CONFIG,"com.kafkaStudy.producer.AuditPartitioner");
         KafkaProducer<String, User> producer = new KafkaProducer<String, User>(props);
-        User user = new User("hello","sweet",1,"xiaogan");
-        ProducerRecord<String, User> record = new ProducerRecord<>("test-flink", user);
-        producer.send(record);
+        //User user = new User("hello","sweet",1,"xiaogan");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String line = "";
+        try{
+            while(true){
+                line = reader.readLine();
+                if("exit"==line){
+                    break;
+                }
+                String[] array = line.split(",");
+                User user = new User(array[0],array[1],Integer.parseInt(array[2]),array[3]);
+                ProducerRecord<String, User> record = new ProducerRecord<>("test-user", user);
+                producer.send(record);
+            }
+
+        }catch(IOException e){
+
+        }
         producer.close();
     }
 }
