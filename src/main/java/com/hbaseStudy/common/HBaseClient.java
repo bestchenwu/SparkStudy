@@ -3,10 +3,7 @@ package com.hbaseStudy.common;
 import com.common.constants.CacheConstants;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.hbase.Cell;
-import org.apache.hadoop.hbase.CellUtil;
-import org.apache.hadoop.hbase.HColumnDescriptor;
-import org.apache.hadoop.hbase.TableName;
+import org.apache.hadoop.hbase.*;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.apache.hadoop.hbase.util.Pair;
@@ -17,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * hbase统一操作的工具类
@@ -39,7 +37,7 @@ public class HBaseClient {
      * @author chenwu on 2020.3.7
      */
     public HBaseClient(String hbaseSiteXml,String tableName) throws IOException {
-        Configuration conf = new Configuration();
+        Configuration conf = HBaseConfiguration.create();
         conf.addResource(hbaseSiteXml);
         connection = ConnectionFactory.createConnection(conf);
         admin = connection.getAdmin();
@@ -108,5 +106,36 @@ public class HBaseClient {
         builder.setMaxVersions(4).setTimeToLive(CacheConstants.ExpirSeconds_1_day);
         admin.modifyColumnFamily(table.getName(),builder.build());
         admin.enableTable(table.getName());
+    }
+
+    /**
+     * 批量查询rowkey
+     *
+     * @param row
+     * @param family
+     * @param columnName
+     * @throws Exception
+     * @return Map<String,String> rowkey和value的对应关系
+     * @author chenwu on 2020.3.8
+     */
+    public Map<String,String> multiGet(List<String> row,String family,String columnName) throws Exception{
+        List<Get> gets = row.stream().map(rowkey -> {
+           Get get =  new Get(Bytes.toBytes(rowkey));
+           get.addColumn(Bytes.toBytes(family),Bytes.toBytes(columnName));
+           return get;
+        }).collect(Collectors.toList());
+        Object[]    results = new Object[gets.size()];
+        table.batch(gets,results);
+        Map<String,String> rowkeyValueMap = new HashMap<>();
+        for(Object object:results){
+            Result result = (Result)object;
+            if(result.isEmpty()){
+               continue;
+            }
+            String rowkey = Bytes.toString(result.getRow());
+            String value = Bytes.toString(result.getValue(Bytes.toBytes(family),Bytes.toBytes(columnName)));
+            rowkeyValueMap.put(rowkey,value);
+        }
+        return rowkeyValueMap;
     }
 }
