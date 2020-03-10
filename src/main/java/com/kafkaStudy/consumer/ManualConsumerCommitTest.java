@@ -1,6 +1,6 @@
 package com.kafkaStudy.consumer;
 
-import com.mysql.MysqlClient;
+//import com.mysql.MysqlClient;
 import org.apache.kafka.clients.consumer.*;
 
 import java.time.Duration;
@@ -72,14 +72,14 @@ public class ManualConsumerCommitTest {
     }
 
     private static void insertIntoDB(List<String> values) {
-        MysqlClient mysqlClient = new MysqlClient("localhost", 3306, "test", "123456", "test");
-        String sql = mysqlClient.getInsertOrUpdateSql("student",JavaConversions.asScalaBuffer(Arrays.asList("name","age")));
-        List<Buffer<Object>> columnValues = new ArrayList<>();
-        for(String value : values){
-            String[] splitArray = value.split(",");
-            Buffer<Object> stringBuffer = JavaConversions.asScalaBuffer(Arrays.asList(splitArray[0],Integer.parseInt(splitArray[1])));
-            columnValues.add(stringBuffer);
-        }
-        mysqlClient.batchInsertIntoTable("student",JavaConversions.asScalaBuffer(Arrays.asList("name","age")),JavaConversions.asScalaBuffer(columnValues));
+        //MysqlClient mysqlClient = new MysqlClient("localhost", 3306, "test", "123456", "test");
+//        String sql = mysqlClient.getInsertOrUpdateSql("student",JavaConversions.asScalaBuffer(Arrays.asList("name","age")));
+//        List<Buffer<Object>> columnValues = new ArrayList<>();
+//        for(String value : values){
+//            String[] splitArray = value.split(",");
+//            Buffer<Object> stringBuffer = JavaConversions.asScalaBuffer(Arrays.asList(splitArray[0],Integer.parseInt(splitArray[1])));
+//            columnValues.add(stringBuffer);
+//        }
+//        mysqlClient.batchInsertIntoTable("student",JavaConversions.asScalaBuffer(Arrays.asList("name","age")),JavaConversions.asScalaBuffer(columnValues));
     }
 }
