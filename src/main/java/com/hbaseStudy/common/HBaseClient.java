@@ -138,4 +138,27 @@ public class HBaseClient {
         }
         return rowkeyValueMap;
     }
+
+    /**
+     * 扫描指定列簇和列
+     *
+     * @param family
+     * @param columnName
+     * @throws IOException
+     * @author chenwu on 2020.3.10
+     */
+    public Map<String,String> scanTable(String family,String columnName) throws IOException {
+        ResultScanner scanner = table.getScanner(Bytes.toBytes(family), Bytes.toBytes(columnName));
+        Map<String,String> map = new HashMap<>();
+        try{
+            for(Result result :scanner){
+                String row = Bytes.toString(result.getRow());
+                String columnValue = Bytes.toString(result.getValue(Bytes.toBytes(family), Bytes.toBytes(columnName)));
+                map.put(row,columnValue);
+            }
+        }finally {
+            scanner.close();
+        }
+        return map;
+    }
 }
