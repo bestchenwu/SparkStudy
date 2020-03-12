@@ -22,7 +22,8 @@ public class LeetCode739 {
      * @param T
      * @return
      */
-    public int[] dailyTemperatures(int[] T) {
+    //todo:效率不高
+    public int[] dailyTemperatures1(int[] T) {
         Stack<Integer> matchedStack = new Stack<>();
         Stack<Integer> unMatchedStack = new Stack<Integer>();
         int length = T.length;
@@ -36,7 +37,7 @@ public class LeetCode739 {
                     int top_size = unMatchedStack.size() - 1;
                     int current_length = 0;
                     while (top_size >= 0) {
-                        current_length+=1;
+                        current_length += 1;
                         peekTemperature = unMatchedStack.get(top_size);
                         if (peekTemperature > currentTemperature) {
                             break;
@@ -56,8 +57,45 @@ public class LeetCode739 {
         }
         int[] result = new int[matchedStack.size()];
         int index = 0;
-        while(!matchedStack.empty()){
+        while (!matchedStack.empty()) {
             result[index++] = matchedStack.pop();
+        }
+        return result;
+    }
+
+    /**
+     * 首先建立一个int[] result，用于保存结果，即比当前温度高的下一个温度的下标差距。
+     * 其次建立一个单调递减的堆栈，从栈底到栈顶单调递减，堆栈里保存温度的索引
+     *
+     * 具体逻辑如下:
+     * 1、从右往左循环T数组,每次循环获得的索引计为i
+     * 2、每次进来一个新的温度,计为t0，都与当前栈的栈顶索引对应的t[栈顶索引](计为tMax)进行比较。
+     *    如果t0>=tMax,则将tMax弹出，并继续循环获取栈顶元素重复2判断
+     * 3、如果2步骤结束,则判断栈是否为空，如果为空,说明当前温度是最大的，
+     *      将result[i] = 0
+     *    如果不为空,则说明堆栈中有比t0大的温度。那么:
+     *      result[i] = 栈顶索引-i
+     * 4、将当前温度压入堆栈,继续保持单调递减栈
+     * 5、重复步骤1
+     *
+     * @param T
+     * @return
+     */
+    public int[] dailyTemperatures(int[] T) {
+        int length = T.length;
+        int[] result = new int[length];
+        Stack<Integer> stack = new Stack<>();
+        for (int i = length - 1; i >= 0; i--) {
+            int currentTemperature = T[i];
+            while (!stack.isEmpty() && currentTemperature >= T[stack.peek()]) {
+                stack.pop();
+            }
+            if (stack.isEmpty()) {
+                result[i] = 0;
+            } else {
+                result[i] = stack.peek() - i;
+            }
+            stack.push(i);
         }
         return result;
     }
