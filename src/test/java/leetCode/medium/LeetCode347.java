@@ -138,12 +138,12 @@ public class LeetCode347 {
      * @param k
      * @return
      */
-    public List<Integer> topKFrequent(int[] nums, int k) {
+    public List<Integer> topKFrequent1(int[] nums, int k) {
         Map<Integer,Integer> numCountMap = new HashMap<>();
         for(int num:nums){
             numCountMap.put(num,numCountMap.getOrDefault(num,0)+1);
         }
-        //由小到大排序的优先级队列
+        //由小到大排序的优先级队列--使用最小堆
         PriorityQueue<Integer> priorityQueue = new PriorityQueue<>((num1,num2)->numCountMap.get(num1).compareTo(numCountMap.get(num2)));
         for(Integer num : numCountMap.keySet()){
             priorityQueue.add(num);
@@ -157,6 +157,58 @@ public class LeetCode347 {
         }
         Collections.reverse(resultList);
         return resultList;
+    }
+
+
+    public List<Integer> topKFrequent(int[] nums, int k) {
+        Map<Integer,Integer> numCountMap = new HashMap<>();
+        for(int num:nums){
+            numCountMap.put(num,numCountMap.getOrDefault(num,0)+1);
+        }
+        //由小到大排序的优先级队列--使用链表结构
+        LinkedList<Integer> topKList = new LinkedList<>();
+        for(Integer num :numCountMap.keySet()){
+            pushNumIntoTopKList(num,topKList,numCountMap);
+            if(topKList.size()>k){
+                topKList.pollFirst();
+            }
+        }
+        Collections.reverse(topKList);
+        return topKList;
+    }
+
+    /**
+     * 将num推入到topKList，并保持从小到大的顺序
+     *
+     * @param num
+     * @param topKList
+     * @param numCountMap
+     */
+    private void pushNumIntoTopKList(int num,LinkedList<Integer> topKList,Map<Integer,Integer> numCountMap){
+        if(topKList.isEmpty()){
+            topKList.add(num);
+            return;
+        }
+        int length = topKList.size();
+        boolean insertFlag = false;
+        int i = 0;
+        for(;i<length;i++){
+            if(numCountMap.get(num)>numCountMap.get(topKList.get(i))){
+                continue;
+            }
+            //说明topKList[i-1]<num<topKList[i]
+            if(i==0){
+                topKList.addFirst(num);
+            }else{
+                topKList.add(i,num);
+            }
+            insertFlag = true;
+            break;
+        }
+        if(i==length && !insertFlag){
+            //说明达到了链表末尾，num比链表里面所有元素都大
+            topKList.addLast(num);
+        }
     }
 
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package leetCode.medium;
+package leetCode.dataStructure;
 
 import java.util.Arrays;
 
