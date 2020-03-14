@@ -1,6 +1,7 @@
 package leetCode.dataStructure;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 
 /**
@@ -147,7 +148,7 @@ public class MyPriorityQueueImpl<E> implements MyPriorityQueue<E>{
         while(index<=lastInternalIndex){
             int leftChildIndex = getLeftChildIndex(index);
             int rightChildIndex = getRightChildIndex(index);
-            if(rightChildIndex>queueSize){
+            if(rightChildIndex>=queueSize){
                 //说明右边节点不存在
                 if(compare(index,leftChildIndex)>0){
                     break;
@@ -204,10 +205,15 @@ public class MyPriorityQueueImpl<E> implements MyPriorityQueue<E>{
     @Override
     public E popMax() {
         int lastIndex = getLastIndex();
+        if(lastIndex<0){
+            return null;
+        }
         //将顶部元素和最后一个节点交换
         swapValue(0,lastIndex);
+        E top = dataList.get(lastIndex);
         //将最后一个节点删除,获得的就是最大的元素
-        E top = dataList.remove(lastIndex);
+        //E top = dataList.remove(lastIndex);
+        //这里将总size-1,其实就是将最后一个节点逻辑删除
         queueSize--;
         //然后从头部节点下滤,保证有序性
         swiftDown(0);
@@ -217,6 +223,16 @@ public class MyPriorityQueueImpl<E> implements MyPriorityQueue<E>{
     @Override
     public int size() {
         return queueSize;
+    }
+
+    /**
+     * 重置队列大小<br/>
+     * 因为队列有可能删除头部元素，而导致队列大小减小(非真实数组大小)
+     *
+     * @param resetSize
+     */
+    public void resetSize(int resetSize){
+        this.queueSize = resetSize;
     }
 
     @Override
@@ -237,16 +253,37 @@ public class MyPriorityQueueImpl<E> implements MyPriorityQueue<E>{
     }
 
     /**
-     * 返回有序数组(从高到低排序)
+     * 输出为数组
      *
      * @return E[]
      * @author chenwu on 2020.3.14
      */
-    public void getSortedArray(E[] array){
-        Object[] result = new Object[queueSize];
+    public void outputAsArray(E[] array){
         int index = 0;
         for(E data:dataList){
             array[index++] = data;
         }
+    }
+
+    /**
+     * 完全排序 从高到低排序
+     *
+     * @author chenwu on 2020.3.14
+     */
+    public void completeSort(E[] array){
+        int index = 0;
+        int initQueueSize = size();
+        E top = popMax();
+        array[index++]=top;
+        while(true){
+            top = popMax();
+            if(top==null){
+                break;
+            }
+            array[index++]=top;
+        }
+        resetSize(initQueueSize);
+        //仍然保持从高到低的有序
+        Collections.reverse(dataList);
     }
 }

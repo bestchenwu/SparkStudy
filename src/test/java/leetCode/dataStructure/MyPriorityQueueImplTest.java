@@ -48,7 +48,18 @@ public class MyPriorityQueueImplTest {
     @Test
     public void testOutput(){
         Integer[] sortedArray = new Integer[7];
-        priorityQueue.getSortedArray(sortedArray);
+        priorityQueue.outputAsArray(sortedArray);
         Assert.assertArrayEquals(sortedArray,new Integer[]{10,9,8,2,5,1,4});
+    }
+
+    @Test
+    public void testCompleteSort(){
+        Integer[] sortedArray = new Integer[7];
+        priorityQueue.completeSort(sortedArray);
+        Assert.assertArrayEquals(sortedArray,new Integer[]{10,9,8,5,4,2,1});
+        //这个时候原队列其实也是有序的了
+        Integer[] sortedArray1 = new Integer[7];
+        priorityQueue.outputAsArray(sortedArray1);
+        Assert.assertArrayEquals(sortedArray1,new Integer[]{10,9,8,5,4,2,1});
     }
 }
