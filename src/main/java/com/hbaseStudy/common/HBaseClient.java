@@ -26,6 +26,7 @@ public class HBaseClient {
     private transient Connection connection;
     private transient Admin admin;
     private transient Table table;
+    private transient Configuration conf;
 
     /**
      * 第一个参数为hbase的配置文件
@@ -37,7 +38,7 @@ public class HBaseClient {
      * @author chenwu on 2020.3.7
      */
     public HBaseClient(String hbaseSiteXml,String tableName) throws IOException {
-        Configuration conf = HBaseConfiguration.create();
+        conf = HBaseConfiguration.create();
         conf.addResource(hbaseSiteXml);
         connection = ConnectionFactory.createConnection(conf);
         admin = connection.getAdmin();
@@ -160,5 +161,20 @@ public class HBaseClient {
             scanner.close();
         }
         return map;
+    }
+
+    /**
+     * 不建议直接获取Table操作
+     *
+     * @return {@link Table}
+     * @author chenwu on 2020.3.14
+     */
+    @Deprecated
+    public Table getTable() {
+        return table;
+    }
+
+    public Configuration getConf() {
+        return conf;
     }
 }
