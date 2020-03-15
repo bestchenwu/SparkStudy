@@ -5,6 +5,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.*;
 import org.apache.hadoop.hbase.client.*;
+import org.apache.hadoop.hbase.filter.Filter;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.apache.hadoop.hbase.util.Pair;
 import org.apache.hadoop.hbase.util.Triple;
@@ -164,6 +165,31 @@ public class HBaseClient {
     }
 
     /**
+     * 循环遍历table,使用filter
+     *
+     * @param family
+     * @param columnName
+     * @param filter
+     * @return Map<String,String>
+     * @author chenwu on 2020.3.15
+     */
+    public Map<String,String> scanTableWithFilter(String family, String columnName, Filter filter) throws IOException {
+        Scan scan = new Scan();
+        scan.addColumn(Bytes.toBytes(family),Bytes.toBytes(columnName));
+        scan.setFilter(filter);
+        ResultScanner scannerResult = table.getScanner(scan);
+        Map<String,String> hashMap = new HashMap<>();
+        if(scannerResult!=null){
+            for(Result result:scannerResult){
+                String rowkey = Bytes.toString(result.getRow());
+                byte[] columnValue = result.getValue(Bytes.toBytes(family), Bytes.toBytes(columnName));
+                hashMap.put(rowkey,Bytes.toString(columnValue));
+            }
+        }
+        return hashMap;
+    }
+
+    /**
      * 不建议直接获取Table操作
      *
      * @return {@link Table}
@@ -174,6 +200,13 @@ public class HBaseClient {
         return table;
     }
 
+    /**
+     * 不建议直接获取{@link Configuration}操作
+     *
+     * @return {@link Configuration}
+     * @author chenwu on 2020.3.14
+     */
+    @Deprecated
     public Configuration getConf() {
         return conf;
     }
