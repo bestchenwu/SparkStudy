@@ -2,6 +2,7 @@ package com.hbaseStudy.common;
 
 import com.common.constants.CacheConstants;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.*;
 import org.apache.hadoop.hbase.client.*;
@@ -175,14 +176,25 @@ public class HBaseClient {
      */
     public Map<String,String> scanTableWithFilter(String family, String columnName, Filter filter) throws IOException {
         Scan scan = new Scan();
-        scan.addColumn(Bytes.toBytes(family),Bytes.toBytes(columnName));
+        if(StringUtils.isNotBlank(family) && StringUtils.isNotBlank(columnName)){
+            scan.addColumn(Bytes.toBytes(family),Bytes.toBytes(columnName));
+        }else if(StringUtils.isNotBlank(family)){
+            scan.addFamily(Bytes.toBytes(family));
+        }
         scan.setFilter(filter);
         ResultScanner scannerResult = table.getScanner(scan);
         Map<String,String> hashMap = new HashMap<>();
         if(scannerResult!=null){
             for(Result result:scannerResult){
                 String rowkey = Bytes.toString(result.getRow());
-                byte[] columnValue = result.getValue(Bytes.toBytes(family), Bytes.toBytes(columnName));
+                byte[] columnValue;
+                if(StringUtils.isNotBlank(family) && StringUtils.isNotBlank(columnName)){
+                    //通过family和column去二分查找精确的cell
+                    columnValue = result.getValue(Bytes.toBytes(family), Bytes.toBytes(columnName));
+                }else{
+                    //直接取的cell[0]
+                    columnValue = result.value();
+                }
                 hashMap.put(rowkey,Bytes.toString(columnValue));
             }
         }
