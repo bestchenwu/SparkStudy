@@ -2,6 +2,7 @@ package com.hbaseStudy.common;
 
 import com.common.constants.CacheConstants;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.httpclient.HttpConnectionManager;
 import org.apache.commons.lang.StringUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.*;
@@ -199,6 +200,43 @@ public class HBaseClient {
             }
         }
         return hashMap;
+    }
+
+    /**
+     * 给指定列簇和列名增加指定的变更变量increaseNumber
+     *
+     * @param row
+     * @param familyName
+     * @param columnName
+     * @param increaseNumber
+     * @return {@link long}
+     * @author chenwu on 2020.3.21
+     */
+    public long increaseValue(String row,String familyName,String columnName,long increaseNumber) throws IOException{
+        if(StringUtils.isBlank(row) || StringUtils.isBlank(familyName) || StringUtils.isBlank(columnName)){
+            throw new IllegalArgumentException("familyName or columnName is empty");
+        }
+        long currentValue = table.incrementColumnValue(Bytes.toBytes(row),Bytes.toBytes(familyName),Bytes.toBytes(columnName),increaseNumber);
+        return currentValue;
+    }
+
+    /**
+     * 批量新增
+     *
+     * @param increment
+     * @throws IOException
+     * @return List<Pair<String,Long>>
+     * @author chenwu on 2020.3.21
+     */
+    public List<Pair<String,Long>> batchIncreaseIncrement(Increment increment) throws IOException{
+        Result result = table.increment(increment);
+        List<Pair<String,Long>> list = new ArrayList<>();
+        for(Cell cell : result.listCells()){
+            String rowkey = Bytes.toString(CellUtil.cloneRow(cell));
+            Long value = Bytes.toLong(CellUtil.cloneValue(cell));
+            list.add(Pair.newPair(rowkey,value));
+        }
+        return list;
     }
 
     /**

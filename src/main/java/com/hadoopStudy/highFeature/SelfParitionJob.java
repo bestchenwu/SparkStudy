@@ -32,7 +32,7 @@ public class SelfParitionJob extends Configured implements Tool {
         FileOutputFormat.setOutputPath(job,output);
         job.setJarByClass(getClass());
         job.setMapperClass(SelfParitionMapper.class);
-        job.setReducerClass(SelfPartitionReducer.class);
+            job.setReducerClass(SelfPartitionReducer.class);
         job.setMapOutputKeyClass(IntPair.class);
         job.setMapOutputValueClass(NullWritable.class);
         job.setOutputKeyClass(NullWritable.class);

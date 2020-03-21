@@ -1,7 +1,6 @@
 package com.hadoopStudy.highFeature;
 
 import com.spark.constants.SymbolConstants;
-import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
