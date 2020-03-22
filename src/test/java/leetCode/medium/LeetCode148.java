@@ -48,7 +48,7 @@ public class LeetCode148 {
         }
     }
 
-    public ListNode sortList(ListNode head) {
+    public ListNode sortList2(ListNode head) {
         if(head==null){
             return null;
         }
@@ -131,11 +131,74 @@ public class LeetCode148 {
     }
 
 
+    private ListNode insertNode(ListNode root,ListNode newNode){
+        ListNode newRoot = root;
+        ListNode previous = null;
+        while(root!=null && root.val<=newNode.val){
+            previous = root;
+            root = root.next;
+        }
+        //说明要插入的元素在previous 和 root之间
+        ListNode insertNode = new ListNode(newNode.val);
+        if(previous==null){
+            //说明newNode比所有元素都大
+            insertNode.next = newRoot;
+            return insertNode;
+        }else{
+            previous.next = insertNode;
+            insertNode.next = root;
+            return newRoot;
+        }
+
+    }
+
+
+    public ListNode sortList3(ListNode head) {
+        if(head==null){
+            return null;
+        }
+        ListNode root = new ListNode(head.val);
+        while(head.next!=null){
+            root = insertNode(root,head.next);
+            head = head.next;
+        }
+        return root;
+    }
+
+    public ListNode sortList(ListNode head){
+        if(head==null||head.next==null){
+            return head;
+        }
+        ListNode slow = head,fast = head.next;
+        while(fast!=null&&fast.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        ListNode tmp = slow.next;
+        slow.next = null;
+        ListNode left = sortList(head);
+        ListNode right = sortList(tmp);
+        ListNode h = new ListNode(0);
+        ListNode h0 = h;
+        while(left!=null && right!=null){
+            if(left.val<=right.val){
+                h.next = left;
+                left = left.next;
+            }else{
+                h.next = right;
+                right= right.next;
+            }
+            h = h.next;
+        }
+        h.next = left!=null?left:right;
+        return h0.next;
+    }
+
     public static void main(String[] args) {
         LeetCode148 leetCode148 = new LeetCode148();
         ListNode listNode = new ListNode(-1,new ListNode(5,new ListNode(3,new ListNode(4,new ListNode(0,null)))));
         //ListNode listNode = new ListNode(4,new ListNode(2,new ListNode(1,new ListNode(3,null))));
-        ListNode node = leetCode148.sortList1(listNode);
+        ListNode node = leetCode148.sortList(listNode);
         System.out.println(node);
     }
 }
