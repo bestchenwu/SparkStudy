@@ -6,6 +6,7 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.hbase.client.Put;
 import org.apache.hadoop.hbase.io.ImmutableBytesWritable;
 import org.apache.hadoop.hbase.mapreduce.TableMapReduceUtil;
+import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.util.Tool;
@@ -31,6 +32,9 @@ public class HBaseMapReduceJob extends Configured implements Tool {
         job.setMapOutputKeyClass(ImmutableBytesWritable.class);
         job.setMapOutputValueClass(Put.class);
         TableMapReduceUtil.initTableReducerJob("test", null, job);
+        //todo:说明这里的outputValueClass 在设置了OutputFormat之后，没有任何用处
+        job.setOutputKeyClass(NullWritable.class);
+        job.setOutputValueClass(NullWritable.class);
         return job.waitForCompletion(true) ? 1 : 0;
     }
 
