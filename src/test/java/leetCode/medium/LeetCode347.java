@@ -143,11 +143,12 @@ public class LeetCode347 {
         for(int num:nums){
             numCountMap.put(num,numCountMap.getOrDefault(num,0)+1);
         }
-        //由小到大排序的优先级队列--使用最小堆
+        //由小到大排序的优先级队列--默认优先级队列就是最小堆
         PriorityQueue<Integer> priorityQueue = new PriorityQueue<>((num1,num2)->numCountMap.get(num1).compareTo(numCountMap.get(num2)));
         for(Integer num : numCountMap.keySet()){
             priorityQueue.add(num);
             if(priorityQueue.size()>k){
+                //把头部元素T掉
                 priorityQueue.poll();
             }
         }
@@ -225,7 +226,7 @@ public class LeetCode347 {
         int[] nums = new int[]{-1, 1, 4, -4, 3, 5, 4, -2, 3, -1};
         int k = 3;
         LeetCode347 leetCode347 = new LeetCode347();
-        List<Integer> resultList = leetCode347.topKFrequent(nums, k);
+        List<Integer> resultList = leetCode347.topKFrequent1(nums, k);
         System.out.println(resultList);
     }
 }
