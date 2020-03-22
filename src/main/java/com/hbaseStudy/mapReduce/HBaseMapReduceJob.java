@@ -32,7 +32,8 @@ public class HBaseMapReduceJob extends Configured implements Tool {
         job.setMapOutputKeyClass(ImmutableBytesWritable.class);
         job.setMapOutputValueClass(Put.class);
         TableMapReduceUtil.initTableReducerJob("test", null, job);
-        //todo:说明这里的outputValueClass 在设置了OutputFormat之后，没有任何用处
+        //todo:我把这两行代码来自于util里面的代码改变后，依然可以写入到hbase
+        // todo:说明这里的outputKeyClass ,outputValueClass 在设置了OutputFormat之后，没有任何用处
         job.setOutputKeyClass(NullWritable.class);
         job.setOutputValueClass(NullWritable.class);
         return job.waitForCompletion(true) ? 1 : 0;
