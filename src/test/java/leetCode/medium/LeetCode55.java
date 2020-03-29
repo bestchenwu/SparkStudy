@@ -1,7 +1,5 @@
 package leetCode.medium;
 
-import scala.actors.threadpool.Arrays;
-
 import java.util.*;
 
 /**
