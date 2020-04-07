@@ -34,6 +34,43 @@ import java.util.stream.StreamSupport;
  */
 public class LeetCode416 {
 
+    private boolean checkCanPartition(int[] nums,int currentSum,int target,int start,boolean[] used){
+        if(currentSum==target){
+            return true;
+        }
+        for(int i = start;i<nums.length;i++){
+            if(!used[i] && nums[i]+currentSum<=target){
+                used[i]=true;
+                if(checkCanPartition(nums,nums[i]+currentSum,target,i+1,used)){
+                    return true;
+                }
+                used[i]=false;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 使用回溯算法
+     *
+     * @param nums
+     * @return
+     */
+    //todo:居然超出了时间限制...
+    public boolean canPartition(int[] nums) {
+        if(nums==null||nums.length<=1){
+            return false;
+        }
+        int sum = Arrays.stream(nums).sum();
+        if(sum%2!=0){
+            return false;
+        }
+        int target = sum/2;
+        boolean[] used = new boolean[nums.length];
+        boolean result = checkCanPartition(nums,0,target,0,used);
+        return result;
+    }
+
     /**
      * 假定求出了集合的一半大小定义为sum
      * 那么问题的本质就是是否可以在nums里面找到其和等于sum的两个数组
@@ -45,7 +82,7 @@ public class LeetCode416 {
      * @param nums
      * @return
      */
-    public boolean canPartition(int[] nums) {
+    public boolean canPartition0(int[] nums) {
         if(nums==null||nums.length==0){
             return false;
         }
@@ -80,8 +117,8 @@ public class LeetCode416 {
 
     public static void main(String[] args) {
         LeetCode416 leetCode416 = new LeetCode416();
-        //int[] nums = new int[]{1, 5, 11, 5};
-        int[] nums = new int[]{1, 2, 3, 5};
+        int[] nums = new int[]{1, 5, 11, 5};
+        //int[] nums = new int[]{1, 2, 3, 5};
         boolean canPartition = leetCode416.canPartition(nums);
 
         System.out.println("canPartition="+canPartition);
