@@ -7,7 +7,7 @@ import leetCode.ListNode;
  */
 public class LeetCode234 {
 
-    public boolean isPalindrome(ListNode head) {
+    public boolean isPalindrome0(ListNode head) {
         if(head==null||head.next==null){
             return false;
         }
@@ -43,9 +43,44 @@ public class LeetCode234 {
         return afterRoot==null&&preRoot==null;
     }
 
+    public boolean isPalindrome(ListNode head) {
+        if(head==null ){
+            return false;
+        }
+        if(head.next==null){
+            return true;
+        }
+        ListNode slowNode = head;
+        ListNode fastNode = head;
+        while(fastNode.next!=null&& fastNode.next.next!=null){
+            fastNode = fastNode.next.next;
+            slowNode = slowNode.next;
+        }
+        ListNode secondHalfRootNode = slowNode.next;
+        slowNode.next = null;
+        //反转后半截链表
+        ListNode reverseNode = null;
+        while(secondHalfRootNode!=null){
+            ListNode tmp = secondHalfRootNode;
+            secondHalfRootNode = secondHalfRootNode.next;
+            tmp.next = reverseNode;
+            reverseNode = tmp;
+        }
+        while(reverseNode!=null && head!=null && reverseNode.val==head.val){
+            reverseNode = reverseNode.next;
+            head = head.next;
+        }
+        return reverseNode==null?true:false;
+    }
+
+
     public static void main(String[] args){
         LeetCode234 leetCode234 = new LeetCode234();
-        ListNode node = new ListNode(1,new ListNode(2,new ListNode(3,new ListNode(2,new ListNode(1)))));
+        //ListNode node = new ListNode(1,new ListNode(2));
+        //ListNode node = new ListNode(1,new ListNode(2,new ListNode(2,new ListNode(1))));
+        //ListNode node = new ListNode(1,new ListNode(2,new ListNode(3,new ListNode(2,new ListNode(1)))));
+        ListNode node = new ListNode(1,new ListNode(2,new ListNode(2,new ListNode(2,new ListNode(1)))));
+        //ListNode node = new ListNode(1,new ListNode(2,new ListNode(3,new ListNode(3,new ListNode(2,new ListNode(1))))));
         boolean result = leetCode234.isPalindrome(node);
         System.out.println(result);
     }
