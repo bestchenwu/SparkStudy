@@ -57,11 +57,11 @@ public class LeetCode9 {
     }
 
     @Deprecated
-    public boolean isPalindrome0(int x) {
+    public boolean isPalindrome2(int x) {
        return checkXISPalindrome(x);
     }
 
-    public boolean isPalindrome(int x) {
+    public boolean isPalindrome0(int x) {
         //说明x为120 10这样的类型
         if(x<0 || (x%10==0 & x!=0)){
             return false;
@@ -77,9 +77,24 @@ public class LeetCode9 {
         return x == reverseNumber || x == reverseNumber/10;
     }
 
+
+
+    public boolean isPalindrome(int x) {
+        if(x<0){
+            return false;
+        }
+        int sum = 0;
+        while(x>1 && x>sum){
+            sum = sum*10+x%10;
+            x = x/10;
+        }
+        return x==sum || x == sum/10;
+
+    }
+
     public static void main(String[] args) {
         LeetCode9 leetCode9 = new LeetCode9();
-        int x = 32123;
+        int x = 10;
         boolean result = leetCode9.isPalindrome(x);
         System.out.println("result="+result);
     }
