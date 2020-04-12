@@ -20,7 +20,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class LeetCode15 {
 
-    public List<List<Integer>> threeSum(int[] nums) {
+    public List<List<Integer>> threeSum2(int[] nums) {
         if(nums==null||nums.length<3){
             return Arrays.asList(new ArrayList<Integer>());
         }
@@ -140,9 +140,52 @@ public class LeetCode15 {
         return new ArrayList<List<Integer>>(set);
     }
 
+
+    public List<List<Integer>> threeSum(int[] nums) {
+        //假定i 那么从i+1 到 nums.length
+        //如果i+1 = i 那么继续遍历
+        List<List<Integer>> list = new ArrayList<>();
+        if(nums==null || nums.length<3){
+            return list;
+        }
+        Arrays.sort(nums);
+        int i = 0;
+        int length = nums.length;
+        for(;i<length;i++){
+            int numsI = nums[i];
+            if(numsI>0){
+                break;
+            }
+            if(i>=1 && i<length && nums[i] == nums[i-1]){
+                continue;
+            }
+            int j = i+1;
+            int k = length-1;
+            while(j<k){
+                if(numsI+nums[j]+nums[k] == 0){
+                    list.add(Arrays.asList(numsI,nums[j],nums[k]));
+                    while(j<k && nums[j] == nums[j+1]){
+                        j+=1;
+                    }
+                    while(k>i && nums[k-1] == nums[k]){
+                        k-=1;
+                    }
+                    j+=1;
+                    k-=1;
+                }else if(numsI+nums[j]+nums[k] < 0){
+                    j+=1;
+                }else{
+                    k-=1;
+                }
+            }
+        }
+        return list;
+    }
+
     public static void main(String[] args) {
         LeetCode15 leetCode15 = new LeetCode15();
-        int nums[] = new int[]{-1, 0, 1, 2, -1, -4};
+        //int nums[] = new int[]{-1, 0, 1, 2, -1, -4};
+        int[] nums = new int[]{-4,-2,1,-5,-4,-4,4,-2,0,4,0,-2,3,1,-5,0};
         List<List<Integer>> lists = leetCode15.threeSum(nums);
         System.out.println(lists);
     }

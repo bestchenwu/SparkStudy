@@ -2,10 +2,7 @@ package leetCode.medium;
 
 import leetCode.TreeNode;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * 给定一个二叉树，返回它的中序 遍历。
@@ -32,7 +29,7 @@ public class LeetCode94 {
      * @param root
      * @return
      */
-    public List<Integer> inorderTraversal(TreeNode root) {
+    public List<Integer> inorderTraversal0(TreeNode root) {
         if(root==null){
             return Collections.emptyList();
         }
@@ -53,6 +50,26 @@ public class LeetCode94 {
             if(!rightList.isEmpty()){
                 list.addAll(rightList);
             }
+        }
+        return list;
+    }
+
+    public List<Integer> inorderTraversal(TreeNode root) {
+        Stack<TreeNode> stack = new Stack<>();
+        List<Integer> list = new ArrayList<>();
+        if(root==null){
+            return list;
+        }
+        TreeNode cur = root;
+
+        while(cur!=null || !stack.isEmpty()){
+            while(cur!=null){
+                stack.push(cur);
+                cur = cur.left;
+            }
+            cur = stack.pop();
+            list.add(cur.val);
+            cur = cur.right;
         }
         return list;
     }
