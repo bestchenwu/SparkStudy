@@ -79,7 +79,7 @@ public class LeetCode322 {
      * @param amount
      * @return
      */
-    public int coinChange(int[] coins, int amount) {
+    public int coinChange2(int[] coins, int amount) {
         if(coins==null||coins.length==0||amount<0){
             return -1;
         }
@@ -100,6 +100,39 @@ public class LeetCode322 {
         return dp[amount]>amount?-1:dp[amount];
     }
 
+
+    public int coinChange(int[] coins, int amount) {
+        //int[] dp = new int[amount+1]
+        // for(int i = 0;i<coins.length;i++){
+        //         dp[i] = Math.min(dp[i-1],1+dp[i-coins[i]]);
+        // }
+        //dp[0] = -1
+        //
+        if(amount<=0 || coins==null ||  coins.length<=0){
+            return -1;
+        }
+        int[] dp = new int[amount+1];
+        Arrays.fill(dp,amount+1);
+        for(int i = 0;i<coins.length;i++){
+            if(coins[i]<=amount){
+                dp[coins[i]] = 1;
+            }
+        }
+        for(int i = 1;i<=amount;i++){
+            if(dp[i]== 1){
+                continue;
+            }
+            for(int j = 0;j<coins.length;j++){
+                if(i>=coins[j]){
+                    int count = i/coins[j];
+                    for(int k = 1;k<=count;k++){
+                        dp[i] = Math.min(dp[i],dp[i-count*coins[j]]+count);
+                    }
+                }
+            }
+        }
+        return dp[amount] == amount+1?-1:dp[amount];
+    }
 
     public static void main(String[] args) {
         LeetCode322 leetCode322 = new LeetCode322();
