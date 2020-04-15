@@ -1,10 +1,7 @@
 package leetCode.medium;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * https://leetcode-cn.com/problems/combination-sum/
@@ -58,12 +55,49 @@ public class LeetCode39 {
         }
     }
 
-    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+    public List<List<Integer>> combinationSum0(int[] candidates, int target) {
         Arrays.sort(candidates);
         Stack<Integer> path = new Stack<>();
         List<List<Integer>> result = new ArrayList<>();
         combinationSumHelp(candidates, target, path, result);
         return result;
+    }
+
+
+    private void helpCombinationSum(int[] candidates,int target,int sum,Stack<Integer> path,List<List<Integer>> list,int begin){
+        if(sum>=target){
+            if(sum == target){
+                List<Integer> tmpList = new ArrayList<>();
+                tmpList.addAll(path);
+                list.add(tmpList);
+            }
+            return;
+        }
+        for(int i = begin;i<candidates.length;i++){
+            int currentNum = candidates[i];
+            path.push(currentNum);
+            sum+=currentNum;
+            helpCombinationSum(candidates,target,sum,path,list,i);
+            path.pop();
+            sum-=currentNum;
+        }
+    }
+
+    /**
+     * 剪掉不必要的循环
+     *
+     * @param candidates
+     * @param target
+     * @return
+     */
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        if(candidates==null || candidates.length==0){
+            return Collections.EMPTY_LIST;
+        }
+        Stack<Integer> path = new Stack<>();
+        List<List<Integer>> resultList = new ArrayList<>();
+        helpCombinationSum(candidates,target,0,path,resultList,0);
+        return resultList;
     }
 
     public static void main(String[] args) {

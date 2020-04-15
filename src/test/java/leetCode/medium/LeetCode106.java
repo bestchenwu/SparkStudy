@@ -82,6 +82,9 @@ public class LeetCode106 {
         return rootNode;
     }
 
+
+
+
     public static void main(String[] args) {
         LeetCode106 leetCode106 = new LeetCode106();
         int[] inorder = new int[]{9,3,15,20,7};

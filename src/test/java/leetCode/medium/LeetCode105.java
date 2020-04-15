@@ -4,6 +4,7 @@ import leetCode.TreeNode;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 从前序与中序遍历序列构造二叉树
@@ -33,6 +34,7 @@ public class LeetCode105 {
     private int[] preorder ;
     private int[] inorder;
     private int preIndex = 0;
+    private int rootIndex = 0;
     //存储中序的值和坐标的对应关系
     private Map<Integer,Integer> inorderMap = new HashMap<>();
 
@@ -57,7 +59,7 @@ public class LeetCode105 {
         return rootNode;
     }
 
-    public TreeNode buildTree(int[] preorder, int[] inorder) {
+    public TreeNode buildTree0(int[] preorder, int[] inorder) {
         this.preorder = preorder;
         this.inorder = inorder;
         for(int index = 0;index<inorder.length;index++){
@@ -67,10 +69,39 @@ public class LeetCode105 {
         return root;
     }
 
+
+    private TreeNode helpBuildTree(int[] preorder, int[] inorder, Map<Integer,Integer> indexMap, int leftIndex, int rightIndex){
+        if(leftIndex>rightIndex){
+            return  null;
+        }
+        if(leftIndex==rightIndex){
+            return new TreeNode(preorder[rootIndex++]);
+        }
+        int rootVal = preorder[rootIndex];
+        TreeNode rootNode = new TreeNode(rootVal);
+        int inorderIndex = indexMap.get(rootVal);
+        rootIndex++;
+        rootNode.left = helpBuildTree(preorder,inorder,indexMap,leftIndex,inorderIndex-1);
+        rootNode.right = helpBuildTree(preorder,inorder,indexMap,inorderIndex+1,rightIndex);
+        return rootNode;
+
+    }
+
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        Map<Integer,Integer> indexMap = new HashMap<>();
+        for(int i = 0;i<inorder.length;i++){
+            indexMap.put(inorder[i],i);
+        }
+        TreeNode rootNode= helpBuildTree(preorder,inorder,indexMap,0,inorder.length-1);
+        return rootNode;
+    }
+
     public static void main(String[] args) {
         LeetCode105 leetCode105 = new LeetCode105();
         int[] preOrder = new int[]{3,9,20,15,7};
         int[] inOrder = new int[]{9,3,15,20,7};
+        //int[] preOrder = new int[]{1,2};
+        //int[] inOrder = new int[]{1,2};
         TreeNode rootNode = leetCode105.buildTree(preOrder,inOrder);
         System.out.println(rootNode);
     }
