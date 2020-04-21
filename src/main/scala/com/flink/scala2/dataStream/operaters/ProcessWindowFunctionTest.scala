@@ -1,5 +1,6 @@
 package com.flink.scala2.operaters
 
+import org.apache.flink.configuration.Configuration
 import org.apache.flink.streaming.api.TimeCharacteristic
 import org.apache.flink.streaming.api.functions.timestamps.AscendingTimestampExtractor
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
@@ -34,8 +35,22 @@ object ProcessWindowFunctionTest {
   * 求总和的聚合函数
   */
 class AddSumProcessWindowFunction extends ProcessWindowFunction[(String, Long, Long), Long, String, TimeWindow] {
+
+
+  override def open(parameters: Configuration): Unit = {
+    super.open(parameters)
+    println("open window")
+  }
+
   override def process(key: String, context: Context, elements: Iterable[(String, Long, Long)], out: Collector[Long]): Unit = {
+    println("process key:"+key)
     val sumResult = elements.foldRight(0l)((a: (String, Long, Long), b: Long) => a._2 + b)
     out.collect(sumResult)
   }
+
+  override def close(): Unit = {
+      super.close()
+      println("close window")
+  }
+
 }
