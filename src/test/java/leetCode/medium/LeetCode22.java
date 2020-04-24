@@ -37,9 +37,91 @@ public class LeetCode22 {
         }
     }
 
-    public List<String> generateParenthesis(int n) {
+    public List<String> generateParenthesis1(int n) {
         List<String> list = new ArrayList<>();
         generateParenthesis1("", n, n, list);
+        return list;
+    }
+
+    private char[] chars = new char[]{'(',')'};
+
+    private boolean checkPathIsValid(Stack<Character> path){
+        Stack<Character> checkPath = new Stack<>();
+        for(int i = 0;i<path.size();i++){
+            Character item =  path.get(i);
+            if(item=='('){
+                checkPath.push(item);
+            }else{
+                if(checkPath.isEmpty() || checkPath.peek()!='('){
+                    return false;
+                }else{
+                    checkPath.pop();
+                }
+            }
+        }
+        return checkPath.isEmpty();
+    }
+
+    private void helpGenerateParenthesis(Stack<Character> path,List<String> list,int count,int startIndex){
+        if(path.size()==count){
+            //检查path是否是一个有效的括号
+            boolean checkResult = checkPathIsValid(path);
+            if(checkResult){
+                String newResult = "";
+                for(int i = 0;i<path.size();i++){
+                    newResult+=path.get(i);
+                }
+                list.add(newResult);
+            }
+            return;
+        }
+        for(int i =0;i<2;i++){
+            path.push(chars[i]);
+            helpGenerateParenthesis(path,list,count,i);
+            path.pop();
+        }
+    }
+
+    /**
+     * 回溯算法2
+     *
+     * @param n
+     * @return
+     */
+    public List<String> generateParenthesis0(int n) {
+        Stack<Character> path  = new Stack<>();
+        List<String> list = new ArrayList<>();
+        int count = n*2;
+        helpGenerateParenthesis(path,list,count,0);
+        return list;
+    }
+
+
+    private void helpGenerateParenthesis(Stack<Character> path,int open,int close,int max,List<String> list){
+        if(path.size()==max*2){
+            String newResult = "";
+            for(int i =0;i<path.size();i++){
+                newResult+=path.get(i);
+            }
+            list.add(newResult);
+            return;
+        }
+        if(open<max){
+            path.push('(');
+            helpGenerateParenthesis(path,open+1,close,max,list);
+            path.pop();
+        }
+        if(open>close){
+            path.push(')');
+            helpGenerateParenthesis(path,open,close+1,max,list);
+            path.pop();
+        }
+    }
+
+    public List<String> generateParenthesis(int n) {
+        Stack<Character> path = new Stack<>();
+        List<String> list = new ArrayList<>();
+        helpGenerateParenthesis(path,0,0,n,list);
         return list;
     }
 

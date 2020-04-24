@@ -22,55 +22,95 @@ import java.util.Arrays;
  */
 public class LeetCode34 {
 
-    private int findIndex(int[] nums, int target){
-        int startIndex = 0;
-        int endIndex = nums.length-1;
-        int halfIndex = 0;
-        while(endIndex>=startIndex){
-            halfIndex = startIndex+(endIndex-startIndex)/2;
-            if(nums[halfIndex] == target){
-                return halfIndex;
+//    private int findIndex(int[] nums, int target){
+//        int startIndex = 0;
+//        int endIndex = nums.length-1;
+//        int halfIndex = 0;
+//        while(endIndex>=startIndex){
+//            halfIndex = startIndex+(endIndex-startIndex)/2;
+//            if(nums[halfIndex] == target){
+//                return halfIndex;
+//            }
+//            if(halfIndex == startIndex){
+//                if(nums[startIndex]==target){
+//                    return startIndex;
+//                }
+//                if(nums[endIndex]==target){
+//                    return endIndex;
+//                }
+//                return -1;
+//            }
+//            if(nums[halfIndex]>target){
+//                endIndex = halfIndex;
+//            }else{
+//                startIndex = halfIndex;
+//            }
+//        }
+//        return -1;
+//    }
+//
+//    public int[] searchRange(int[] nums, int target) {
+//        //先二分查找target在nums的位置
+//        if(nums==null || nums.length==0){
+//            return new int[]{-1,-1};
+//        }
+//        int index = findIndex(nums,target);
+//        if(index==-1){
+//            return new int[]{-1,-1};
+//        }
+//        int i = index;
+//        int j = index;
+//        for(;i<nums.length;i++){
+//            if(nums[i] != target){
+//                break;
+//            }
+//        }
+//        for(;j>=0;j--){
+//            if(nums[j] != target){
+//                break;
+//            }
+//        }
+//        return new int[]{j+1,i-1};
+//    }
+
+
+    private int findIndex(int[] nums,int target){
+        int left = 0;
+        int right = nums.length-1;
+        int middle = (left+right)/2;
+        while(right>=left){
+            if(left==right){
+                return nums[left]==target?left:-1;
             }
-            if(halfIndex == startIndex){
-                if(nums[startIndex]==target){
-                    return startIndex;
-                }
-                if(nums[endIndex]==target){
-                    return endIndex;
-                }
-                return -1;
-            }
-            if(nums[halfIndex]>target){
-                endIndex = halfIndex;
+            if(nums[middle]==target){
+                return middle;
+            }else if(nums[middle] < target){
+                left = middle;
             }else{
-                startIndex = halfIndex;
+                right = middle;
             }
+            middle = (left+right)/2;
         }
         return -1;
     }
 
     public int[] searchRange(int[] nums, int target) {
-        //先二分查找target在nums的位置
         if(nums==null || nums.length==0){
             return new int[]{-1,-1};
         }
         int index = findIndex(nums,target);
-        if(index==-1){
+        if(index == -1){
             return new int[]{-1,-1};
         }
-        int i = index;
-        int j = index;
-        for(;i<nums.length;i++){
-            if(nums[i] != target){
-                break;
-            }
+        int leftIndex = index;
+        while(leftIndex-1>=0 && nums[leftIndex-1]==nums[index]){
+            leftIndex-=1;
         }
-        for(;j>=0;j--){
-            if(nums[j] != target){
-                break;
-            }
+        int rightIndex = index;
+        while(rightIndex+1<nums.length && nums[rightIndex+1]==nums[index]){
+            rightIndex+=1;
         }
-        return new int[]{j+1,i-1};
+        return new int[]{leftIndex,rightIndex};
     }
 
     public static void main(String[] args) {

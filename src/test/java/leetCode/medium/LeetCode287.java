@@ -26,7 +26,7 @@ public class LeetCode287 {
     //假定nums的长度是n,那么nums里面的元素都是从1到n的之间的整数
     //二分查找
     //假定中位数是2/n,那么理论上位于[1,n/2]区间的元素个数一定<=n/2
-    public int findDuplicate(int[] nums) {
+    public int findDuplicate3(int[] nums) {
         int length = nums.length;
         int start = 1;
         int duplicate = findDuplicateHelp(nums,start,length);
@@ -100,6 +100,28 @@ public class LeetCode287 {
             }
         }
         return left;
+    }
+
+    /**
+     * 哈希方法
+     *
+     * @param nums
+     * @return
+     */
+    public int findDuplicate(int[] nums) {
+        if(nums==null || nums.length<=1){
+            return -1;
+        }
+        int length = nums.length;//说明数字都在[1,(length-1)]之间
+        int[] hashTable = new int[length];
+        for(int i = 0;i<nums.length;i++){
+            int index = nums[i]-1;
+            hashTable[index]+=1;
+            if(hashTable[index]>1){
+                return index+1;
+            }
+        }
+        return -1;
     }
 
     public static void main(String[] args) {

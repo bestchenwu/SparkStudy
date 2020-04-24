@@ -52,7 +52,7 @@ public class LeetCode114 {
      * @param root
      */
     @Deprecated
-    public void flatten(TreeNode root) {
+    public void flatten2(TreeNode root) {
        flattenHelp(root);
         root = head.right;
         System.out.println(root);
@@ -78,6 +78,7 @@ public class LeetCode114 {
         root.left = null;
         pre = root;
     }
+
 
     public static void main(String[] args) {
         LeetCode114 leetCode114 = new LeetCode114();
