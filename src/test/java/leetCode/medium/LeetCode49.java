@@ -51,7 +51,7 @@ public class LeetCode49 {
         return result;
     }
 
-    public List<List<String>> groupAnagrams(String[] strs) {
+    public List<List<String>> groupAnagrams0(String[] strs) {
         Map<String,List<String>> map = new HashMap<>();
         for(String item:strs){
             //利用字符串在[a,b,c,d...,z]上的映射 例如abbc 映射为[1 2 1]
@@ -73,11 +73,48 @@ public class LeetCode49 {
         return new ArrayList<>(map.values());
     }
 
+
+    private String generateHashCode(String str){
+        int[] hashCodeArray = new int[26];
+        for(int i = 0;i<str.length();i++){
+            char currentChar = str.charAt(i);
+            hashCodeArray[currentChar-'a']+=1;
+        }
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0;i<hashCodeArray.length;i++){
+            if(hashCodeArray[i]>0){
+                sb.append(i+1);
+                for(int j = 1;j<=hashCodeArray[i];j++){
+                    sb.append("#");
+                }
+            }
+        }
+        return sb.toString();
+    }
+
+    public List<List<String>> groupAnagrams(String[] strs) {
+        Map<String,List<String>> map = new HashMap<>();
+        for(String str:strs){
+            String hashCode = generateHashCode(str);
+            List<String> list = map.getOrDefault(hashCode,new ArrayList<String>());
+            list.add(str);
+            map.put(hashCode,list);
+        }
+        List<List<String>> result = new ArrayList<>();
+        for(List<String> itemList:map.values()){
+            result.add(itemList);
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
         LeetCode49 leetCode49 = new LeetCode49();
-        String[] st = new String[]{"fat","asp"};
-        for(String item:st){
-            System.out.println("hashCode:"+leetCode49.getHashCode(item));
-        }
+//        String[] st = new String[]{"fat","asp"};
+//        for(String item:st){
+//            System.out.println("hashCode:"+leetCode49.getHashCode(item));
+//        }
+        String[] strs = new String[]{"eat","tea","tan","ate","nat","bat"};
+        List<List<String>> lists = leetCode49.groupAnagrams(strs);
+        System.out.println(lists);
     }
 }

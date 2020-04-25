@@ -143,7 +143,7 @@ public class LeetCode55 {
         return result == 1;
     }
 
-    public boolean canJump(int[] nums) {
+    public boolean canJump2(int[] nums) {
         if(nums.length==1 || nums==null){
             return true;
         }
@@ -156,6 +156,23 @@ public class LeetCode55 {
         dp[lastIndex] = 1;
         int result = calculate(0, nums, dp,lastIndex);
         return result == 1;
+    }
+
+    public boolean canJump(int[] nums) {
+        int length = nums.length;
+        //表示最远可以到达的距离
+        int rightMost = 0;
+        for(int i = 0;i<length;i++){
+            //如果i在最远可以到达的距离范围内
+            if(i<=rightMost){
+                //更新此时可以到达的最远距离
+                rightMost = Math.max(rightMost,i+nums[i]);
+                if(rightMost>=length-1){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public static void main(String[] args) {
