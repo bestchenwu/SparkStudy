@@ -121,6 +121,14 @@
           <groupId>org.apache.zookeeper</groupId>
         </exclusion>
         <exclusion>
+          <artifactId>netty-all</artifactId>
+          <groupId>io.netty</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>netty</artifactId>
+          <groupId>io.netty</groupId>
+        </exclusion>
+        <exclusion>
           <artifactId>avro-mapred</artifactId>
           <groupId>org.apache.avro</groupId>
         </exclusion>
@@ -507,6 +515,14 @@
       <version>2.7.4</version>
       <scope>provided</scope>
       <exclusions>
+        <exclusion>
+          <artifactId>netty-all</artifactId>
+          <groupId>io.netty</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>netty</artifactId>
+          <groupId>io.netty</groupId>
+        </exclusion>
         <exclusion>
           <artifactId>hadoop-common</artifactId>
           <groupId>org.apache.hadoop</groupId>
