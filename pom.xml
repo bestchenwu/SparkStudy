@@ -44,6 +44,8 @@
 		<hbase.version>2.0.2</hbase.version>
 		<kafka.version>2.0.1</kafka.version>
 		<curator-recipes.version>4.1.0</curator-recipes.version>
+		<!-- 引入redission -->
+		<redission.version>3.12.3</redission.version>
 	</properties>
 
 		<dependencies>
@@ -327,6 +329,11 @@
 				<artifactId>hbase-mapreduce</artifactId>
 				<version>${hbase.version}</version>
 			</dependency>
+			<dependency>
+			    <groupId>org.redisson</groupId>
+			    <artifactId>redisson</artifactId>
+			    <version>${redission.version}</version>
+			</dependency>
 		</dependencies>
 	
 	<build>
@@ -440,7 +447,7 @@
 				  </execution>
 				</executions>
 			 </plugin>
-			 
+		     <!--
 			 <plugin>    
                 <artifactId>maven-assembly-plugin</artifactId>    
                 <configuration>    
@@ -463,6 +470,23 @@
                     </execution>    
               </executions>    
             </plugin>
+            -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>3.1.1</version>
+				<configuration>
+					<!-- put your configurations here -->
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 	<repositories>
