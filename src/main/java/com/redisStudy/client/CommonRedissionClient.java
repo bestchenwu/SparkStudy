@@ -2,6 +2,7 @@ package com.redisStudy.client;
 
 import org.redisson.Redisson;
 import org.redisson.api.RBucket;
+import org.redisson.api.RLock;
 import org.redisson.api.RMap;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
@@ -28,7 +29,7 @@ public class CommonRedissionClient implements Closeable {
      *
      * @param redisHostAndPort
      */
-    private CommonRedissionClient(String redisHostAndPort){
+    private CommonRedissionClient(String redisHostAndPort) {
         Config config = new Config();
         config.useSingleServer().setAddress(redisHostAndPort);
         redissionClient = Redisson.create(config);
@@ -36,25 +37,25 @@ public class CommonRedissionClient implements Closeable {
 
     @Override
     public void close() {
-        try{
+        try {
             redissionClient.shutdown();
-        }catch(Exception e){
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
     }
 
-    public static CommonRedissionClient getInstance(String redisPropertyFile){
-        if(redissionClientInstance !=null){
+    public static CommonRedissionClient getInstance(String redisPropertyFile) {
+        if (redissionClientInstance != null) {
             return redissionClientInstance;
         }
-        synchronized(CommonRedissionClient.class){
+        synchronized (CommonRedissionClient.class) {
             Properties props = new Properties();
-            try{
-                InputStream fis = CommonRedissionClient.class.getResourceAsStream("/"+redisPropertyFile);
+            try {
+                InputStream fis = CommonRedissionClient.class.getResourceAsStream("/" + redisPropertyFile);
                 props.load(fis);
                 redissionClientInstance = new CommonRedissionClient(props.getProperty("redis.host"));
-            }catch(Exception e){
+            } catch (Exception e) {
                 throw new RuntimeException(e);
             }
             return redissionClientInstance;
@@ -70,11 +71,11 @@ public class CommonRedissionClient implements Closeable {
      * @param timeUnit
      * @author chenwu on 2020.5.5
      */
-    public <T> void setSingleKey(String key, T value, long expireTime, TimeUnit timeUnit,Class<T> valueClass){
+    public <T> void setSingleKey(String key, T value, long expireTime, TimeUnit timeUnit, Class<T> valueClass) {
         RBucket<T> bucket = redissionClient.getBucket(key);
         bucket.set(value);
-        if(expireTime>0){
-            bucket.expire(expireTime,timeUnit);
+        if (expireTime > 0) {
+            bucket.expire(expireTime, timeUnit);
         }
     }
 
@@ -86,9 +87,9 @@ public class CommonRedissionClient implements Closeable {
      * @return T
      * @author chenwu on 2020.5.5
      */
-    public <T> T getSingleKey(String key,Class<T> valueClass){
+    public <T> T getSingleKey(String key, Class<T> valueClass) {
         RBucket<T> bucket = redissionClient.getBucket(key);
-        if(bucket==null || !bucket.isExists() ){
+        if (bucket == null || !bucket.isExists()) {
             return null;
         }
         return bucket.get();
@@ -104,15 +105,15 @@ public class CommonRedissionClient implements Closeable {
      * @param timeUnit
      * @author chenwu on 2020.5.5
      */
-    public void hsetSingleKey(String key,String field,Object value,long ttlTime,TimeUnit timeUnit){
+    public void hsetSingleKey(String key, String field, Object value, long ttlTime, TimeUnit timeUnit) {
         RMap<String, Object> map = redissionClient.getMap(key);
         boolean isNewKey = false;
-        if(map==null || map.isEmpty()){
+        if (map == null || map.isEmpty()) {
             isNewKey = true;
         }
-        map.put(field,value);
-        if(isNewKey && ttlTime>0l){
-            map.expire(ttlTime,timeUnit);
+        map.put(field, value);
+        if (isNewKey && ttlTime > 0l) {
+            map.expire(ttlTime, timeUnit);
         }
     }
 
@@ -126,9 +127,47 @@ public class CommonRedissionClient implements Closeable {
      * @return
      * @author chenwu on 2020.5.5
      */
-    public <T> T hgetSingleKey(String key,String field,Class<T> valueClass){
+    public <T> T hgetSingleKey(String key, String field, Class<T> valueClass) {
         RMap<String, T> map = redissionClient.getMap(key);
         T value = map.get(field);
         return value;
+    }
+
+    /**
+     * 以原子的方式设置值
+     *
+     * @param key
+     * @param value
+     * @param valueClass
+     * @param ttlTime
+     * @param timeUnit
+     * @param <T>
+     * @param lockName
+     * @return boolean
+     * @author chenwu on 2020.5.6
+     */
+    public <T> boolean setNx(String key, T value, Class<T> valueClass, long ttlTime, TimeUnit timeUnit, String lockName) {
+        if (ttlTime <= 0) {
+            throw new IllegalArgumentException("ttltime should be more than 0");
+        }
+        RLock lock = redissionClient.getLock(lockName);
+        boolean isLock;
+        try {
+            isLock = lock.tryLock(ttlTime, timeUnit);
+            if(isLock){
+                RBucket<T> bucket = redissionClient.getBucket(key);
+                bucket.set(value);
+                System.out.println("set value "+value);
+                //Thread.sleep(10*1000);
+            }else{
+                System.out.println("can't get lock");
+            }
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            lock.unlock();
+        }
+        return true;
     }
 }
