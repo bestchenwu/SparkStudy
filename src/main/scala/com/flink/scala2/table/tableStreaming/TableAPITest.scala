@@ -15,7 +15,9 @@ import org.apache.flink.table.sinks.CsvTableSink
 object TableAPITest {
 
   def main(args: Array[String]): Unit = {
-    val env = StreamExecutionEnvironment.createLocalEnvironment(2)
+    //这里并发度为2的时候会生成两个文件 每个key一个文件
+    //当并发度为1的时候只会生成一个文件
+    val env = StreamExecutionEnvironment.createLocalEnvironment(1)
     val tableEnv = StreamTableEnvironment.create(env)
     val datastream = env.fromElements(("test", 11), ("maliang", 22),("raoshanshan",33),("raoshanshan",52))
     val userTable = tableEnv.fromDataStream(datastream,'name,'age)
@@ -29,12 +31,14 @@ object TableAPITest {
     //val result = userTable1.filter('age>=20).groupBy('name).select("name,age.sum as ageSum")
     //将结果输出到csvSink
     //由于result是动态变化的,所以需要先转换成缩进模式
-    val retractStream = tableEnv.toRetractStream[(String,Integer)](result)
+    val retractStream = tableEnv.toRetractStream[(String,Integer)](result).map(_._2)
+    val resultTable = tableEnv.fromDataStream(retractStream,'name,'ageSum)
     val csvSink = new CsvTableSink("D:\\logs\\flinkSink\\nameAge.csv","|")
     val fieldNames = Array("name","ageSum")
     val filedTypes:Array[TypeInformation[_]] = Array(Types.STRING,Types.INT)
     tableEnv.registerTableSink("nameAge",fieldNames,filedTypes,csvSink)
-    result.insertInto("nameAge")
+    resultTable.insertInto("nameAge")
+    //result.insertInto("nameAge")
     env.execute("TableAPITest")
   }
 }
