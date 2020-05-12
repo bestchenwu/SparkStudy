@@ -30,7 +30,8 @@ object TableAPITest {
     //使用registerDataStream转换的table
     //val result = userTable1.filter('age>=20).groupBy('name).select("name,age.sum as ageSum")
     //将结果输出到csvSink
-    //由于result是动态变化的,所以需要先转换成缩进模式
+    //将表转换为dataStream
+    //由于这里的table是动态变化的,所以需要先转换成缩进模式
     val retractStream = tableEnv.toRetractStream[(String,Integer)](result).map(_._2)
     val resultTable = tableEnv.fromDataStream(retractStream,'name,'ageSum)
     val csvSink = new CsvTableSink("D:\\logs\\flinkSink\\nameAge.csv","|")
