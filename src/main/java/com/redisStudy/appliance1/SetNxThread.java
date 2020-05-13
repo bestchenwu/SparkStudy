@@ -8,19 +8,19 @@ public class SetNxThread extends Thread {
 
     private CommonRedissionClient redissionClient;
     private String key;
-    private Integer value;
+    private String value;
     private String lockName;
 
-    public SetNxThread(CommonRedissionClient redissionClient,String key, Integer value){
+    public SetNxThread(CommonRedissionClient redissionClient,String key, String value){
         this.redissionClient = redissionClient;
         this.key = key;
         this.value = value;
-        lockName = "testLock";
+        lockName = "testLock20200513";
     }
 
     @Override
     public void run() {
-        boolean result = redissionClient.setNx(key,value,Integer.class,100l, TimeUnit.SECONDS,lockName);
+        boolean result = redissionClient.setNx(key,value,String.class,100l, TimeUnit.SECONDS,lockName);
         if(result){
             System.out.println("set value:"+value+" success");
         }else{

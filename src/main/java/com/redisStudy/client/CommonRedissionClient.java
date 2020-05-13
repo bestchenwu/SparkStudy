@@ -1,10 +1,7 @@
 package com.redisStudy.client;
 
 import org.redisson.Redisson;
-import org.redisson.api.RBucket;
-import org.redisson.api.RLock;
-import org.redisson.api.RMap;
-import org.redisson.api.RedissonClient;
+import org.redisson.api.*;
 import org.redisson.config.Config;
 
 import java.io.Closeable;
@@ -151,23 +148,62 @@ public class CommonRedissionClient implements Closeable {
             throw new IllegalArgumentException("ttltime should be more than 0");
         }
         RLock lock = redissionClient.getLock(lockName);
-        boolean isLock;
+        boolean isLock ;
         try {
-            isLock = lock.tryLock(ttlTime, timeUnit);
+            //尝试加锁，最多等待ttlTime,并且在10秒以后自动释放锁
+            isLock = lock.tryLock(ttlTime, 10,timeUnit);
             if(isLock){
                 RBucket<T> bucket = redissionClient.getBucket(key);
                 bucket.set(value);
-                System.out.println("set value "+value);
                 //Thread.sleep(10*1000);
             }else{
                 System.out.println("can't get lock");
             }
 
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         } finally {
             lock.unlock();
         }
         return true;
+    }
+
+    /**
+     * 往指定key的双端队列里添加元素
+     *
+     * @param key
+     * @param value
+     * @param ttlTime
+     * @param timeUnit
+     * @param <T>
+     * @author chenwu on 2020.5.13
+     */
+    public <T> void addDeque(String key,T value,long ttlTime, TimeUnit timeUnit){
+        RDeque<T> deque = redissionClient.getDeque(key);
+        deque.addLast(value);
+        if(ttlTime>0){
+            deque.expire(ttlTime,timeUnit);
+        }
+    }
+
+    /**
+     * 从指定key的双端队列里取处元素
+     *
+     * @param key
+     * @param pollFirst 是否从头部取元素
+     * @param valueClass
+     * @param <T>
+     * @return T
+     * @author chenwu on 2020.5.13
+     */
+    public <T> T pollDeque(String key,boolean pollFirst,Class<T> valueClass){
+        RDeque<T> deque = redissionClient.getDeque(key);
+        T result;
+        if(pollFirst){
+            result = deque.pollFirst();
+        }else{
+            result = deque.pollLast();
+        }
+        return result;
     }
 }
