@@ -81,7 +81,7 @@ public class TimeQueueTest {
         producerThread.start();
         consumerThread.start();
         while(producerThread.isAlive() || consumerThread.isAlive()){
-            
+
         }
     }
 
