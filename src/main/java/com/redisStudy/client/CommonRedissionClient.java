@@ -206,4 +206,37 @@ public class CommonRedissionClient implements Closeable {
         }
         return result;
     }
+
+    /**
+     * 往阻塞队列里添加元素
+     *
+     * @param key
+     * @param value
+     * @param valueClass
+     * @param ttlTime
+     * @param timeUnit
+     * @param <T>
+     * @author chenwu on 2020.5.14
+     */
+    public <T> void addBlockQueue(String key,T value,Class<T> valueClass,long ttlTime, TimeUnit timeUnit){
+        RBlockingDeque<T> blockingDeque = redissionClient.getBlockingDeque(key);
+        blockingDeque.offer(value);
+        if(ttlTime>0){
+            blockingDeque.expire(ttlTime,timeUnit);
+        }
+    }
+
+    /**
+     * 从阻塞队列里删除元素
+     *
+     * @param key
+     * @param <T>
+     * @return T
+     * @author chenwu on 2020.5.14
+     */
+    public <T> T pollBlockQueue(String key,long waitTime,TimeUnit timeUnit) throws InterruptedException{
+        RBlockingDeque<T> blockingDeque = redissionClient.getBlockingDeque(key);
+        T object = blockingDeque.poll(waitTime,timeUnit);
+        return object;
+    }
 }
