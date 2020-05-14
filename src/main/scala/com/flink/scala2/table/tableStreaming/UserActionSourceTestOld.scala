@@ -20,7 +20,7 @@ import org.apache.flink.table.sinks.CsvTableSink
   *
   * @author chenwu on 2020.1.6
   */
-class UserActionSource extends StreamTableSource[Row] with DefinedProctimeAttribute {
+class UserActionSourceOld extends StreamTableSource[Row] with DefinedProctimeAttribute {
 
   val names = Array[String]("username", "data")
   val types = Array[TypeInformation[_]](BasicTypeInfo.STRING_TYPE_INFO, BasicTypeInfo.STRING_TYPE_INFO)
@@ -58,7 +58,7 @@ object UserActionSourceTest {
   def main(args: Array[String]): Unit = {
     val env = ScalaStreamExecutionEnvironment.createLocalEnvironment(1)
     val tableEnv = StreamTableEnvironment.create(env)
-    tableEnv.registerTableSource("UserActions", new UserActionSource)
+    tableEnv.registerTableSource("UserActions", new UserActionSourceOld)
     val csvTableSink = new CsvTableSink("D:\\logs\\flinkSink\\UserActionTime.log", "\\|")
     tableEnv.registerTableSink("result",csvTableSink)
     val windowTable = tableEnv.scan("UserActions").window(Tumble.over("10.minutes").on("UserActionTime").as("userActionWindow"))

@@ -2,9 +2,6 @@ package com.flink.scala2.table.tableStreaming;
 
 import com.spark.common.util.CommonDateUtil;
 import org.apache.flink.api.common.functions.MapFunction;
-import org.apache.flink.api.common.serialization.SimpleStringSchema;
-import org.apache.flink.api.common.time.Time;
-import org.apache.flink.api.common.typeinfo.BasicTypeInfo;
 import org.apache.flink.api.common.typeinfo.TypeInformation;
 import org.apache.flink.api.common.typeinfo.Types;
 import org.apache.flink.core.fs.FileSystem;
@@ -13,9 +10,7 @@ import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.LocalStreamEnvironment;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.timestamps.AscendingTimestampExtractor;
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
 import org.apache.flink.table.api.*;
-import org.apache.flink.table.api.java.BatchTableEnvironment;
 import org.apache.flink.table.api.java.StreamTableEnvironment;
 import org.apache.flink.table.api.java.Tumble;
 import org.apache.flink.table.sinks.CsvTableSink;
@@ -25,8 +20,6 @@ import org.apache.flink.types.Row;
 
 import javax.annotation.Nullable;
 import java.sql.Timestamp;
-import java.util.Arrays;
-import java.util.Properties;
 
 /**
  * flink流式表自定义时间属性
@@ -35,12 +28,12 @@ import java.util.Properties;
  *
  * @author chenwu on 2020.1.8
  */
-class UserActionSourceJava implements StreamTableSource<Row>, DefinedProctimeAttribute {
+class UserActionSourceJavaOld implements StreamTableSource<Row>, DefinedProctimeAttribute {
 
     private String[] names ;
     private TypeInformation[] types ;
 
-    public UserActionSourceJava(String[] names,TypeInformation[] types){
+    public UserActionSourceJavaOld(String[] names, TypeInformation[] types){
         this.names = names;
         this.types = types;
     }
@@ -99,7 +92,7 @@ class UserActionSourceJava implements StreamTableSource<Row>, DefinedProctimeAtt
     }
 }
 
-public class UserActionSourceJavaTest {
+public class UserActionSourceJavaTestOld {
 
     private static final String[] names = new String[]{"username", "data","userActionTime"};
     private static final TypeInformation[] types = new TypeInformation[]{Types.STRING,Types.STRING, Types.SQL_TIMESTAMP};
@@ -107,7 +100,7 @@ public class UserActionSourceJavaTest {
     public static void main(String[] args) {
         LocalStreamEnvironment env = StreamExecutionEnvironment.createLocalEnvironment(2);
         StreamTableEnvironment tEnv = StreamTableEnvironment.create(env);
-        tEnv.registerTableSource("UserActions",new UserActionSourceJava(names,types));
+        tEnv.registerTableSource("UserActions",new UserActionSourceJavaOld(names,types));
         //tEnv.registerTableSource("UserActions", new UserActionSource());
         GroupWindowedTable windowedTable = tEnv
                 .scan("UserActions")
