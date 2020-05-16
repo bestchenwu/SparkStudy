@@ -239,4 +239,23 @@ public class CommonRedissionClient implements Closeable {
         T object = blockingDeque.poll(waitTime,timeUnit);
         return object;
     }
+
+    /**
+     * 使用HyperLogLog 基数估算法
+     *
+     * @param key
+     * @param value
+     * @param valueClass
+     * @param <T>
+     * @return long
+     * @author chenwu on 2020.5.16
+     */
+    public <T> long addHyperLog(String key,T value,Class<T> valueClass,long ttlTime,TimeUnit timeUnit){
+        RHyperLogLog<T> hyperLogLog = redissionClient.getHyperLogLog(key);
+        if(ttlTime>0){
+            hyperLogLog.expire(ttlTime,timeUnit);
+        }
+        hyperLogLog.add(value);
+        return hyperLogLog.count();
+    }
 }

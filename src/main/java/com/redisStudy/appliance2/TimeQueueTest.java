@@ -24,7 +24,7 @@ public class TimeQueueTest {
     /**
      * 测试队列
      */
-    @Test
+    //@Test
     public void testDeque(){
         List<String> list = Arrays.asList("aa","bb","cc","dd");
         String key = "testQueue";
