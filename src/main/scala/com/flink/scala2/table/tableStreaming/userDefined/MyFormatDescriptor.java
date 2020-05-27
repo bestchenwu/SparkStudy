@@ -15,7 +15,8 @@ import static com.flink.scala2.table.tableStreaming.userDefined.MyValidator.FORM
 import static org.apache.flink.table.descriptors.FormatDescriptorValidator.FORMAT_DERIVE_SCHEMA;
 
 /**
- * 自定义flink table 外部系统的format
+ * 自定义flink table 外部系统的format<br/>
+ * 自定义的schema是name:type,name:type的形式
  *
  * @author chenwu on 2020.5.21
  */
@@ -50,11 +51,11 @@ public class MyFormatDescriptor extends FormatDescriptor {
      *
      * <p>The schema might be nested.
      *
-     * @param jsonSchema JSON schema
+     * @param mySchema JSON schema
      */
-    public MyFormatDescriptor jsonSchema(String jsonSchema) {
-        Preconditions.checkNotNull(jsonSchema);
-        this.mySchema = jsonSchema;
+    public MyFormatDescriptor mySchema(String mySchema) {
+        Preconditions.checkNotNull(mySchema);
+        this.mySchema = mySchema;
         this.schema = null;
         this.deriveSchema = null;
         return this;
