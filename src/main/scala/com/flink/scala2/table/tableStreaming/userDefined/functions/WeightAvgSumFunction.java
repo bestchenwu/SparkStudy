@@ -1,14 +1,6 @@
 package com.flink.scala2.table.tableStreaming.userDefined.functions;
 
-import org.apache.flink.api.common.serialization.SimpleStringSchema;
-import org.apache.flink.streaming.api.environment.LocalStreamEnvironment;
-import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
-import org.apache.flink.table.api.java.StreamTableEnvironment;
 import org.apache.flink.table.functions.AggregateFunction;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
-
-import java.util.Properties;
 
 /**
  * Java版本的聚合函数
@@ -25,7 +17,7 @@ class WeightAvgSum {
  *
  * @author chenwu on 2020.5.29
  */
-class WeightAvgSumFunction extends AggregateFunction<Long, WeightAvgSum> {
+public class WeightAvgSumFunction extends AggregateFunction<Long, WeightAvgSum> {
     @Override
     public WeightAvgSum createAccumulator() {
         return new WeightAvgSum();
@@ -86,16 +78,4 @@ class WeightAvgSumFunction extends AggregateFunction<Long, WeightAvgSum> {
         accumulator.count = 0;
     }
 
-}
-
-public class UserDefinedAggregateFunctionJavaTest {
-
-    public static void main(String[] args) {
-        LocalStreamEnvironment localEnvironment = StreamExecutionEnvironment.createLocalEnvironment(2);
-        StreamTableEnvironment tableEnv = StreamTableEnvironment.create(localEnvironment);
-        Properties props = new Properties();
-        props.setProperty(ConsumerConfig.GROUP_ID_CONFIG,"test-aggregate-group");
-
-        new FlinkKafkaConsumer<String>("",new SimpleStringSchema(),props);
-    }
 }
