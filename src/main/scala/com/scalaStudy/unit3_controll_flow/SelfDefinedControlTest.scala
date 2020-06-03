@@ -9,8 +9,8 @@ object SelfDefinedControlTest {
 
   /**
     * 实现whileList(i<5){//doSomeThing}
-    * testCondition: => Boolean 这里的testCondition表示一个返回类型为boolean的函数
-    * codeBlock: => Unit表示返回类型为Unit的函数
+    * testCondition: => Boolean 这里的testCondition表示一个代码块，最后返回值为Boolean
+    * codeBlock: => Unit表示一个代码块，没有任何返回值
     *
     * @param testCondition
     * @param codeBlock

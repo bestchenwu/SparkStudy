@@ -1,0 +1,1 @@
+本章描述scala object对象的用法
