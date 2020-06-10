@@ -62,6 +62,30 @@ sealed trait Option[+A] {
     case Some(value) => if (f(value)) this else None
     case None => None
   }
+
+  def lift[A, B](f: A => B): Option[A] => Option[B] = _ map f
+
+  def map2[A, B, C](a: Option[A], b: Option[B])(f: (A, B) => C): Option[C] = a flatMap (aa => (b map (bb => f(aa, bb))))
+
+  def sequence[A](a: List[Option[A]]): Option[List[A]] = a match {
+    case Nil => None
+    case h :: t => h flatMap (hh => sequence(t) map (hh :: _))
+  }
+
+  def traverse[A, B](a: List[A])(f: A => Option[B]): Option[List[B]] = a match {
+    case Nil => None
+    case h :: t => map2(f(h), traverse(t)(f))(_ :: _)
+  }
+
+  /**
+    * 利用traverse来实现sequence<br/>
+    * 将Option[A]转换为Option[A]
+    *
+    * @param a
+    * @tparam A
+    * @return
+    */
+  def sequence1[A](a: List[Option[A]]): Option[List[A]] = traverse(a)(x => x)
 }
 
 case class Some[A](value: A) extends Option[A]
@@ -70,4 +94,12 @@ case object None extends Option[Nothing]
 
 object Option {
 
+  def mean(xs: Seq[Double]): Option[Double] = {
+    if (xs.isEmpty) None
+    else Some(xs.sum / xs.size)
+  }
+
+  def variance(xs: Seq[Double]): Option[Double] = {
+    mean(xs) flatMap (m => mean(xs.map(i => Math.pow(i - m, 2))))
+  }
 }
