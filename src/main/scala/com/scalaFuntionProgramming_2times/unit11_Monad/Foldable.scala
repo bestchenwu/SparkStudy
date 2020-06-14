@@ -37,14 +37,14 @@ object Foldable {
     override def foldMap[A, B](as: Tree[A])(f: A => B)(m: Moniad[B]): B = ???
   }
 
-  def foldableOption[A] = new Foldable[Option[A]] {
-    override def foldRight[A, B](a: Option[A])(z: B)(f: (A, B) => B): B = f(a.get, z)
-
-    override def foldLeft[A, B](a: Option[A])(z: B)(f: (B, A) => B): B = f(z, a.get)
-
-    override def foldMap[A, B](as: Option[A])(f: A => B)(m: Moniad[B]): B = as match {
-      case Some(a) => f(a)
-      case None => m.zero
-    }
-  }
+//  def foldableOption[A] = new Foldable[Option[A]] {
+//    override def foldRight[A, B](a: Option[A])(z: B)(f: (A, B) => B): B = f(a.get, z)
+//
+//    override def foldLeft[A, B](a: Option[A])(z: B)(f: (B, A) => B): B = f(z, a.get)
+//
+//    override def foldMap[A, B](as: Option[A])(f: A => B)(m: Moniad[B]): B = as match {
+//      case Some(a) => f(a)
+//      case None => m.zero
+//    }
+//  }
 }

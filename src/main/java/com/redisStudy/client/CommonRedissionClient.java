@@ -7,6 +7,7 @@ import org.redisson.config.Config;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -258,4 +259,11 @@ public class CommonRedissionClient implements Closeable {
         hyperLogLog.add(value);
         return hyperLogLog.count();
     }
+
+    public RBloomFilter<Object> initBloomFilter(String bloomFilterName,long totalCount,double error_rate){
+        RBloomFilter<Object> bloomFilter = redissionClient.getBloomFilter(bloomFilterName);
+        bloomFilter.tryInit(totalCount,error_rate);
+        return bloomFilter;
+    }
+
 }
