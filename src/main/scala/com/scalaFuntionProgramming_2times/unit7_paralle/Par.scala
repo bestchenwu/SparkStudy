@@ -2,7 +2,7 @@ package com.scalaFuntionProgramming_2times.unit7_paralle
 
 import java.util.concurrent.{Callable, ExecutorService, Future, TimeUnit}
 
-import com.scalaFuntionProgramming_2times.unit11_Monad.Moniad
+import com.scalaFuntionProgramming_2times.unit11_Moniad.Moniad
 import com.scalaFuntionProgramming_2times.unit7_paralle.Par.{map, map2}
 
 /**
@@ -36,6 +36,11 @@ object Par {
     val aa = a(executorService).get()
     val bb = b(executorService).get()
     UnitFuture(f(aa, bb))
+  }
+
+  def flatMap[A, B](p: Par[A])(f: A => Par[B]): Par[B] = (es: ExecutorService) => {
+    val aa = run(es)(p).get()
+    run(es)(f(aa))
   }
 
   def fork[A](a: => Par[A]): Par[A] = (es: ExecutorService) => {
@@ -72,12 +77,12 @@ object Par {
     map(sequence(paList))(_.flatten)
   }
 
-//  def par[A](m:Moniad[A]):Moniad[Par[A]] = {
-//
-//
-//
-//    override def op(a1: Par[A], a2: Par[A]): Par[A] = ???
-//
-//    override def zero: Par[A] = unit(()=>None[A])
-//  }
+  //  def par[A](m:Moniad[A]):Moniad[Par[A]] = {
+  //
+  //
+  //
+  //    override def op(a1: Par[A], a2: Par[A]): Par[A] = ???
+  //
+  //    override def zero: Par[A] = unit(()=>None[A])
+  //  }
 }

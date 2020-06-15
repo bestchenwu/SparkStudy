@@ -1,4 +1,4 @@
-package com.scalaFuntionProgramming_2times.unit11_Monad
+package com.scalaFuntionProgramming_2times.unit11_Moniad
 
 import com.scalaFuntionProgramming_2times.unit7_paralle.Par
 import com.scalaFuntionProgramming_2times.unit7_paralle.Par.Par
@@ -70,6 +70,34 @@ object Moniad {
   def concetenate[A](as: List[A], m: Moniad[A]): A = as.foldLeft(m.zero)(m.op)
 
   def foldMap[A, B](as: List[A], m: Moniad[B])(f: A => B): B = concetenate(as.map(f), m)
+
+  def productMoniad[A, B](AA: Moniad[A], BB: Moniad[B]): Moniad[(A, B)] = new Moniad[(A, B)] {
+    override def op(a1: (A, B), a2: (A, B)): (A, B) = {
+      (AA.op(a1._1, a2._1), BB.op(a1._2, a2._2))
+    }
+
+    override def zero: (A, B) = (AA.zero, BB.zero)
+  }
+
+  def mapMergeMoniad[K, V](VV: Moniad[V]): Moniad[Map[K, V]] = new Moniad[Map[K, V]] {
+    override def op(a1: Map[K, V], a2: Map[K, V]): Map[K, V] = (a1.keySet ++ a2.keySet).foldLeft(zero) {
+      (acc, k) => acc.updated(k, VV.op(a1.getOrElse(k, VV.zero), a2.getOrElse(k, VV.zero)))
+    }
+
+    override def zero: Map[K, V] = Map[K, V]()
+  }
+
+  def functionMoniad[A, B](BB: Moniad[B]): Moniad[A => B] = new Moniad[A => B] {
+    override def op(a1: A => B, a2: A => B): A => B = a => BB.op(a1(a), a2(a))
+
+    override def zero: A => B = a => BB.zero
+  }
+
+  def bag[A](as: IndexedSeq[A]): Map[A, Int] = {
+    val mapMoniad: Moniad[Map[A, Int]] = mapMergeMoniad[A, Int](intAddition)
+    val result = as.map(item => Map(item -> 1)).foldLeft(Map[A, Int]())(mapMoniad.op)
+    result
+  }
 
   def foldMap[A, B](v: IndexedSeq[A], m: Moniad[B])(f: A => B): B = {
     if (v.size <= 1) {

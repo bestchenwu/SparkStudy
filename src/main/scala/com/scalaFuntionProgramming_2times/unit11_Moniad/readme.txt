@@ -1,4 +1,4 @@
-本章描述monoid法则，monoid称为一个代数结构，构成分为以下部分:
+本章描述moniad法则，moniad称为一个代数结构，构成分为以下部分:
 1、类型A
 2、有一个二元函数op(A,A)=>A
    那么对于op(op(a,b),c) = op(a,op(b,c))

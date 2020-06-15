@@ -1,4 +1,4 @@
-package com.scalaFuntionProgramming_2times.unit11_Monad
+package com.scalaFuntionProgramming_2times.unit11_Moniad
 
 import java.util.concurrent.{ExecutorService, Executors}
 
@@ -19,8 +19,12 @@ object MoniadTest {
     //    val booleanResult = Moniad.checkIndexedSexIsSorted(ints)
     //    println(booleanResult)
 
-    val words = "abdfs fsfsd fsfs"
-    val result = Moniad.countWords(words)
+    //    val words = "abdfs fsfsd fsfs"
+    //    val result = Moniad.countWords(words)
+    //    println(result)
+
+    val stringIndexSeq = IndexedSeq[String]("aa", "rose", "bb", "aa", "bb")
+    val result = Moniad.bag(stringIndexSeq)
     println(result)
   }
 }

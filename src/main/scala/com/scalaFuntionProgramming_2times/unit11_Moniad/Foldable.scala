@@ -1,4 +1,4 @@
-package com.scalaFuntionProgramming_2times.unit11_Monad
+package com.scalaFuntionProgramming_2times.unit11_Moniad
 
 import com.scalaFuntionProgramming_2times.unit3_datastructure.{Leaf, Node, Tree}
 
@@ -11,6 +11,11 @@ trait Foldable[F[_]] {
   def foldMap[A, B](as: F[A])(f: A => B)(m: Moniad[B]): B
 
   def concatenate[A](as: F[A])(m: Moniad[A]): A = foldLeft(as)(m.zero)(m.op)
+
+
+  import com.scalaFuntionProgramming_2times.unit11_Moniad.Moniad.listMoniad
+  def toList[A](fa:F[A]):List[A] = foldRight(fa)(List[A]())((a:A,list:List[A])=>a :: list)
+
 }
 
 object Foldable {
@@ -32,19 +37,30 @@ object Foldable {
       case Node(_, l, r) => foldRight(l)(foldRight(r)(z)(f))(f)
     }
 
-    override def foldLeft[A, B](a: Tree[A])(z: B)(f: (B, A) => B): B = ???
+    override def foldLeft[A, B](a: Tree[A])(z: B)(f: (B, A) => B): B = a match {
+      case Leaf(value) => f(z,value)
+      case Node(_, l, r) => foldLeft(l)(foldLeft(r)(z)(f))(f)
+    }
 
     override def foldMap[A, B](as: Tree[A])(f: A => B)(m: Moniad[B]): B = ???
   }
 
-//  def foldableOption[A] = new Foldable[Option[A]] {
-//    override def foldRight[A, B](a: Option[A])(z: B)(f: (A, B) => B): B = f(a.get, z)
-//
-//    override def foldLeft[A, B](a: Option[A])(z: B)(f: (B, A) => B): B = f(z, a.get)
-//
-//    override def foldMap[A, B](as: Option[A])(f: A => B)(m: Moniad[B]): B = as match {
-//      case Some(a) => f(a)
-//      case None => m.zero
-//    }
-//  }
+  val optionFoldable = new Foldable[Option] {
+    override def foldRight[A, B](a: Option[A])(z: B)(f: (A, B) => B): B = a match {
+      case Some(aa) => f(aa, z)
+      case None => z
+    }
+
+    override def foldLeft[A, B](a: Option[A])(z: B)(f: (B, A) => B): B = a match {
+      case Some(aa) => f(z, aa)
+      case None => z
+    }
+
+    override def foldMap[A, B](as: Option[A])(f: A => B)(m: Moniad[B]): B = as match {
+      case Some(a) => f(a)
+      case None => m.zero
+    }
+  }
+
+
 }
