@@ -34,6 +34,8 @@ trait Mon[F[_]] extends Functor[F] {
 
   //这样可以定义Monad结合原则
   //compse(compse(f,g),h) = compose(f,compse(g,h))
+
+  def join[A](mm: F[F[A]]): F[A] = flatMap(mm)(item => item)
 }
 
 object Mon {
@@ -60,6 +62,14 @@ object Mon {
     override def unit[A](a: => A): Stream[A] = Stream(a)
 
     override def flatMap[A, B](fa: Stream[A])(f: A => Stream[B]): Stream[B] = fa.flatMap(f)
+  }
+
+  case class Id[A](value: A)
+
+  val idMon = new Mon[Id] {
+    override def unit[A](a: => A): Id[A] = Id(a)
+
+    override def flatMap[A, B](fa: Id[A])(f: A => Id[B]): Id[B] = f(fa.value)
   }
 }
 
