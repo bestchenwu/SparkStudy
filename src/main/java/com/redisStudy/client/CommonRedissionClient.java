@@ -266,4 +266,12 @@ public class CommonRedissionClient implements Closeable {
         return bloomFilter;
     }
 
+    public <T> RScoredSortedSet<T> getSortedSet(String setName,long ttlTime,TimeUnit timeUnit){
+        RScoredSortedSet<T> scoredSortedSet = redissionClient.getScoredSortedSet(setName);
+        if(ttlTime>0){
+            scoredSortedSet.expire(ttlTime,timeUnit);
+        }
+        return scoredSortedSet;
+
+    }
 }

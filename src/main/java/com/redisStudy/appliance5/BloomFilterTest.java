@@ -1,4 +1,4 @@
-package com.redisStudy.applicance5;
+package com.redisStudy.appliance5;
 
 import com.redisStudy.client.CommonRedissionClient;
 import org.junit.After;
