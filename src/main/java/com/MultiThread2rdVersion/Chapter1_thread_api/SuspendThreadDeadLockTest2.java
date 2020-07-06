@@ -1,7 +1,5 @@
 package com.MultiThread2rdVersion.Chapter1_thread_api;
 
-import org.apache.spark.sql.sources.In;
-
 class PrintThread extends Thread{
 
     private long i = 0;
