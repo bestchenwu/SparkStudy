@@ -1,0 +1,1 @@
+本章描述线程间通信功能 thread的wait/notify
