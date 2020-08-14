@@ -1,7 +1,8 @@
 package com.MultiThread2rdVersion.Chapter3_thread_communicate.threadLocalTest;
 
 class Tools{
-    public static InheritableThreadLocal t1 = new InheritableThreadLocal();
+    //public static InheritableThreadLocal t1 = new InheritableThreadLocal();
+    public static InheritableThreadLocalExt t1 = new InheritableThreadLocalExt();
 }
 
 class ThreadA extends Thread{
