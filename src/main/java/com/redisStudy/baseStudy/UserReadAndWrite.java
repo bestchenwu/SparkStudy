@@ -23,7 +23,7 @@ public class UserReadAndWrite {
             return;
         }
         String jsonString = JSON.toJSONString(user);
-        commonRedissionClient.setSingleKey(key,jsonString,10l, TimeUnit.MINUTES,String.class);
+        commonRedissionClient.setSingleKey(key,jsonString,10l, TimeUnit.MINUTES);
     }
 
     public User readPeopleFromJson(String key){

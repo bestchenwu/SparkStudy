@@ -69,7 +69,7 @@ public class CommonRedissionClient implements Closeable {
      * @param timeUnit
      * @author chenwu on 2020.5.5
      */
-    public <T> void setSingleKey(String key, T value, long expireTime, TimeUnit timeUnit, Class<T> valueClass) {
+    public <T> void setSingleKey(String key, T value, long expireTime, TimeUnit timeUnit) {
         RBucket<T> bucket = redissionClient.getBucket(key);
         bucket.set(value);
         if (expireTime > 0) {
@@ -149,15 +149,15 @@ public class CommonRedissionClient implements Closeable {
             throw new IllegalArgumentException("ttltime should be more than 0");
         }
         RLock lock = redissionClient.getLock(lockName);
-        boolean isLock ;
+        boolean isLock;
         try {
             //尝试加锁，最多等待ttlTime,并且在10秒以后自动释放锁
-            isLock = lock.tryLock(ttlTime, 10,timeUnit);
-            if(isLock){
+            isLock = lock.tryLock(ttlTime, 10, timeUnit);
+            if (isLock) {
                 RBucket<T> bucket = redissionClient.getBucket(key);
                 bucket.set(value);
                 //Thread.sleep(10*1000);
-            }else{
+            } else {
                 System.out.println("can't get lock");
             }
 
@@ -179,11 +179,11 @@ public class CommonRedissionClient implements Closeable {
      * @param <T>
      * @author chenwu on 2020.5.13
      */
-    public <T> void addDeque(String key,T value,long ttlTime, TimeUnit timeUnit){
+    public <T> void addDeque(String key, T value, long ttlTime, TimeUnit timeUnit) {
         RDeque<T> deque = redissionClient.getDeque(key);
         deque.addLast(value);
-        if(ttlTime>0){
-            deque.expire(ttlTime,timeUnit);
+        if (ttlTime > 0) {
+            deque.expire(ttlTime, timeUnit);
         }
     }
 
@@ -191,18 +191,18 @@ public class CommonRedissionClient implements Closeable {
      * 从指定key的双端队列里取处元素
      *
      * @param key
-     * @param pollFirst 是否从头部取元素
+     * @param pollFirst  是否从头部取元素
      * @param valueClass
      * @param <T>
      * @return T
      * @author chenwu on 2020.5.13
      */
-    public <T> T pollDeque(String key,boolean pollFirst,Class<T> valueClass){
+    public <T> T pollDeque(String key, boolean pollFirst, Class<T> valueClass) {
         RDeque<T> deque = redissionClient.getDeque(key);
         T result;
-        if(pollFirst){
+        if (pollFirst) {
             result = deque.pollFirst();
-        }else{
+        } else {
             result = deque.pollLast();
         }
         return result;
@@ -219,11 +219,11 @@ public class CommonRedissionClient implements Closeable {
      * @param <T>
      * @author chenwu on 2020.5.14
      */
-    public <T> void addBlockQueue(String key,T value,Class<T> valueClass,long ttlTime, TimeUnit timeUnit){
+    public <T> void addBlockQueue(String key, T value, Class<T> valueClass, long ttlTime, TimeUnit timeUnit) {
         RBlockingDeque<T> blockingDeque = redissionClient.getBlockingDeque(key);
         blockingDeque.offer(value);
-        if(ttlTime>0){
-            blockingDeque.expire(ttlTime,timeUnit);
+        if (ttlTime > 0) {
+            blockingDeque.expire(ttlTime, timeUnit);
         }
     }
 
@@ -235,9 +235,9 @@ public class CommonRedissionClient implements Closeable {
      * @return T
      * @author chenwu on 2020.5.14
      */
-    public <T> T pollBlockQueue(String key,long waitTime,TimeUnit timeUnit) throws InterruptedException{
+    public <T> T pollBlockQueue(String key, long waitTime, TimeUnit timeUnit) throws InterruptedException {
         RBlockingDeque<T> blockingDeque = redissionClient.getBlockingDeque(key);
-        T object = blockingDeque.poll(waitTime,timeUnit);
+        T object = blockingDeque.poll(waitTime, timeUnit);
         return object;
     }
 
@@ -251,27 +251,42 @@ public class CommonRedissionClient implements Closeable {
      * @return long
      * @author chenwu on 2020.5.16
      */
-    public <T> long addHyperLog(String key,T value,Class<T> valueClass,long ttlTime,TimeUnit timeUnit){
+    public <T> long addHyperLog(String key, T value, Class<T> valueClass, long ttlTime, TimeUnit timeUnit) {
         RHyperLogLog<T> hyperLogLog = redissionClient.getHyperLogLog(key);
-        if(ttlTime>0){
-            hyperLogLog.expire(ttlTime,timeUnit);
+        if (ttlTime > 0) {
+            hyperLogLog.expire(ttlTime, timeUnit);
         }
         hyperLogLog.add(value);
         return hyperLogLog.count();
     }
 
-    public RBloomFilter<Object> initBloomFilter(String bloomFilterName,long totalCount,double error_rate){
+    public RBloomFilter<Object> initBloomFilter(String bloomFilterName, long totalCount, double error_rate) {
         RBloomFilter<Object> bloomFilter = redissionClient.getBloomFilter(bloomFilterName);
-        bloomFilter.tryInit(totalCount,error_rate);
+        bloomFilter.tryInit(totalCount, error_rate);
         return bloomFilter;
     }
 
-    public <T> RScoredSortedSet<T> getSortedSet(String setName,long ttlTime,TimeUnit timeUnit){
+    public <T> RScoredSortedSet<T> getSortedSet(String setName, long ttlTime, TimeUnit timeUnit) {
         RScoredSortedSet<T> scoredSortedSet = redissionClient.getScoredSortedSet(setName);
-        if(ttlTime>0){
-            scoredSortedSet.expire(ttlTime,timeUnit);
+        if (ttlTime > 0) {
+            scoredSortedSet.expire(ttlTime, timeUnit);
         }
         return scoredSortedSet;
+    }
 
+    /**
+     * 获取指定key的限流器
+     *
+     * @param key
+     * @param rate         指定的间隔时间内最多允许多少个并发访问
+     * @param rateInterval 间隔时间
+     * @param unit         间隔时间的单位(如分钟、秒、毫秒等)
+     * @return {@link RRateLimiter}
+     * @author chenwu on 2020.8.2
+     */
+    public RRateLimiter getRateLimiter(String key, int rate, int rateInterval, RateIntervalUnit unit) {
+        RRateLimiter rateLimiter = redissionClient.getRateLimiter(key);
+        rateLimiter.trySetRate(RateType.OVERALL, rate, rateInterval, unit);
+        return rateLimiter;
     }
 }
