@@ -13,6 +13,10 @@ public class ListNode {
                 '}';
     }
 
+    public ListNode(){
+
+    }
+
     public ListNode(int x) {
         val = x;
     }
