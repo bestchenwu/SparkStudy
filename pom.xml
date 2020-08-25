@@ -46,6 +46,7 @@
 		<curator-recipes.version>4.1.0</curator-recipes.version>
 		<!-- 引入redission -->
 		<redission.version>3.12.3</redission.version>
+		<jedis.version>3.2.0</jedis.version>
 	</properties>
 
 		<dependencies>
@@ -382,6 +383,12 @@
 			    <groupId>org.redisson</groupId>
 			    <artifactId>redisson</artifactId>
 			    <version>${redission.version}</version>
+			</dependency>
+			<!-- 引入redis client -->
+			<dependency>
+				<groupId>redis.clients</groupId>
+				<artifactId>jedis</artifactId>
+				<version>${jedis.version}</version>
 			</dependency>
 		</dependencies>
 	

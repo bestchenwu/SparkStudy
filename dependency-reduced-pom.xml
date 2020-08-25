@@ -482,12 +482,6 @@
     </dependency>
     <dependency>
       <groupId>org.apache.flink</groupId>
-      <artifactId>flink-cep_2.11</artifactId>
-      <version>1.8.1</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.flink</groupId>
       <artifactId>flink-json</artifactId>
       <version>1.8.1</version>
       <scope>provided</scope>
@@ -566,6 +560,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <hadoop.version>2.7.4</hadoop.version>
     <hbase.version>2.0.2</hbase.version>
+    <jedis.version>3.2.0</jedis.version>
     <fastjson.version>1.2.12</fastjson.version>
     <junit.version>4.12</junit.version>
     <mysql.version>8.0.13</mysql.version>

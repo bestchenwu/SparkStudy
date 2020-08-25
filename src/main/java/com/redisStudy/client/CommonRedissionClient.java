@@ -275,6 +275,19 @@ public class CommonRedissionClient implements Closeable {
     }
 
     /**
+     * 根据key获取{@link RSet}
+     *
+     * @param key
+     * @param <T>
+     * @return {@link RSet}
+     * @author chenwu on 2020.8.25
+     */
+    public <T> RSet<T> getRSet(String key){
+        RSet<T> set = redissionClient.getSet(key);
+        return set;
+    }
+
+    /**
      * 获取指定key的限流器
      *
      * @param key
@@ -288,5 +301,15 @@ public class CommonRedissionClient implements Closeable {
         RRateLimiter rateLimiter = redissionClient.getRateLimiter(key);
         rateLimiter.trySetRate(RateType.OVERALL, rate, rateInterval, unit);
         return rateLimiter;
+    }
+
+    /**
+     * 获取事务
+     *
+     * @return {@link RTransaction}
+     * @author chenwu on 2020.8.25
+     */
+    public RTransaction getRTransaction(){
+        return redissionClient.createTransaction(TransactionOptions.defaults());
     }
 }
