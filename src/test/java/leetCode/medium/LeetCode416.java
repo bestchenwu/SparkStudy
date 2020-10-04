@@ -117,8 +117,8 @@ public class LeetCode416 {
 
     public static void main(String[] args) {
         LeetCode416 leetCode416 = new LeetCode416();
-        int[] nums = new int[]{1, 5, 11, 5};
-        //int[] nums = new int[]{1, 2, 3, 5};
+        //int[] nums = new int[]{1, 5, 11, 5};
+        int[] nums = new int[]{1, 2, 3, 8};
         boolean canPartition = leetCode416.canPartition(nums);
 
         System.out.println("canPartition="+canPartition);
