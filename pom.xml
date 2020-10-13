@@ -37,7 +37,7 @@
 		<postgresql.version>42.2.5</postgresql.version>
 		<scala.version>2.11.7</scala.version>
 		<mysql.version>8.0.13</mysql.version>
-		<junit.version>4.12</junit.version>
+		<junit.version>4.13.1</junit.version>
 		<flink.version>1.8.1</flink.version>
 		<hadoop.version>2.7.4</hadoop.version>
 		<zookeeper.version>3.4.13</zookeeper.version>
