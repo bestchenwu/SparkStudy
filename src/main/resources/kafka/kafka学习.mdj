@@ -11354,11 +11354,11 @@
 								"$ref": "AAAAAAFwJMpx4DKr4j8="
 							},
 							"font": "Arial;13;0",
-							"left": 576,
-							"top": 312,
-							"width": 275.48065185546875,
-							"height": 38,
-							"text": "若consumer在消费之后提交offset，则称为at most once 最多一次消费"
+							"left": 144,
+							"top": 296,
+							"width": 547.75048828125,
+							"height": 51,
+							"text": "若consumer在消费之后提交offset，则称为at least once。因为有可能消费完后提交offset的动作没有完成，那么下一次还是有可能重新消费到。"
 						},
 						{
 							"_type": "UMLNoteView",
@@ -11367,11 +11367,11 @@
 								"$ref": "AAAAAAFwJMpx4DKr4j8="
 							},
 							"font": "Arial;13;0",
-							"left": 576,
-							"top": 368,
+							"left": 144,
+							"top": 352,
 							"width": 266.0924530029297,
 							"height": 38,
-							"text": "若consumer在消费之前提交offset,则称为at least once"
+							"text": "若consumer在消费之前提交offset,则称为at most once。因为消费动作有可能没完成。"
 						},
 						{
 							"_type": "UMLNoteView",
@@ -11380,8 +11380,8 @@
 								"$ref": "AAAAAAFwJMpx4DKr4j8="
 							},
 							"font": "Arial;13;0",
-							"left": 576,
-							"top": 440,
+							"left": 424,
+							"top": 360,
 							"width": 273,
 							"height": 25,
 							"text": "在kafka 0.11开始支持事务及exactly once"
@@ -12580,11 +12580,11 @@
 								"$ref": "AAAAAAFwJMpx4DKr4j8="
 							},
 							"font": "Arial;13;0",
-							"left": 440,
-							"top": 984,
-							"width": 124.0001220703125,
-							"height": 40,
-							"text": "采取有黏性的方式"
+							"left": 320,
+							"top": 968,
+							"width": 285.09716796875,
+							"height": 51,
+							"text": "采取有黏性的方式，并且在两次rebalance之间                                                  最大限度的维持之前的分配方案"
 						},
 						{
 							"_type": "UMLClassView",
@@ -14310,19 +14310,6 @@
 							"text": "区别2:旧版KafkaConsumer使用多线程消费,例如该topic有10个分区，则会启动10个线程，而新版使用单线程"
 						},
 						{
-							"_type": "UMLNoteView",
-							"_id": "AAAAAAFwlbjcJF8jvQ0=",
-							"_parent": {
-								"$ref": "AAAAAAFwJMpx4DKr4j8="
-							},
-							"font": "Arial;13;0",
-							"left": 128,
-							"top": 368,
-							"width": 420.87371826171875,
-							"height": 40,
-							"text": "因为consumer若在消费和提交ofset之间宕机,则可以重新消费这条消息"
-						},
-						{
 							"_type": "UMLClassView",
 							"_id": "AAAAAAF1G4f2O03HNJQ=",
 							"_parent": {
@@ -15198,7 +15185,7 @@
 							"font": "Arial;13;0",
 							"left": 536,
 							"top": 1936,
-							"width": 74.32080078125,
+							"width": 75,
 							"height": 25,
 							"text": "partitionId1"
 						},
@@ -15211,7 +15198,7 @@
 							"font": "Arial;13;0",
 							"left": 536,
 							"top": 1960,
-							"width": 74.32080078125,
+							"width": 75,
 							"height": 25,
 							"text": "partitionId2"
 						},
@@ -16135,7 +16122,7 @@
 							"font": "Arial;13;0",
 							"left": 424,
 							"top": 2168,
-							"width": 300.34814453125,
+							"width": 302,
 							"height": 25,
 							"text": "每个分区的log记载的内容是由kv键值对组成的消息"
 						},
@@ -16164,6 +16151,97 @@
 							"width": 76.25048828125,
 							"height": 25,
 							"text": "value:offset"
+						},
+						{
+							"_type": "UMLNoteView",
+							"_id": "AAAAAAF1Skb873B/93w=",
+							"_parent": {
+								"$ref": "AAAAAAFwJMpx4DKr4j8="
+							},
+							"font": "Arial;13;0",
+							"left": 128,
+							"top": 2296,
+							"width": 213.578125,
+							"height": 40,
+							"text": "Consumer提交位移的方式有三种:"
+						},
+						{
+							"_type": "UMLTextView",
+							"_id": "AAAAAAF1SkykhHFWRUw=",
+							"_parent": {
+								"$ref": "AAAAAAFwJMpx4DKr4j8="
+							},
+							"font": "Arial;13;0",
+							"left": 136,
+							"top": 2352,
+							"width": 247.61181640625,
+							"height": 51,
+							"text": "1、consumer.commitSync  阻塞式提交,等提交完成后才能执行下一条"
+						},
+						{
+							"_type": "UMLTextView",
+							"_id": "AAAAAAF1Sk1opnGWdro=",
+							"_parent": {
+								"$ref": "AAAAAAFwJMpx4DKr4j8="
+							},
+							"font": "Arial;13;0",
+							"left": 136,
+							"top": 2392,
+							"width": 329.236328125,
+							"height": 51,
+							"text": "2、consumer.commitAsync  异步提交 这里的异步是指poll方法里会不断的轮询这次提交的结果"
+						},
+						{
+							"_type": "UMLTextView",
+							"_id": "AAAAAAF1SoGSWnQI16M=",
+							"_parent": {
+								"$ref": "AAAAAAFwJMpx4DKr4j8="
+							},
+							"font": "Arial;13;0",
+							"left": 128,
+							"top": 2432,
+							"width": 238.22998046875,
+							"height": 25,
+							"text": "3、精确控制为指定分区提交指定的位移"
+						},
+						{
+							"_type": "UMLNoteView",
+							"_id": "AAAAAAF1SsFax3TBnvs=",
+							"_parent": {
+								"$ref": "AAAAAAFwJMpx4DKr4j8="
+							},
+							"font": "Arial;13;0",
+							"left": 144,
+							"top": 2472,
+							"width": 406.55322265625,
+							"height": 225,
+							"text": "ConsumerRecords<String, String> consumerRecords = consumer.poll(Duration.ofSeconds(5l));\n                for(TopicPartition topicPartition : consumerRecords.partitions()){\n                    recordList = consumerRecords.records(topicPartition);\n                    //处理单个分区里的业务消息逻辑\n                    decodeRecords(recordList);\n                    //获取最后一条消息的位移\n                    long offset = recordList.get(recordList.size()-1).offset();\n                    //下一条消费的位移要在最后一条消息的位移的基础上+1\n                    consumer.commitSync(Collections.singletonMap(topicPartition,new OffsetAndMetadata(offset+1)));\n                }"
+						},
+						{
+							"_type": "UMLTextView",
+							"_id": "AAAAAAF1SsovGne+6vA=",
+							"_parent": {
+								"$ref": "AAAAAAFwJMpx4DKr4j8="
+							},
+							"font": "Arial;13;0",
+							"left": 600,
+							"top": 840,
+							"width": 280.1943359375,
+							"height": 53,
+							"text": "通过在Consumer里面指定          \n partition.assignment.strategy来控制具体的类名"
+						},
+						{
+							"_type": "UMLTextView",
+							"_id": "AAAAAAF1StDtGXn43vc=",
+							"_parent": {
+								"$ref": "AAAAAAFwJMpx4DKr4j8="
+							},
+							"font": "Arial;13;0",
+							"left": 608,
+							"top": 904,
+							"width": 239.77880859375,
+							"height": 40,
+							"text": "例如org.apache.kafka.clients.consumer. \n           StickyAssignor"
 						}
 					]
 				},
@@ -16883,7 +16961,7 @@
 													"font": "Arial;13;1",
 													"left": 77,
 													"top": 47,
-													"width": 100.28274536132812,
+													"width": 102.28271484375,
 													"height": 13,
 													"text": "确定cordinator"
 												},
@@ -16914,7 +16992,7 @@
 											"font": "Arial;13;0",
 											"left": 72,
 											"top": 40,
-											"width": 110.28274536132812,
+											"width": 112.28271484375,
 											"height": 40,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAFwKnTq4NeI/wc="
@@ -16939,7 +17017,7 @@
 												"$ref": "AAAAAAFwKnTq39eFUGM="
 											},
 											"font": "Arial;13;0",
-											"left": 127,
+											"left": 128,
 											"top": 80,
 											"width": 1,
 											"height": 513
@@ -16948,7 +17026,7 @@
 									"font": "Arial;13;0",
 									"left": 72,
 									"top": 40,
-									"width": 110.28274536132812,
+									"width": 112.28271484375,
 									"height": 553,
 									"nameCompartment": {
 										"$ref": "AAAAAAFwKnTq4NeHkqA="
@@ -16977,7 +17055,7 @@
 												"$ref": "AAAAAAFwKnVUWNelhyc="
 											},
 											"font": "Arial;13;0",
-											"left": 122,
+											"left": 123,
 											"top": 152,
 											"width": 211.7134246826172,
 											"height": 13,
@@ -17000,7 +17078,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 181,
+											"left": 182,
 											"top": 131,
 											"height": 13,
 											"alpha": 1.5707963267948966,
@@ -17021,7 +17099,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 147,
+											"left": 148,
 											"top": 132,
 											"height": 13,
 											"alpha": -1.5707963267948966,
@@ -17041,7 +17119,7 @@
 												"$ref": "AAAAAAFwKnVUWNelhyc="
 											},
 											"font": "Arial;13;0",
-											"left": 120,
+											"left": 121,
 											"top": 148,
 											"width": 14,
 											"height": 29
@@ -17054,7 +17132,7 @@
 									"tail": {
 										"$ref": "AAAAAAFwKnTq4NeMLpw="
 									},
-									"points": "127:128;157:128;157:148;133:148",
+									"points": "128:128;158:128;158:148;134:148",
 									"nameLabel": {
 										"$ref": "AAAAAAFwKnVUWNencc8="
 									},
@@ -17120,7 +17198,7 @@
 													"font": "Arial;13;1",
 													"left": 405,
 													"top": 47,
-													"width": 139.2827911376953,
+													"width": 144.28271484375,
 													"height": 13,
 													"text": "cordinator执行加入组"
 												},
@@ -17153,7 +17231,7 @@
 											"font": "Arial;13;0",
 											"left": 400,
 											"top": 40,
-											"width": 149.2827911376953,
+											"width": 154.28271484375,
 											"height": 40,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAFwKnmMZ9fYDSg="
@@ -17178,7 +17256,7 @@
 												"$ref": "AAAAAAFwKnmMZ9fVDMs="
 											},
 											"font": "Arial;13;0",
-											"left": 475,
+											"left": 477,
 											"top": 80,
 											"width": 1,
 											"height": 505
@@ -17187,7 +17265,7 @@
 									"font": "Arial;13;0",
 									"left": 400,
 									"top": 40,
-									"width": 149.2827911376953,
+									"width": 154.28271484375,
 									"height": 545,
 									"nameCompartment": {
 										"$ref": "AAAAAAFwKnmMZ9fXol4="
@@ -17216,7 +17294,7 @@
 												"$ref": "AAAAAAFwKnpMJtf5hE4="
 											},
 											"font": "Arial;13;0",
-											"left": 144,
+											"left": 146,
 											"top": 296,
 											"width": 345.3189697265625,
 											"height": 13,
@@ -17239,7 +17317,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 297,
+											"left": 299,
 											"top": 291,
 											"height": 13,
 											"alpha": 1.5707963267948966,
@@ -17260,7 +17338,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 297,
+											"left": 299,
 											"top": 326,
 											"height": 13,
 											"alpha": -1.5707963267948966,
@@ -17280,7 +17358,7 @@
 												"$ref": "AAAAAAFwKnpMJtf5hE4="
 											},
 											"font": "Arial;13;0",
-											"left": 468,
+											"left": 470,
 											"top": 322,
 											"width": 14,
 											"height": 29
@@ -17293,7 +17371,7 @@
 									"tail": {
 										"$ref": "AAAAAAFwKnTq4NeMLpw="
 									},
-									"points": "127:322;468:322",
+									"points": "128:322;470:322",
 									"nameLabel": {
 										"$ref": "AAAAAAFwKnpMJ9f7Nf8="
 									},
@@ -17327,7 +17405,7 @@
 												"$ref": "AAAAAAFwKnusZNgS+1U="
 											},
 											"font": "Arial;13;0",
-											"left": 231,
+											"left": 233,
 											"top": 359,
 											"width": 358.33807373046875,
 											"height": 13,
@@ -17350,7 +17428,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 529,
+											"left": 531,
 											"top": 379,
 											"height": 13,
 											"alpha": 1.5707963267948966,
@@ -17371,7 +17449,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 495,
+											"left": 497,
 											"top": 380,
 											"height": 13,
 											"alpha": -1.5707963267948966,
@@ -17391,7 +17469,7 @@
 												"$ref": "AAAAAAFwKnusZNgS+1U="
 											},
 											"font": "Arial;13;0",
-											"left": 468,
+											"left": 470,
 											"top": 396,
 											"width": 14,
 											"height": 29
@@ -17404,7 +17482,7 @@
 									"tail": {
 										"$ref": "AAAAAAFwKnmMaNfc0FI="
 									},
-									"points": "475:376;505:376;505:396;481:396",
+									"points": "477:376;507:376;507:396;483:396",
 									"nameLabel": {
 										"$ref": "AAAAAAFwKnusZNgUbvc="
 									},
@@ -17458,7 +17536,7 @@
 													"font": "Arial;13;1",
 													"left": 645,
 													"top": 47,
-													"width": 170.37359619140625,
+													"width": 174.37353515625,
 													"height": 13,
 													"text": "consumerLeader 分配分区"
 												},
@@ -17491,7 +17569,7 @@
 											"font": "Arial;13;0",
 											"left": 640,
 											"top": 40,
-											"width": 180.37359619140625,
+											"width": 184.37353515625,
 											"height": 40,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAFwKnycS9gwtS4="
@@ -17516,7 +17594,7 @@
 												"$ref": "AAAAAAFwKnycS9gtVc8="
 											},
 											"font": "Arial;13;0",
-											"left": 730,
+											"left": 732,
 											"top": 80,
 											"width": 1,
 											"height": 505
@@ -17525,7 +17603,7 @@
 									"font": "Arial;13;0",
 									"left": 640,
 									"top": 40,
-									"width": 180.37359619140625,
+									"width": 184.37353515625,
 									"height": 545,
 									"nameCompartment": {
 										"$ref": "AAAAAAFwKnycS9gv7NQ="
@@ -17554,7 +17632,7 @@
 												"$ref": "AAAAAAFwKn0rF9hPvEU="
 											},
 											"font": "Arial;13;0",
-											"left": 494,
+											"left": 496,
 											"top": 432,
 											"width": 210.20281982421875,
 											"height": 13,
@@ -17577,7 +17655,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 599,
+											"left": 601,
 											"top": 417,
 											"height": 13,
 											"alpha": 1.5707963267948966,
@@ -17598,7 +17676,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 599,
+											"left": 601,
 											"top": 452,
 											"height": 13,
 											"alpha": -1.5707963267948966,
@@ -17618,7 +17696,7 @@
 												"$ref": "AAAAAAFwKn0rF9hPvEU="
 											},
 											"font": "Arial;13;0",
-											"left": 723,
+											"left": 725,
 											"top": 448,
 											"width": 14,
 											"height": 29
@@ -17631,7 +17709,7 @@
 									"tail": {
 										"$ref": "AAAAAAFwKnmMaNfc0FI="
 									},
-									"points": "475:448;723:448",
+									"points": "477:448;725:448",
 									"nameLabel": {
 										"$ref": "AAAAAAFwKn0rF9hRr8Q="
 									},
@@ -17665,7 +17743,7 @@
 												"$ref": "AAAAAAFwKn2hL9hltBo="
 											},
 											"font": "Arial;13;0",
-											"left": 496,
+											"left": 498,
 											"top": 504,
 											"width": 216.0108642578125,
 											"height": 13,
@@ -17688,7 +17766,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 604,
+											"left": 606,
 											"top": 519,
 											"height": 13,
 											"alpha": 1.5707963267948966,
@@ -17709,7 +17787,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 605,
+											"left": 607,
 											"top": 484,
 											"height": 13,
 											"alpha": -1.5707963267948966,
@@ -17729,7 +17807,7 @@
 												"$ref": "AAAAAAFwKn2hL9hltBo="
 											},
 											"font": "Arial;13;0",
-											"left": 468,
+											"left": 470,
 											"top": 500,
 											"width": 14,
 											"height": 29
@@ -17742,7 +17820,7 @@
 									"tail": {
 										"$ref": "AAAAAAFwKnycTNg0yRc="
 									},
-									"points": "730:500;481:500",
+									"points": "732:500;483:500",
 									"nameLabel": {
 										"$ref": "AAAAAAFwKn2hL9hncBo="
 									},
