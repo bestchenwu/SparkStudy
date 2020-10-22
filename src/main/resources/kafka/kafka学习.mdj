@@ -17854,8 +17854,8 @@
 										"$ref": "AAAAAAFwKnM/U9dVc+w="
 									},
 									"font": "Arial;13;0",
-									"left": 208,
-									"top": 416,
+									"left": 504,
+									"top": 296,
 									"width": 141.3672637939453,
 									"height": 40,
 									"text": "这一步称为joinGroup"
