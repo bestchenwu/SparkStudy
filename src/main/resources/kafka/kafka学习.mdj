@@ -1917,6 +1917,19 @@
 							"templateParameterCompartment": {
 								"$ref": "AAAAAAFvhY11Me7BZwY="
 							}
+						},
+						{
+							"_type": "UMLTextView",
+							"_id": "AAAAAAF1c7W4KK+gIi4=",
+							"_parent": {
+								"$ref": "AAAAAAFF+qBtyKM79qY="
+							},
+							"font": "Arial;13;0",
+							"left": 408,
+							"top": 640,
+							"width": 317.68994140625,
+							"height": 51,
+							"text": "headers里面只包含String key和byte[] value,主要是用户自定义元数据或者做集群之间的路由"
 						}
 					]
 				},
@@ -7960,11 +7973,11 @@
 								"$ref": "AAAAAAFvzVtFUJoY0c0="
 							},
 							"font": "Arial;13;0",
-							"left": 32,
+							"left": 72,
 							"top": 688,
-							"width": 427.386474609375,
-							"height": 193,
-							"text": "producer端设置\n1、设置acks=-1 或者all\n2、不要使用send方法而要使用带回调函数的send方法\n3、在消息发送失败的时候使用producer.close(0, TimeUnit.MILLISECONDS); 避免消息乱序问题\n4、设置max.in.flight.requests.per.connection为1 该参数的意义是producer在单个broker连接上能够发送\n的未响应请求的数量   \n       因此如果设置为1，则producer就无法在得到broker响应之前再发送消息"
+							"width": 719.18798828125,
+							"height": 195,
+							"text": "要实现准确消费一次，producer端设置\n1、设置acks=-1 或者all\n2、不要使用send方法而要使用带回调函数的send方法\n3、在消息发送失败的时候使用producer.close(0, TimeUnit.MILLISECONDS); 避免消息乱序问题\n4、设置max.in.flight.requests.per.connection为1 该参数的意义是producer在单个broker连接上能够发送的未响应请求的数量   \n       因此如果设置为1，则producer就无法在得到broker响应之前再发送消息                                                                                                                             \n5、在producer端设置enable.idempotence=true 启用幂等性，同时还要使用initTransaction来开启事务。这样发送到broker上的每一条消息都会被赋予一个唯一的序列号，                                                                          \n如果发送的消息的序列号<=broker上保存的序列号，broker就会抛弃这条消息。                                                                    只能保证单producer和单分区上的幂等性。"
 						},
 						{
 							"_type": "UMLNoteView",
@@ -21427,7 +21440,7 @@
 							"font": "Arial;13;0",
 							"left": 248,
 							"top": 416,
-							"width": 325.61212158203125,
+							"width": 326,
 							"height": 25,
 							"text": "日志留存策略有两种:基于时间的策略和基于大小的策略"
 						},
@@ -22004,7 +22017,7 @@
 							"font": "Arial;13;0",
 							"left": 424,
 							"top": 1200,
-							"width": 91.61190795898438,
+							"width": 92,
 							"height": 25,
 							"text": "压缩后只剩下:"
 						},
@@ -22069,7 +22082,7 @@
 							"font": "Arial;13;0",
 							"left": 192,
 							"top": 848,
-							"width": 313.34814453125,
+							"width": 314,
 							"height": 25,
 							"text": "这里文件的物理位置是消息在log日志里面的位移位置"
 						}
@@ -23438,7 +23451,7 @@
 								"$ref": "AAAAAAFwlZYE0gCNuq8="
 							},
 							"lineStyle": 1,
-							"points": "762:464;761:495"
+							"points": "764:464;762:495"
 						},
 						{
 							"_type": "UMLModelView",
@@ -23579,7 +23592,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 780,
+									"left": 782,
 									"top": 378,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -23600,8 +23613,8 @@
 									},
 									"visible": null,
 									"font": "Arial;13;0",
-									"left": 795,
-									"top": 379,
+									"left": 797,
+									"top": 378,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -23621,7 +23634,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 751,
+									"left": 753,
 									"top": 377,
 									"height": 13,
 									"alpha": -1.5707963267948966,
@@ -23640,7 +23653,7 @@
 								"$ref": "AAAAAAFwlZkbpgDvm2c="
 							},
 							"lineStyle": 1,
-							"points": "769:345;764:423",
+							"points": "770:345;767:423",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAFwlZnnUwEV8JA="
@@ -23693,7 +23706,7 @@
 											"font": "Arial;13;1",
 											"left": 725,
 											"top": 446,
-											"width": 78.72370910644531,
+											"width": 83.7236328125,
 											"height": 13,
 											"text": "IO处理线程池"
 										},
@@ -23751,7 +23764,7 @@
 							"containerChangeable": true,
 							"left": 720,
 							"top": 424,
-							"width": 88.72370910644531,
+							"width": 93.7236328125,
 							"height": 40,
 							"nameCompartment": {
 								"$ref": "AAAAAAFwlZYE0wCOM3I="
