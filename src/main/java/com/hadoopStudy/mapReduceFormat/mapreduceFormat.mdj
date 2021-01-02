@@ -74,7 +74,7 @@
 											"font": "Arial;13;0",
 											"left": 176,
 											"top": 32,
-											"width": 175.5380859375,
+											"width": 175.53811645507812,
 											"height": 13,
 											"text": "(from mapReduceFormat类图)"
 										},
@@ -286,7 +286,7 @@
 											"font": "Arial;13;0",
 											"left": 288,
 											"top": 96,
-											"width": 175.5380859375,
+											"width": 175.53811645507812,
 											"height": 13,
 											"text": "(from mapReduceFormat类图)"
 										},
@@ -575,7 +575,7 @@
 											"font": "Arial;13;0",
 											"left": 496,
 											"top": 32,
-											"width": 175.5380859375,
+											"width": 175.53811645507812,
 											"height": 13,
 											"text": "(from mapReduceFormat类图)"
 										},
@@ -845,7 +845,7 @@
 									"font": "Arial;13;0",
 									"left": 616,
 									"top": 119,
-									"width": 85.591796875,
+									"width": 85.59188842773438,
 									"height": 13,
 									"alpha": -0.4252050898806634,
 									"distance": 58.180752831155424,
@@ -1023,7 +1023,7 @@
 											"font": "Arial;13;0",
 											"left": -48,
 											"top": 48,
-											"width": 175.5380859375,
+											"width": 175.53811645507812,
 											"height": 13,
 											"text": "(from mapReduceFormat类图)"
 										},
@@ -1592,7 +1592,7 @@
 											"font": "Arial;13;0",
 											"left": -64,
 											"top": -16,
-											"width": 175.5380859375,
+											"width": 175.53811645507812,
 											"height": 13,
 											"text": "(from mapReduceFormat类图)"
 										},
@@ -1862,7 +1862,7 @@
 											"font": "Arial;13;0",
 											"left": -112,
 											"top": -16,
-											"width": 175.5380859375,
+											"width": 175.53811645507812,
 											"height": 13,
 											"text": "(from mapReduceFormat类图)"
 										},
@@ -2099,7 +2099,7 @@
 							"font": "Arial;13;0",
 							"left": 544,
 							"top": 336,
-							"width": 238.841796875,
+							"width": 238.84202575683594,
 							"height": 25,
 							"text": "这里Text输入表示将文本转换为若干行"
 						},
@@ -2112,7 +2112,7 @@
 							"font": "Arial;13;0",
 							"left": 544,
 							"top": 360,
-							"width": 82.22998046875,
+							"width": 82.23004150390625,
 							"height": 25,
 							"text": "key就是行号"
 						},
@@ -2125,7 +2125,7 @@
 							"font": "Arial;13;0",
 							"left": 656,
 							"top": 360,
-							"width": 119.078125,
+							"width": 119.07821655273438,
 							"height": 25,
 							"text": "value就是行的内容"
 						},
@@ -2138,7 +2138,7 @@
 							"font": "Arial;13;0",
 							"left": 88,
 							"top": 312,
-							"width": 324.13525390625,
+							"width": 324.13543701171875,
 							"height": 40,
 							"text": "先调用getSplits获得输入的若干分片--List<InputSplit>"
 						},
@@ -2149,11 +2149,11 @@
 								"$ref": "AAAAAAFuArJFjhpJ5hA="
 							},
 							"font": "Arial;13;0",
-							"left": 144,
-							"top": 376,
-							"width": 208.54443359375,
+							"left": 56,
+							"top": 384,
+							"width": 359.517333984375,
 							"height": 40,
-							"text": "根据每个分片创建RecordReader"
+							"text": "每个分片对应一个mapper,根据每个分片创建RecordReader"
 						},
 						{
 							"_type": "UMLNoteView",
@@ -2163,7 +2163,7 @@
 							},
 							"font": "Arial;13;0",
 							"top": 456,
-							"width": 497.0390625,
+							"width": 497.0391845703125,
 							"height": 40,
 							"text": "在Recorder上循环调用nextKeyValue、getCurrentValue获取文件内容,直到文件结束"
 						},
@@ -2181,7 +2181,7 @@
 								"$ref": "AAAAAAFuAsSxTiaVPVg="
 							},
 							"lineStyle": 1,
-							"points": "248:352;248:375"
+							"points": "245:352;239:383"
 						},
 						{
 							"_type": "UMLNoteLinkView",
@@ -2197,7 +2197,7 @@
 								"$ref": "AAAAAAFuAsVOnyb2cEY="
 							},
 							"lineStyle": 1,
-							"points": "247:416;248:455"
+							"points": "239:424;244:455"
 						},
 						{
 							"_type": "UMLTextView",
@@ -2250,7 +2250,7 @@
 							"font": "Arial;13;0",
 							"left": 552,
 							"top": 272,
-							"width": 269.33984375,
+							"width": 269.34002685546875,
 							"height": 25,
 							"text": "所以通常取出来的分片大小=blockSize=128M"
 						}
