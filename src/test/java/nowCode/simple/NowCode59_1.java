@@ -33,7 +33,7 @@ class Solution {
         if (nums.length == 0) {
             return new int[0];
         }
-        //维护一个单调递增的栈,栈顶保存最大数
+        //维护一个单调递减的队列,队列的头是最大的元素
         LinkedList<Integer> list = new LinkedList<>();
         int length = nums.length;
         int[] result = new int[length - k + 1];
