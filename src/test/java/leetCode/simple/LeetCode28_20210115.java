@@ -25,35 +25,33 @@ package leetCode.simple;
 public class LeetCode28_20210115 {
 
     public int strStr(String haystack, String needle) {
-        if (haystack == null || haystack.length() == 0) {
-            return 0;
-        }
         if (needle == null || needle.length() == 0) {
             return 0;
         }
-        if (needle.length() > haystack.length()) {
-            return 0;
+        if (haystack == null || haystack.length() < needle.length()) {
+            return -1;
         }
-        int length1 = haystack.length();
-        int length2 = needle.length();
         int i = 0, j = 0;
-        int k = 0;
-        while (i < length1) {
-            while (i<length1 && haystack.charAt(i) != needle.charAt(j)) {
-                i += 1;
+        int k;
+        int hayLength = haystack.length();
+        int needleLength = needle.length();
+        while (i < hayLength && j < needleLength) {
+            if (haystack.charAt(i) != needle.charAt(j)) {
+                i++;
+                continue;
             }
             k = i;
-            while (k<length1 && j < length2 && haystack.charAt(k) == needle.charAt(j)){
-                k+=1;
-                j+=1;
-            };
-            if (j == length2) {
+            while (k < hayLength && j < needleLength && haystack.charAt(k) == needle.charAt(j)) {
+                k++;
+                j++;
+            }
+            if (j == needleLength) {
                 return i;
             }
+            i++;
             j = 0;
-            i += 1;
         }
-        return 0;
+        return -1;
     }
 
     public static void main(String[] args) {
