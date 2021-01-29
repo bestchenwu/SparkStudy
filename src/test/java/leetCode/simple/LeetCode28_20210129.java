@@ -53,34 +53,37 @@ public class LeetCode28_20210129 {
         return -1;
     }
 
-    // function to convert character to integer
-    public int charToInt(int idx, String s) {
-        return (int)s.charAt(idx) - (int)'a';
-    }
-
+    /**
+     * kmp算法
+     *
+     * @param haystack
+     * @param needle
+     * @return
+     */
     public int strStr0(String haystack, String needle) {
-        int L = needle.length(), n = haystack.length();
-        if (L > n) return -1;
-
-        int a = 26;
-        long modulus = (long)Math.pow(2, 31);
-
-        long h = 0, ref_h = 0;
-        for (int i = 0; i < L; ++i) {
-            h = (h * a + charToInt(i, haystack)) % modulus;
-            ref_h = (ref_h * a + charToInt(i, needle)) % modulus;
+        if (needle == null || needle.length() == 0) {
+            return 0;
         }
-        if (h == ref_h) return 0;
-
-        long aL = 1;
-        for (int i = 1; i <= L; ++i) aL = (aL * a) % modulus;
-
-        for (int start = 1; start < n - L + 1; ++start) {
-            h = (h * a - charToInt(start - 1, haystack) * aL
-                    + charToInt(start + L - 1, haystack)) % modulus;
-            if (h == ref_h) return start;
+        if (haystack == null || haystack.length() < needle.length()) {
+            return -1;
         }
-        return -1;
+        int i = 0, j = 0;
+        int len1 = haystack.length();
+        int len2 = needle.length();
+        while(i<len1 && j<len2){
+            if(haystack.charAt(i)==needle.charAt(j)){
+                i++;
+                j++;
+            }else{
+                i = i-j+1;
+                j = 0;
+            }
+        }
+        if(j == len2){
+            return i-j;
+        }else{
+            return -1;
+        }
     }
 
 
