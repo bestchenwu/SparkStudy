@@ -8,7 +8,7 @@ import com.spark.constants.SymbolConstants
 import org.apache.flink.api.common.serialization
 import org.apache.flink.api.common.serialization.SimpleStringSchema
 import org.apache.flink.configuration.Configuration
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer
+//import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer
 //import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer010
 import org.apache.flink.streaming.api.scala._
 import org.apache.flink.streaming.api.scala.async.{AsyncFunction, ResultFuture, RichAsyncFunction}
@@ -99,7 +99,7 @@ object AsyncMysqlRequest {
       properties.setProperty("bootstrap.servers", "localhost:9092")
       properties.setProperty("group.id", "test-flink")
       //todo:使用kafka2.0.1
-        val kafkaStream = env.addSource(new FlinkKafkaConsumer[String]("test-0",new SimpleStringSchema(),properties))
+       // val kafkaStream = env.addSource(new FlinkKafkaConsumer[String]("test-0",new SimpleStringSchema(),properties))
         //val input = kafka
     //      val kafkaStream = env.addSource(new FlinkKafkaConsumer010[String]("test-0",new SimpleStringSchema(),properties))
 //      val input = kafkaStream.flatMap(_.split("\\s+")).map(item=>{

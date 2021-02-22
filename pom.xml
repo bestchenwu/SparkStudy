@@ -33,9 +33,10 @@
 		<slf4j.version>1.7.21</slf4j.version>
 		<log4j.version>1.2.17</log4j.version>
 		<build.plugins.plugin.version>3.0.1</build.plugins.plugin.version>
-		<spark.version>2.3.0</spark.version>
+		<spark.version>2.4.0</spark.version>
 		<postgresql.version>42.2.5</postgresql.version>
-		<scala.version>2.11.7</scala.version>
+		<scala.version>2.12.12</scala.version>
+		<scala-lib.version>2.12</scala-lib.version>
 		<mysql.version>8.0.13</mysql.version>
 		<junit.version>4.12</junit.version>
 		<flink.version>1.8.1</flink.version>
@@ -91,7 +92,7 @@
 			<!-- 引入spark -->
 			<dependency>
 			  <groupId>org.apache.spark</groupId>
-			  <artifactId>spark-core_2.11</artifactId>
+			  <artifactId>spark-core_${scala-lib.version}</artifactId>
 			  <version>${spark.version}</version>
 			  <scope>provided</scope>
 				<exclusions>
@@ -116,7 +117,7 @@
 			<!-- 引入spark sql -->
 			<dependency>
 				<groupId>org.apache.spark</groupId>
-				<artifactId>spark-sql_2.11</artifactId>
+				<artifactId>spark-sql_${scala-lib.version}</artifactId>
 				<version>${spark.version}</version>
 				<scope>provided</scope>
 			</dependency>
@@ -129,21 +130,21 @@
             <!-- 引入spark streaming -->
             <dependency>
                 <groupId>org.apache.spark</groupId>
-                <artifactId>spark-streaming_2.11</artifactId>
+                <artifactId>spark-streaming_${scala-lib.version}</artifactId>
                 <version>${spark.version}</version>
 				<scope>provided</scope>
             </dependency>
 			<!-- 引入spark mllib -->
 			<dependency>
 				<groupId>org.apache.spark</groupId>
-				<artifactId>spark-mllib_2.11</artifactId>
+				<artifactId>spark-mllib_${scala-lib.version}</artifactId>
 				<version>${spark.version}</version>
 				<scope>provided</scope>
 			</dependency>
             <!-- 引入kafka streaming -->
             <dependency>
                 <groupId>org.apache.spark</groupId>
-                <artifactId>spark-streaming-kafka-0-10_2.11</artifactId>
+                <artifactId>spark-streaming-kafka-0-10_${scala-lib.version}</artifactId>
                 <version>${spark.version}</version>
 				<scope>provided</scope>
 				<exclusions>
@@ -156,7 +157,7 @@
 			<!-- 引入spark_hive版本 -->
 			<dependency>
 				<groupId>org.apache.spark</groupId>
-				<artifactId>spark-hive_2.11</artifactId>
+				<artifactId>spark-hive_${scala-lib.version}</artifactId>
 				<version>${spark.version}</version>
 				<scope>provided</scope>
 			</dependency>
@@ -199,14 +200,14 @@
 			<!-- 引入flink -->
 			<dependency>
 				<groupId>org.apache.flink</groupId>
-				<artifactId>flink-scala_2.11</artifactId>
+				<artifactId>flink-scala_${scala-lib.version}</artifactId>
 				<version>${flink.version}</version>
 				<!-- provided表示只影响编译测试阶段,而在运行阶段,假定容器已经提供了这个jar包,我们就无需这个jar包 -->
 				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.flink</groupId>
-				<artifactId>flink-streaming-scala_2.11</artifactId>
+				<artifactId>flink-streaming-scala_${scala-lib.version}</artifactId>
 				<version>${flink.version}</version>
 				<!--<scope>provided</scope>-->
 			</dependency>
@@ -214,19 +215,19 @@
 			<!-- 引进table API -->
 			<dependency>
 				<groupId>org.apache.flink</groupId>
-				<artifactId>flink-table-planner_2.11</artifactId>
+				<artifactId>flink-table-planner_${scala-lib.version}</artifactId>
 				<version>${flink.version}</version>
 			</dependency>
 			<!-- scala bridge -->
 			<dependency>
 				<groupId>org.apache.flink</groupId>
-				<artifactId>flink-table-api-scala-bridge_2.11</artifactId>
+				<artifactId>flink-table-api-scala-bridge_${scala-lib.version}</artifactId>
 				<version>${flink.version}</version>
 			</dependency>
 			<!-- 如果是java -->
 			<dependency>
 			  <groupId>org.apache.flink</groupId>
-			  <artifactId>flink-table-api-java-bridge_2.11</artifactId>
+			  <artifactId>flink-table-api-java-bridge_${scala-lib.version}</artifactId>
 			  <version>${flink.version}</version>
 			</dependency>
 			<dependency>
@@ -244,27 +245,27 @@
 			<!-- 引入flink state queryable -->
 			<dependency>
 				<groupId>org.apache.flink</groupId>
-				<artifactId>flink-queryable-state-client-java_2.11</artifactId>
+				<artifactId>flink-queryable-state-client-java_${scala-lib.version}</artifactId>
 				<version>${flink.version}</version>
 				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.flink</groupId>
-				<artifactId>flink-runtime-web_2.11</artifactId>
+				<artifactId>flink-runtime-web_${scala-lib.version}</artifactId>
 				<version>${flink.version}</version>
 				<scope>provided</scope>
 			</dependency>
 			<!-- 引入rocksdb插件 -->
 			<dependency>
 				<groupId>org.apache.flink</groupId>
-				<artifactId>flink-statebackend-rocksdb_2.11</artifactId>
+				<artifactId>flink-statebackend-rocksdb_${scala-lib.version}</artifactId>
 				<version>${flink.version}</version>
 				<scope>provided</scope>
 			</dependency>
 			<!-- 引入flink fileSystem -->
             <dependency>
                 <groupId>org.apache.flink</groupId>
-                <artifactId>flink-connector-filesystem_2.11</artifactId>
+                <artifactId>flink-connector-filesystem_${scala-lib.version}</artifactId>
                 <version>${flink.version}</version>
             </dependency>
 			<!-- 引入flink cep -->
