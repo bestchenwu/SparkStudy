@@ -2,6 +2,9 @@ package leetCode.simple;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 //给定一个字符串 s，计算具有相同数量 0 和 1 的非空（连续）子字符串的数量，并且这些子字符串中的所有 0 和所有 1 都是连续的。
 //
 // 重复出现的子串要计算它们出现的次数。
@@ -61,11 +64,86 @@ public class LeetCode696 {
         return count;
     }
 
+    /**
+     * 先将"00110110"这样的字符串转换为[2 2 1 2 1]这样的相同字符组成的数组，然后遍历新数组，求相邻值的最小值
+     *
+     * @param s
+     * @return
+     */
+    public int countBinarySubstrings1(String s) {
+        if(s == null || s.length() <=1){
+            return 0;
+        }
+        List<Integer> list = new ArrayList<>();
+        int i = 0,j = 0;
+        int sLength = s.length();
+        while(j<sLength){
+            while(j<sLength  && s.charAt(j)==s.charAt(i)){
+                j++;
+            }
+            list.add(j-i);
+            i = j;
+        }
+        int count = 0;
+        for(int k = 0;k+1<list.size();k++){
+            count += Math.min(list.get(k),list.get(k+1));
+        }
+        return count;
+    }
+
+    /**
+     * 由于只需要与前一项进行比较，所以只留一个变量即可。
+     *
+     * @param s
+     * @return
+     */
+    public int countBinarySubstrings2(String s) {
+        if(s == null || s.length() <= 1){
+            return 0;
+        }
+        int i = 0,j = 0;
+        int sLength = s.length();
+        int lastCount = 0;
+        int count = 0;
+        while(j<sLength){
+            while(j<sLength && s.charAt(j) == s.charAt(i)){
+                j++;
+            }
+            count+=Math.min(lastCount,j-i);
+            lastCount=j-i;
+            i = j;
+        }
+        return count;
+    }
+
+    public int countBinarySubstrings3(String s) {
+       if(s == null || s.length() <=1){
+            return 0;
+        }
+        int sLength = s.length();
+       //dp表示以i位置结尾的最长子串的长度
+        int[] dp = new int[sLength];
+        dp[0] = 0;
+        int count = 0;
+        for(int i = 1;i<sLength;i++){
+            if(s.charAt(i)!=s.charAt(i-1)){
+                dp[i] = 2;
+                count+=1;
+            }else if(i-dp[i-1]-1>=0 && s.charAt(i)!=s.charAt(i-dp[i-1]-1)){
+                dp[i] = dp[i-1]+2;
+                count+=1;
+            }else {
+                dp[i] = 0;
+            }
+        }
+        return count;
+    }
+
     @Test
     public void testCountBinarySubstrings() {
-        //int count = countBinarySubstrings("00110011");
-        int count = countBinarySubstrings("10101");
-        //int count = countBinarySubstrings("000111000");
+        //int count = countBinarySubstrings1("00110011");
+        //int count = countBinarySubstrings3("10101");
+        int count = countBinarySubstrings("000111000");
         //01 0011 000111 10 1100 111000
         System.out.println("count=" + count);
     }
