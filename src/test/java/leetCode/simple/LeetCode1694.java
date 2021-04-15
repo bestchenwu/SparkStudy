@@ -72,32 +72,43 @@ import org.junit.Test;
 public class LeetCode1694 {
 
     public String reformatNumber(String number) {
+        String word = number.replaceAll("\\s+","").replaceAll("-","");
+        int len = word.length();
+        int count = 0;
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < number.length(); i++) {
-            if (number.charAt(i) >= '0' && number.charAt(i) <= '9') {
-                sb.append(number.charAt(i));
+        //正好3个一组 或者 还剩2个
+        if(len%3==0 || len%3 == 2){
+            for(int i = 0;i<len;i++){
+                sb.append(word.charAt(i));
+                count+=1;
+                if(count == 3 && i!=len-1){
+                    sb.append("-");
+                    count = 0;
+                }
+            }
+        }else{
+            //说明3个一组，还剩1个
+            //最后4个字符  两个一组
+            for(int j = 0;j<len;j++){
+                sb.append(word.charAt(j));
+                count+=1;
+                if(count == 3 ){
+                    sb.append("-");
+                    count = 0;
+                }
+                //表示还剩2个字符
+                if(len-1-j==2 && count == 2){
+                    sb.append("-");
+                    count = 0;
+                }
             }
         }
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < sb.length(); i++) {
-            //说明末尾字符位置距离当前字符位置长度>4
-            if (sb.length() - 1 - i > 4) {
-                result.append(sb.subSequence(i, i + 3));
-                result.append("-");
-                i += 2;
-            } else {
-                result.append(sb.subSequence(i, i + 2));
-                result.append("-");
-                result.append(sb.subSequence(i + 2, sb.length()));
-                break;
-            }
-        }
-        return result.toString();
+        return sb.toString();
     }
 
     @Test
     public void testReformatNumber() {
-        String number = "123 4-5678";
+        String number = "123 4-567898";
         String result = reformatNumber(number);
         System.out.println("result=" + result);
     }
