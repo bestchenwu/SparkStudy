@@ -32,7 +32,7 @@ public class LeetCode69 {
 
     public static void main(String[] args) {
         LeetCode69 leetCode69 = new LeetCode69();
-        int result = leetCode69.mySqrt(8);
+        int result = leetCode69.mySqrt(2147395599);
         System.out.println(result);
     }
 }
