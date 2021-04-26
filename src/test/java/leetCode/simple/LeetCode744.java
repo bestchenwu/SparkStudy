@@ -56,19 +56,17 @@ import org.junit.Test;
 public class LeetCode744 {
 
     public char nextGreatestLetter(char[] letters, char target) {
-        int left = 0, right = letters.length - 1;
+        int left = 0, right = letters.length;
         int middle = 0;
-        while (left <= right) {
+        while (left < right) {
             middle = left + (right - left) / 2;
-            if (letters[middle] == target) {
-                return middle + 1 >= letters.length ? letters[0] : letters[middle + 1];
-            } else if (letters[middle] > target) {
-                right -= 1;
+            if (letters[middle] <= target) {
+                left = middle + 1;
             } else {
-                left += 1;
+                right = middle;
             }
         }
-        return (middle + 1 >= letters.length) ? letters[0] : letters[middle + 1];
+        return letters[left % letters.length];
     }
 
     @Test
