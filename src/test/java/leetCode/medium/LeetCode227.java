@@ -1,8 +1,8 @@
 package leetCode.medium;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Stack;
+import org.junit.Test;
+
+import java.util.*;
 
 //给你一个字符串表达式 s ，请你实现一个基本计算器来计算并返回它的值。
 ////
@@ -47,28 +47,42 @@ public class LeetCode227 {
 
     public int calculate(String s) {
         Stack<Integer> stack = new Stack<>();
-        int length = s.length();
-        int sum = 0;
-        Stack<Character> operStack = new Stack<>();
-        List<Character> operList = Arrays.asList('+', '-', '*', '/');
-        for (int i = 0; i < length; i++) {
-            if (s.charAt(i) == ' ') {
-                continue;
+        char preSign = '+';
+        int num = 0;
+        int n = s.length();
+        for (int i = 0; i < n; ++i) {
+            if (Character.isDigit(s.charAt(i))) {
+                num = num * 10 + s.charAt(i) - '0';
             }
-            if (operList.contains(s.charAt(i))) {
-                stack.push(sum);
-                sum = 0;
-                if (operStack.isEmpty()) {
-                    operStack.push(s.charAt(i));
-                }else if(s.charAt(i)=='+' || s.charAt(i)=='-'){
-
+            if (!Character.isDigit(s.charAt(i)) && s.charAt(i) != ' ' || i == n - 1) {
+                switch (preSign) {
+                    case '+':
+                        stack.push(num);
+                        break;
+                    case '-':
+                        stack.push(-num);
+                        break;
+                    case '*':
+                        stack.push(stack.pop() * num);
+                        break;
+                    default:
+                        stack.push(stack.pop() / num);
                 }
-
-            } else {
-                sum = 10 * sum + (s.charAt(i) - '0');
+                preSign = s.charAt(i);
+                num = 0;
             }
-
         }
-        return sum;
+        int ans = 0;
+        while (!stack.isEmpty()) {
+            ans += stack.pop();
+        }
+        return ans;
+    }
+
+    @Test
+    public void testCalculate() {
+        String str = "3/2  ";
+        int calculate = calculate(str);
+        System.out.println("calculate=" + calculate);
     }
 }
