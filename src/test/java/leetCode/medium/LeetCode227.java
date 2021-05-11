@@ -45,6 +45,45 @@ import java.util.*;
 //// 题目数据保证答案是一个 32-bit 整数
 public class LeetCode227 {
 
+    public int calculate2(String s){
+        Stack<Integer> stack = new Stack<>();
+        char preOper = '+';
+        int n = s.length();
+        int num = 0;
+        for(int i = 0;i<n;i++){
+            if(Character.isDigit(s.charAt(i))){
+                num = num*10+(s.charAt(i)-'0');
+            }
+            if(!Character.isDigit(s.charAt(i)) && s.charAt(i)!=' ' || i==n-1){
+                switch (preOper){
+                    case '+':{
+                        stack.push(num);
+                        break;
+                    }
+                    case '-':{
+                        stack.push(-num);
+                        break;
+                    }
+                    case '*':{
+                        stack.push(stack.pop()*num);
+                        break;
+                    }
+                    case '/':{
+                        stack.push(stack.pop()/num);
+                        break;
+                    }
+                }
+                num = 0;
+                preOper = s.charAt(i);
+            }
+        }
+        int sum = 0;
+        while(!stack.isEmpty()){
+            sum+=stack.pop();
+        }
+        return sum;
+    }
+
     public int calculate(String s) {
         Stack<Integer> stack = new Stack<>();
         char preSign = '+';
@@ -54,7 +93,7 @@ public class LeetCode227 {
             if (Character.isDigit(s.charAt(i))) {
                 num = num * 10 + s.charAt(i) - '0';
             }
-            if (!Character.isDigit(s.charAt(i)) && s.charAt(i) != ' ' || i == n - 1) {
+            if ((!Character.isDigit(s.charAt(i)) && s.charAt(i) != ' ') || i == n - 1) {
                 switch (preSign) {
                     case '+':
                         stack.push(num);
@@ -81,8 +120,8 @@ public class LeetCode227 {
 
     @Test
     public void testCalculate() {
-        String str = "3/2  ";
-        int calculate = calculate(str);
+        String str = "3+2*2";
+        int calculate = calculate2(str);
         System.out.println("calculate=" + calculate);
     }
 }
