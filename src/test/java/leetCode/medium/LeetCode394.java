@@ -1,5 +1,8 @@
 package leetCode.medium;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -90,13 +93,87 @@ public class LeetCode394 {
         return result;
     }
 
+    public String decodeString1(String s) {
+        StringBuilder sb = new StringBuilder();
+        Stack<String> stack = new Stack<>();
+        int num = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) >= '0' && s.charAt(i) <= '9') {
+                if (sb.length() > 0) {
+                    stack.push(sb.toString());
+                    sb = new StringBuilder();
+                }
+                num = num * 10 + (s.charAt(i) - '0');
+            } else if (s.charAt(i) == '[') {
+                stack.push(Integer.toString(num));
+                num = 0;
+            } else if (s.charAt(i) == ']') {
+                if (sb.length() > 0) {
+                    stack.push(sb.toString());
+                    sb = new StringBuilder();
+                }
+                List<String> replicatedList = new ArrayList<>();
+                while(!stack.isEmpty() && !(stack.peek().charAt(0)>='0'&&stack.peek().charAt(0)<='9')){
+                    replicatedList.add(stack.pop());
+                }
+                Collections.reverse(replicatedList);
+                StringBuilder replicatedString = new StringBuilder();
+                replicatedList.forEach(item->replicatedString.append(item));
+                int replicatedNum = Integer.parseInt(stack.pop());
+                StringBuilder tmp = new StringBuilder();
+                for (int k = 1; k <= replicatedNum; k++) {
+                    tmp.append(replicatedString);
+                }
+                stack.push(tmp.toString());
+            } else {
+                sb.append(s.charAt(i));
+            }
+        }
+        if (sb.length() > 0) {
+            stack.push(sb.toString());
+        }
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < stack.size(); i++) {
+            result.append(stack.get(i));
+        }
+        return result.toString();
+    }
+
+    public String decodeString2(String str){
+        Stack<Integer> numStack = new Stack<Integer>();
+        Stack<StringBuilder> strStack = new Stack<>();
+        StringBuilder sb = new StringBuilder();
+        int num = 0;
+        for(int i = 0;i<str.length();i++){
+            if(str.charAt(i)>='0'&& str.charAt(i)<='9'){
+                num = num*10+(str.charAt(i)-'0');
+            }else if(str.charAt(i)=='['){
+                numStack.push(num);
+                strStack.push(sb);
+                num = 0;
+                sb = new StringBuilder();
+            }else if(str.charAt(i)==']'){
+                StringBuilder tmp = new StringBuilder();
+                int replicatedNum = numStack.pop();
+                for(int k = 1;k<=replicatedNum;k++){
+                    tmp.append(sb);
+                }
+                sb = strStack.pop();
+                sb.append(tmp);
+            }else{
+                sb.append(str.charAt(i));
+            }
+        }
+        return sb.toString();
+    }
+
     public static void main(String[] args) {
         LeetCode394 leetCode394 = new LeetCode394();
         //String str = "3[a]2[bc]"; //希望获得aaabcbc
         //String str = "3[a2[c]]"; //希望获得3[acc] = accaccacc
         //String str = "2[abc]3[cd]ef"; //希望获得abcabccdcdcdef
-        String str = "13[ab]";
-        String result = leetCode394.decodeString(str);
+        String str = "abc3[cd2[rft]jks]xyz";
+        String result = leetCode394.decodeString2(str);
         System.out.println(result);
     }
 }

@@ -30,6 +30,8 @@ package leetCode.medium;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 
+import org.junit.Test;
+
 import java.util.Stack;
 
 /**
@@ -63,37 +65,54 @@ import java.util.Stack;
 public class LeetCode385 {
 
     public NestedInteger deserialize(String s) {
-        //假定形成了这样一个值栈
-        Stack<Integer> numStack = new Stack<>();
+        if (s == null || s.length() == 0) {
+            return new NestedInteger();
+        }
+        if (s.charAt(0) != '[') {
+            return new NestedInteger(Integer.valueOf(s));
+        }
+        Stack<NestedInteger> stack = new Stack<>();
+        stack.push(new NestedInteger());
         int num = 0;
-        Stack<NestedInteger> inNestedIntegerStack = new Stack<>();
-        Stack<NestedInteger> outNestedIntegerStack = new Stack<>();
-        int length = s.length();
-        for (int i = 0; i < length; i++) {
-            if (s.charAt(i) == '[') {
-                inNestedIntegerStack.push(new NestedInteger());
-            } else if(s.charAt(i)==','){
-                numStack.push(num);
-                num = 0;
-            }else if (s.charAt(i) == ']' || i == length - 1) {
-                if (inNestedIntegerStack.isEmpty()) {
-                    outNestedIntegerStack.push(new NestedInteger(numStack.pop()));
-                } else {
-                    NestedInteger outPeek = null;
-                    if(!outNestedIntegerStack.isEmpty()){
-                        outPeek = outNestedIntegerStack.pop();
-                    }
-                    NestedInteger inPeek = inNestedIntegerStack.pop();
-                    inPeek.add(new NestedInteger(numStack.pop()));
-                    if(outPeek!=null){
-                        inPeek.add(outPeek);
-                    }
-                    outNestedIntegerStack.push(inPeek);
-                }
+        int sign = 1;
+        NestedInteger result = null;
+        for (int i = 1; i < s.length(); i++) {
+            if (s.charAt(i) == ',') {
+                continue;
+            } else if (s.charAt(i) == '[') {
+                NestedInteger newNode = new NestedInteger();
+                stack.peek().add(newNode);
+                stack.push(newNode);
+            } else if (s.charAt(i) == ']') {
+                result = stack.pop();
             } else {
-                num = (num * 10 + s.charAt(i) - '0');
+                if (s.charAt(i) == '-') {
+                    sign = -1;
+                    i += 1;
+                }
+                while (i < s.length() && Character.isDigit(s.charAt(i))) {
+                    num = 10 * num + (s.charAt(i) - '0');
+                    i+=1;
+                }
+                i-=1;
+                if(sign == -1){
+                    num = -num;
+                }
+                stack.peek().add(new NestedInteger(num));
+                num = 0;
+                sign = 1;
             }
         }
-        return outNestedIntegerStack.peek();
+        return result;
+    }
+
+    @Test
+    public void testDeserialize() {
+        //String str = "[123,[456,223,[789,225]]]";
+        String str = "[-123,456,[788,-799,833],[[]],10,[-98],-35]";
+        //String str = "324";
+        //String str = "[111,555]";
+        NestedInteger nestedInteger = deserialize(str);
+        System.out.println("nestedInteger=" + nestedInteger);
     }
 }
