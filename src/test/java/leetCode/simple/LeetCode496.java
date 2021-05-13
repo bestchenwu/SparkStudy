@@ -63,6 +63,31 @@ public class LeetCode496 {
         return result;
     }
 
+    public int[] nextGreaterElement2(int[] nums1, int[] nums2) {
+        int[] result = new int[nums1.length];
+        for (int i = 0; i < nums1.length; i++) {
+            int j = 0;
+            while (j < nums2.length && nums2[j] != nums1[i]) {
+                j++;
+            }
+            if (j == nums2.length - 1) {
+                result[i] = -1;
+            } else {
+                int k;
+                for (k = j + 1; k < nums2.length; k++) {
+                    if (nums2[k] > nums1[i]) {
+                        result[i] = nums2[k];
+                        break;
+                    }
+                }
+                if (k == nums2.length) {
+                    result[i] = -1;
+                }
+            }
+        }
+        return result;
+    }
+
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {
         //先对nums2构建一个map,map的key为nums2的元素值,value为比它大的下一个元素值
         //同时将当前数存入到堆栈中
@@ -93,13 +118,29 @@ public class LeetCode496 {
         return result;
     }
 
+    public int[] nextGreaterElement3(int[] nums1, int[] nums2) {
+        Stack<Integer> stack = new Stack<Integer>();
+        Map<Integer,Integer> map = new HashMap<>();
+        for(int i = 0;i<nums2.length;i++){
+            while(!stack.isEmpty() && stack.peek()<nums2[i]){
+                map.put(stack.pop(),nums2[i]);
+            }
+            stack.push(nums2[i]);
+        }
+        int[] result = new int[nums1.length];
+        for(int i = 0;i<nums1.length;i++){
+            result[i] = map.getOrDefault(nums1[i],-1);
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
         LeetCode496 leetCode496 = new LeetCode496();
 //        int[] nums1 = new int[]{2,4};
 //        int[] nums2 = new int[]{1,2,3,4};
         int[] nums1 = new int[]{4,1,2};
         int[] nums2 = new int[]{1,3,4,2};
-        int[] result = leetCode496.nextGreaterElement(nums1,nums2);
+        int[] result = leetCode496.nextGreaterElement3(nums1,nums2);
         System.out.println(Arrays.toString(result));
     }
 }
