@@ -21,6 +21,24 @@ import java.util.Stack;
 //第二个 1 的下一个最大的数需要循环搜索，结果也是 2。
 public class LeetCode503 {
 
+    public int[] nextGreaterElements2(int[] nums) {
+        Stack<Integer> stack = new Stack<>();
+        int length = nums.length;
+        int[] result = new int[nums.length];
+        Arrays.fill(result,-1);
+        for(int i = 0;i<length*2;i++){
+            int num = nums[i%length];
+            while(!stack.isEmpty() && nums[stack.peek()]<num){
+               result[stack.pop()]=num;
+            }
+            if(i<length){
+                stack.push(i);
+            }
+
+        }
+        return result;
+    }
+
     public int[] nextGreaterElements(int[] nums) {
         //从左往右建立单调递增栈、单调递减栈
         //对于递增栈来说,被弹出的元素 和当前栈顶元素组成了关系
@@ -58,7 +76,7 @@ public class LeetCode503 {
     @Test
     public void testNextGreaterElements() {
         int[] nums = new int[]{100, 1, 11, 1, 120, 111, 123, 1, -1, -100};
-        int[] result = nextGreaterElements(nums);
+        int[] result = nextGreaterElements2(nums);
         System.out.println(Arrays.toString(result));
     }
 }
