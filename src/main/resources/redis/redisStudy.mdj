@@ -1,0 +1,41 @@
+{
+	"_type": "Project",
+	"_id": "AAAAAAFF+h6SjaM2Hec=",
+	"name": "redis基础",
+	"ownedElements": [
+		{
+			"_type": "UMLModel",
+			"_id": "AAAAAAFF+qBWK6M3Z8Y=",
+			"_parent": {
+				"$ref": "AAAAAAFF+h6SjaM2Hec="
+			},
+			"name": "redis常用数据结构和命令",
+			"ownedElements": [
+				{
+					"_type": "UMLClassDiagram",
+					"_id": "AAAAAAFF+qBtyKM79qY=",
+					"_parent": {
+						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
+					},
+					"name": "Main",
+					"defaultDiagram": true,
+					"ownedViews": [
+						{
+							"_type": "UMLNoteView",
+							"_id": "AAAAAAF59J7ycapvSrA=",
+							"_parent": {
+								"$ref": "AAAAAAFF+qBtyKM79qY="
+							},
+							"font": "Arial;13;0",
+							"left": 184,
+							"top": 72,
+							"width": 393,
+							"height": 161,
+							"text": "redis命令                                         \n1、set key value  与setnx key value (只有当key不存在的时候才执行成功)   给整型的key增加值 \n incr key (给key+1) 或者 incrby key 5                           2、队列的操作方法  lpush rpush lpop rpop                  \n3、哈希 hset key name value  赋值,hget key name取值,取所有的值需要使用hgetall key的方式                             4、集合操作sadd  srem(弹出) smembers(查看所有元素) sismembers(查看某个元素是否存在)                                                 5、有序集合(zset) zadd key score value 添加一个元素 ,zrangebyscore 排序"
+						}
+					]
+				}
+			]
+		}
+	]
+}
