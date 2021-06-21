@@ -32,6 +32,156 @@
 							"width": 393,
 							"height": 161,
 							"text": "redis命令                                         \n1、set key value  与setnx key value (只有当key不存在的时候才执行成功)   给整型的key增加值 \n incr key (给key+1) 或者 incrby key 5                           2、队列的操作方法  lpush rpush lpop rpop                  \n3、哈希 hset key name value  赋值,hget key name取值,取所有的值需要使用hgetall key的方式                             4、集合操作sadd  srem(弹出) smembers(查看所有元素) sismembers(查看某个元素是否存在)                                                 5、有序集合(zset) zadd key score value 添加一个元素 ,zrangebyscore 排序"
+						},
+						{
+							"_type": "UMLNoteView",
+							"_id": "AAAAAAF6LhXx2mZFAfE=",
+							"_parent": {
+								"$ref": "AAAAAAFF+qBtyKM79qY="
+							},
+							"font": "Arial;13;0",
+							"left": 184,
+							"top": 264,
+							"width": 393,
+							"height": 153
+						},
+						{
+							"_type": "UMLTextView",
+							"_id": "AAAAAAF6LhZZ/WZLbno=",
+							"_parent": {
+								"$ref": "AAAAAAFF+qBtyKM79qY="
+							},
+							"font": "Arial;13;0",
+							"left": 208,
+							"top": 296,
+							"width": 262.84619140625,
+							"height": 51,
+							"text": "在redis.conf里面增加一行rename-command flushall flushall_sweet 可以用来重置命令"
+						},
+						{
+							"_type": "UMLTextView",
+							"_id": "AAAAAAF6LiET2WZRvGE=",
+							"_parent": {
+								"$ref": "AAAAAAFF+qBtyKM79qY="
+							},
+							"font": "Arial;13;0",
+							"left": 216,
+							"top": 360,
+							"width": 308.30810546875,
+							"height": 51,
+							"text": "redis使用append key value的命令用于在指定key对应的值上添加新字符串"
+						},
+						{
+							"_type": "UMLTextView",
+							"_id": "AAAAAAF6LilTnGZbg9Y=",
+							"_parent": {
+								"$ref": "AAAAAAFF+qBtyKM79qY="
+							},
+							"font": "Arial;13;0",
+							"left": 128,
+							"top": 448,
+							"width": 493.68505859375,
+							"height": 77,
+							"text": "debug object programmings 使用这条命令可以查看对象在redis里面的存储结构,例如上述命令的输出结果是:Value at:00007FE16E86AEF0 refcount:1 encoding:ziplist serializedlength:36 lru:13659349 lru_seconds_idle:6"
+						}
+					]
+				},
+				{
+					"_type": "UMLClassDiagram",
+					"_id": "AAAAAAF6LWJz4371v2I=",
+					"_parent": {
+						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
+					},
+					"name": "redis查看状态",
+					"ownedViews": [
+						{
+							"_type": "UMLNoteView",
+							"_id": "AAAAAAF6LWkVmn8LKjU=",
+							"_parent": {
+								"$ref": "AAAAAAF6LWJz4371v2I="
+							},
+							"font": "Arial;13;0",
+							"left": 304,
+							"top": 376,
+							"width": 169,
+							"height": 40,
+							"text": "info memory"
+						},
+						{
+							"_type": "UMLTextView",
+							"_id": "AAAAAAF6LWlCgH8Rifk=",
+							"_parent": {
+								"$ref": "AAAAAAF6LWJz4371v2I="
+							},
+							"font": "Arial;13;0",
+							"left": 288,
+							"top": 416,
+							"width": 166,
+							"height": 51,
+							"text": "used_memory_human  从操作系统分配的内存总量"
+						},
+						{
+							"_type": "UMLTextView",
+							"_id": "AAAAAAF6LWrTb38YSDU=",
+							"_parent": {
+								"$ref": "AAAAAAF6LWJz4371v2I="
+							},
+							"font": "Arial;13;0",
+							"left": 296,
+							"top": 464,
+							"width": 163.9052734375,
+							"height": 51,
+							"text": "used_memory_rss_human  操作系统看到的内存占用 ,top 命令看到的内存"
+						},
+						{
+							"_type": "UMLTextView",
+							"_id": "AAAAAAF6LWsUrH8deN0=",
+							"_parent": {
+								"$ref": "AAAAAAF6LWJz4371v2I="
+							},
+							"font": "Arial;13;0",
+							"left": 312,
+							"top": 544,
+							"width": 60,
+							"height": 15
+						},
+						{
+							"_type": "UMLTextView",
+							"_id": "AAAAAAF6LWumNH8goOA=",
+							"_parent": {
+								"$ref": "AAAAAAF6LWJz4371v2I="
+							},
+							"font": "Arial;13;0",
+							"left": 312,
+							"top": 560,
+							"width": 60,
+							"height": 15
+						},
+						{
+							"_type": "UMLTextView",
+							"_id": "AAAAAAF6LWvYTn8jEHw=",
+							"_parent": {
+								"$ref": "AAAAAAF6LWJz4371v2I="
+							},
+							"font": "Arial;13;0",
+							"left": 288,
+							"top": 520,
+							"width": 174.76611328125,
+							"height": 38,
+							"text": "used_memory_peak_human   Redis 内存消耗的峰值"
+						},
+						{
+							"_type": "UMLTextView",
+							"_id": "AAAAAAF6LWwtcH8o8aY=",
+							"_parent": {
+								"$ref": "AAAAAAF6LWJz4371v2I="
+							},
+							"font": "Arial;13;0",
+							"left": 296,
+							"top": 576,
+							"width": 163.92431640625,
+							"height": 51,
+							"text": "used_memory_lua_human  lua 脚本引擎占用的内存大小"
 						}
 					]
 				}
@@ -233,7 +383,7 @@
 									"font": "Arial;13;0",
 									"left": 496,
 									"top": 271,
-									"width": 63.94873046875,
+									"width": 65,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF6GVr4bogpf54="
@@ -1448,7 +1598,7 @@
 							"font": "Arial;13;0",
 							"left": 376,
 							"top": 328,
-							"width": 265.68994140625,
+							"width": 266,
 							"height": 25,
 							"text": "查看key的值是否发生变化,如果是,则返回null"
 						},
