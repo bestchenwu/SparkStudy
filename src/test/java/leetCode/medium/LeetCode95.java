@@ -84,4 +84,34 @@ public class LeetCode95 {
         }
     }
 
+    private List<TreeNode> helpGenerateTrees(int left,int right){
+        if(left>right){
+            List<TreeNode> list = new ArrayList<>();
+            list.add(null);
+            return list;
+        }
+        List<TreeNode> allNodes = new ArrayList<>();
+        for(int i = left;i<=right;i++){
+            List<TreeNode> leftNodes = helpGenerateTrees(left,i-1);
+            List<TreeNode> rightNodes = helpGenerateTrees(i+1,right);
+            for(TreeNode leftNode : leftNodes){
+                for(TreeNode rightNode : rightNodes){
+                    TreeNode root = new TreeNode(i);
+                    root.left = leftNode;
+                    root.right = rightNode;
+                    allNodes.add(root);
+                }
+            }
+        }
+        return allNodes;
+    }
+
+    public List<TreeNode> generateTrees1(int n) {
+        if(n==1){
+            return Arrays.asList(new TreeNode(n));
+        }
+        List<TreeNode> result = helpGenerateTrees(1, n);
+        return result;
+    }
+
 }
