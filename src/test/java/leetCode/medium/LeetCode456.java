@@ -73,7 +73,7 @@ public class LeetCode456 {
 
     @Test
     public void testFind132pattern() {
-        int[] nums = new int[]{3,5,0,3,4};
+        int[] nums = new int[]{1,3,2,4};
         boolean result = find132pattern(nums);
         System.out.println("result=" + result);
     }
