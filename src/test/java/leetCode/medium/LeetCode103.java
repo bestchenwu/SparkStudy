@@ -3,10 +3,7 @@ package leetCode.medium;
 import leetCode.TreeNode;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 //给定一个二叉树，返回其节点值的锯齿形层序遍历。（即先从左往右，再从右往左进行下一层遍历，以此类推，层与层之间交替进行）。
 //
@@ -66,12 +63,40 @@ public class LeetCode103 {
         return resultList;
     }
 
+    public List<List<Integer>> zigzagLevelOrder1(TreeNode root) {
+        List<List<Integer>> resultList = new ArrayList<>();
+        if (root == null) {
+            return resultList;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            List<Integer> list = new ArrayList<>();
+            LinkedList<TreeNode> tmpList = new LinkedList<>();
+            while (!stack.isEmpty()) {
+                TreeNode tmp = stack.pop();
+                list.add(tmp.val);
+                if (tmp.left != null) {
+                    tmpList.offerLast(tmp.left);
+                }
+                if (tmp.right != null) {
+                    tmpList.offerLast(tmp.right);
+                }
+            }
+            for(TreeNode treeNode : tmpList) {
+                stack.push(treeNode);
+            }
+            resultList.add(list);
+        }
+        return resultList;
+    }
+
     @Test
     public void testZigzagLevelOrder() {
         TreeNode root = new TreeNode(3);
         root.left = new TreeNode(9);
         root.right = new TreeNode(20, new TreeNode(15), new TreeNode(7));
-        List<List<Integer>> resultList = zigzagLevelOrder(root);
+        List<List<Integer>> resultList = zigzagLevelOrder1(root);
         System.out.println("resultList=" + resultList);
     }
 }

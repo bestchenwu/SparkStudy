@@ -2,9 +2,7 @@ package leetCode.medium;
 
 import leetCode.TreeNode;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * 给定一个二叉树，返回其按层次遍历的节点值。 （即逐层地，从左到右访问所有节点）。
@@ -56,6 +54,34 @@ public class LeetCode102 {
         }
         listNode(Arrays.asList(root),result);
         return result;
+    }
+
+    public List<List<Integer>> levelOrder0(TreeNode root) {
+        List<List<Integer>> resultList = new ArrayList<>();
+        if (root == null) {
+            return resultList;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            List<Integer> list = new ArrayList<>();
+            LinkedList<TreeNode> tmpList = new LinkedList<>();
+            while (!stack.isEmpty()) {
+                TreeNode tmp = stack.pop();
+                list.add(tmp.val);
+                if (tmp.left != null) {
+                    tmpList.offerFirst(tmp.left);
+                }
+                if (tmp.right != null) {
+                    tmpList.offerFirst(tmp.right);
+                }
+            }
+            for (TreeNode treeNode : tmpList) {
+                stack.push(treeNode);
+            }
+            resultList.add(list);
+        }
+        return resultList;
     }
 
     public static void main(String[] args) {
