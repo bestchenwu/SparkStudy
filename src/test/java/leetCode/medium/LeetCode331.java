@@ -38,6 +38,18 @@ import org.junit.Test;
 //输出: false
 public class LeetCode331 {
 
+    /**
+     * //入度表示进入节点的边
+     * //出度表示离开节点的边
+     * //对于非叶子节点  它有一条入边,两条出边
+     * //对于叶子节点  它有一条入边,0个出边
+     * //对于所有二叉树 以及图来说 所有入边之和==出边之和
+     * //每个节点都累加 diff = 出度-入度
+     * //在任何节点之前都要求diff >=0
+     *
+     * @param preorder
+     * @return
+     */
     public boolean isValidSerialization(String preorder) {
         String[] split = preorder.split(",");
         if (split.length == 0) {
@@ -63,9 +75,9 @@ public class LeetCode331 {
     }
 
     @Test
-    public void testIsValidSerialization(){
+    public void testIsValidSerialization() {
         String preorder = "9,3,4,#,#,1,#,#,2,#,6,#,#";
         boolean validSerialization = isValidSerialization(preorder);
-        System.out.println("validSerialization="+validSerialization);
+        System.out.println("validSerialization=" + validSerialization);
     }
 }
