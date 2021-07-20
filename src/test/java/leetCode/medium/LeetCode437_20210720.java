@@ -1,6 +1,9 @@
-package leetCode.simple;
+package leetCode.medium;
 
 import leetCode.TreeNode;
+import org.junit.Test;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * https://leetcode-cn.com/problems/path-sum-iii/
@@ -34,54 +37,48 @@ import leetCode.TreeNode;
  * 3.  -3 -> 11
  *
  */
-public class LeetCode437 {
+public class LeetCode437_20210720 {
 
     private int count = 0;
 
-    private void helpPathSum(TreeNode root, int sum , int target){
-        if(root==null){
+    private void helpPathSum(TreeNode root, int currentSum, int targetSum) {
+        if (root == null) {
             return;
         }
-        sum = root.val+sum;
-        if(sum == target){
-            count +=1;
+        currentSum+=root.val;
+        if (currentSum == targetSum) {
+            count += 1;
         }
-        helpPathSum(root.left,sum,target);
-        helpPathSum(root.right,sum,target);
+        helpPathSum(root.left, currentSum, targetSum);
+        helpPathSum(root.right, currentSum, targetSum);
     }
 
-    public int pathSum(TreeNode root, int sum) {
+    /**
+     * 深度优先遍历
+     *
+     * @param root
+     * @param targetSum
+     * @return
+     */
+    public int pathSum(TreeNode root, int targetSum) {
         if(root==null){
             return count;
         }
-        helpPathSum(root,0,sum);
-        if(root.left!=null){
-            pathSum(root.left,sum);
-        }
-        if(root.right!=null){
-            pathSum(root.right,sum);
+        helpPathSum(root,0,targetSum);
+        if(root!=null){
+            pathSum(root.left,targetSum);
+            pathSum(root.right,targetSum);
         }
         return count;
     }
 
-    /**
-     *     5
-     *   4    6
-     * 1     7   8
-     *         9
-     * @param args
-     */
-    public static void main(String[] args) {
-        LeetCode437 leetCode437 = new LeetCode437();
+    @Test
+    public void testPathSum(){
         TreeNode root = new TreeNode(10);
         root.left = new TreeNode(5,new TreeNode(3,new TreeNode(3),new TreeNode(-3)),new TreeNode(2,null,new TreeNode(1)));
         root.right = new TreeNode(-3,null,new TreeNode(11));
-
-        int sum = 8;
-//        TreeNode root = new TreeNode(1);
-//        root.right = new TreeNode(2,null,new TreeNode(3,null,new TreeNode(4,null,new TreeNode(5))));
-//        int sum = 3;
-        int pathSum = leetCode437.pathSum(root, sum);
-        System.out.println(pathSum);
+        int target = 8;
+        int count = pathSum(root,target);
+        System.out.println("count="+count);
     }
 }
