@@ -15,6 +15,16 @@ public class TreeNode {
         this.right = right;
     }
 
+    public TreeNode(int val,Integer left,Integer right){
+        this.val = val;
+        if(left!=null){
+            this.left = new TreeNode(left);
+        }
+        if(right!=null){
+            this.right = new TreeNode(right);
+        }
+    }
+
     @Override
     public boolean equals(Object obj) {
         if(! (obj instanceof TreeNode)){
