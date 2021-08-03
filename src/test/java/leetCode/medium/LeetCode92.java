@@ -53,6 +53,37 @@ public class LeetCode92 {
         return finalNode.next;
     }
 
+    public ListNode reverseBetween1(ListNode head, int left, int right) {
+        if(head == null || head.next ==null){
+            return head;
+        }
+        int k = 1;
+        ListNode dummyHead = new ListNode(0);
+        dummyHead.next = head;
+        ListNode pre = dummyHead,p=dummyHead;
+        for(;k<=left;k++){
+            pre = p;
+            p = p.next;
+        }
+        if(p==null){
+            return dummyHead.next;
+        }
+        //从p节点开始到right都是要反转的
+        ListNode tmp = p;
+        ListNode q = p.next;
+        tmp.next = null;
+        for(;k<=right;k++){
+            ListNode qTmp = q;
+            q = q.next;
+            qTmp.next = tmp;
+            tmp = qTmp;
+        }
+        //pre->tmp->p
+        pre.next = tmp;
+        p.next = q;
+        return dummyHead.next;
+    }
+
     public static void main(String[] args) {
         ListNode listNode1 = new ListNode(1);
         ListNode listNode2 = new ListNode(2);
@@ -64,7 +95,7 @@ public class LeetCode92 {
         listNode3.next = listNode4;
         listNode4.next = listNode5;
         LeetCode92 leetCode92 = new LeetCode92();
-        ListNode resultNode = leetCode92.reverseBetween(listNode1, 2, 2);
+        ListNode resultNode = leetCode92.reverseBetween1(listNode1, 2, 2);
         System.out.println(resultNode);
     }
 }
