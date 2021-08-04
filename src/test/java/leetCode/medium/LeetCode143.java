@@ -28,6 +28,36 @@ public class LeetCode143 {
         return root;
     }
 
+    public void reorderList1(ListNode head) {
+        if(head == null || head.next == null){
+            return;
+        }
+        ListNode slow = head,fast = head;
+        while(fast.next!=null && fast.next.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        ListNode halfNode = slow.next;
+        slow.next = null;
+        //反转snow开头的链表
+        ListNode reverseHead = reverseList(halfNode);
+        ListNode newListNode = new ListNode(0);
+        ListNode tmp = newListNode;
+        while(head!=null || reverseHead!=null){
+            if(head!=null){
+                tmp.next = head;
+                tmp = tmp.next;
+                head = head.next;
+            }
+            if(reverseHead!=null){
+                tmp.next = reverseHead;
+                tmp = tmp.next;
+                reverseHead = reverseHead.next;
+            }
+        }
+        head = newListNode.next;
+    }
+
     public void reorderList(ListNode head) {
         if (head == null || head.next == null) {
             return;
@@ -55,8 +85,9 @@ public class LeetCode143 {
 
     @Test
     public void testReorderList() {
-        ListNode head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4))));
-        reorderList(head);
+        //ListNode head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4))));
+        ListNode head = ListNode.createListNode(1,2,3,4);
+        reorderList1(head);
         System.out.println("list:" + head);
     }
 }

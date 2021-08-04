@@ -28,8 +28,34 @@ import leetCode.TreeNode;
  */
 public class LeetCode114 {
 
-    private TreeNode newRoot = new TreeNode(0);
+//    private TreeNode newRoot = new TreeNode(0);
+    private TreeNode newRoot = null;
     private TreeNode head = newRoot;
+    private TreeNode pre = null;
+
+    private void helpFlatten3(TreeNode root) {
+        if(root==null){
+            return;
+        }
+        helpFlatten3(root.left);
+        if(newRoot == null){
+            newRoot = root;
+            pre = newRoot;
+            newRoot.left = null;
+        }else{
+            pre.right = root;
+            pre = pre.right;
+            helpFlatten3(root.right);
+        }
+    }
+
+    public void flatten3(TreeNode root) {
+        if(root==null){
+            return;
+        }
+        helpFlatten3(root);
+        root = newRoot;
+    }
 
     private void flattenHelp(TreeNode root) {
         if (root == null) {
@@ -58,8 +84,6 @@ public class LeetCode114 {
         System.out.println(root);
     }
 
-    private TreeNode pre;
-
     /**
      * 采用变形的后序遍历 右左根
      * 先访问到元素6,将6.right = pre
@@ -84,6 +108,6 @@ public class LeetCode114 {
         LeetCode114 leetCode114 = new LeetCode114();
         TreeNode root = new TreeNode(1, new TreeNode(2, new TreeNode(3), new TreeNode(4)), new TreeNode(5, new TreeNode(6), new TreeNode(7)));
         //leetCode114.flatten(root);
-        leetCode114.flatten1(root);
+        leetCode114.flatten3(root);
     }
 }

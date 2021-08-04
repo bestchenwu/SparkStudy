@@ -6,6 +6,36 @@ import org.junit.Test;
 
 public class LeetCode109 {
 
+    public TreeNode sortedListToBST1(ListNode head) {
+        if(head == null ){
+            return null;
+        }
+        if(head.next == null){
+            return new TreeNode(head.val);
+        }else{
+            ListNode slow = head,fast = head,pre = head;
+            while(fast.next!=null && fast.next.next!=null){
+                pre = slow;
+                slow = slow.next;
+                fast = fast.next.next;
+            }
+            TreeNode root;
+            if(slow == head){
+                //说明链表只有两个节点
+                root = new TreeNode(slow.val);
+                root.right = (slow.next==null?null:new TreeNode(slow.next.val));
+            }else{
+                //slow节点是root节点
+                root = new TreeNode(slow.val);
+                pre.next = null;
+                root.left = sortedListToBST1(head);
+                root.right = sortedListToBST1(slow.next);
+            }
+
+            return root;
+        }
+    }
+
     public TreeNode sortedListToBST(ListNode head) {
         if (head == null) {
             return null;
@@ -41,8 +71,9 @@ public class LeetCode109 {
 
     @Test
     public void testSortedListToBST() {
-        ListNode head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
-        TreeNode root = sortedListToBST(head);
+        //ListNode head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
+        ListNode head =  ListNode.createListNode(1,2,3,4);
+        TreeNode root = sortedListToBST1(head);
         System.out.println("root:" + root);
     }
 }

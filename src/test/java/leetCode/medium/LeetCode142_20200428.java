@@ -73,6 +73,26 @@ public class LeetCode142_20200428 {
         return head;
     }
 
+
+    /**
+     *  dummyHead -------x1--------相交节点
+     *                               /    \
+     *                          x2  /       \   x3
+     *                             / -------相遇节点
+     *
+     *  快指针走的路程是x1+x3+k1*(x2+x3)
+     *  慢指针走的路程是x1+x3+k2*(x2+x3)
+     *  那么x1+x3+k1*(x2+x3) = 2*(x1+x3) + 2*k2*(x2+x3)
+     *   x1+k1*x2 + (1+k1)*x3 = 2x1 + 2*k2*x2 + (2*k2+2)*x3
+     *   k1*x2 + (1+k1) * x3 = x1 + 2*k2*x2 + (2*k2+2) * x3
+     *   x1-x2 = k1*x2 + (1+k1)*x3 - 2*k2*x2 - (2*k2+2)*x3 - x2
+     *   x1-x2 = (k1-2k2-1)*x2 + (1+k1-2*k2-2)*x3
+     *   x1-x2 = (k1-2k2-1)*(x2+x3)
+     *   说明x1与x2的差距正好等于x2+x3(圆环长度的整数倍)
+     * @param head
+     * @return
+     */
+
     public ListNode detectCycle3(ListNode head) {
         if(head==null || head.next==null){
             return null;
