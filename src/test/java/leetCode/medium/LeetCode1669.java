@@ -1,6 +1,5 @@
 package leetCode.medium;
 
-import com.scalaFuntionProgramming_2times.unit3_datastructure.List;
 import leetCode.ListNode;
 import org.junit.Test;
 

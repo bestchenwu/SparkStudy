@@ -112,8 +112,8 @@
   <dependencies>
     <dependency>
       <groupId>org.apache.spark</groupId>
-      <artifactId>spark-core_2.11</artifactId>
-      <version>2.3.0</version>
+      <artifactId>spark-core_2.12</artifactId>
+      <version>2.4.0</version>
       <scope>provided</scope>
       <exclusions>
         <exclusion>
@@ -137,32 +137,28 @@
           <groupId>org.apache.avro</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>xbean-asm5-shaded</artifactId>
+          <artifactId>xbean-asm6-shaded</artifactId>
           <groupId>org.apache.xbean</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>spark-launcher_2.11</artifactId>
+          <artifactId>spark-launcher_2.12</artifactId>
           <groupId>org.apache.spark</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>spark-kvstore_2.11</artifactId>
+          <artifactId>spark-kvstore_2.12</artifactId>
           <groupId>org.apache.spark</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>spark-network-common_2.11</artifactId>
+          <artifactId>spark-network-common_2.12</artifactId>
           <groupId>org.apache.spark</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>spark-network-shuffle_2.11</artifactId>
+          <artifactId>spark-network-shuffle_2.12</artifactId>
           <groupId>org.apache.spark</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>spark-unsafe_2.11</artifactId>
+          <artifactId>spark-unsafe_2.12</artifactId>
           <groupId>org.apache.spark</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>jets3t</artifactId>
-          <groupId>net.java.dev.jets3t</groupId>
         </exclusion>
         <exclusion>
           <artifactId>jul-to-slf4j</artifactId>
@@ -185,7 +181,7 @@
           <groupId>org.roaringbitmap</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>json4s-jackson_2.11</artifactId>
+          <artifactId>json4s-jackson_2.12</artifactId>
           <groupId>org.json4s</groupId>
         </exclusion>
         <exclusion>
@@ -209,7 +205,7 @@
           <groupId>io.dropwizard.metrics</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>jackson-module-scala_2.11</artifactId>
+          <artifactId>jackson-module-scala_2.12</artifactId>
           <groupId>com.fasterxml.jackson.module</groupId>
         </exclusion>
         <exclusion>
@@ -225,7 +221,7 @@
           <groupId>net.sf.py4j</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>spark-tags_2.11</artifactId>
+          <artifactId>spark-tags_2.12</artifactId>
           <groupId>org.apache.spark</groupId>
         </exclusion>
         <exclusion>
@@ -236,8 +232,8 @@
     </dependency>
     <dependency>
       <groupId>org.apache.spark</groupId>
-      <artifactId>spark-sql_2.11</artifactId>
-      <version>2.3.0</version>
+      <artifactId>spark-sql_2.12</artifactId>
+      <version>2.4.0</version>
       <scope>provided</scope>
       <exclusions>
         <exclusion>
@@ -245,11 +241,11 @@
           <groupId>com.univocity</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>spark-sketch_2.11</artifactId>
+          <artifactId>spark-sketch_2.12</artifactId>
           <groupId>org.apache.spark</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>spark-catalyst_2.11</artifactId>
+          <artifactId>spark-catalyst_2.12</artifactId>
           <groupId>org.apache.spark</groupId>
         </exclusion>
         <exclusion>
@@ -273,11 +269,11 @@
           <groupId>org.apache.arrow</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>spark-tags_2.11</artifactId>
+          <artifactId>spark-tags_2.12</artifactId>
           <groupId>org.apache.spark</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>xbean-asm5-shaded</artifactId>
+          <artifactId>xbean-asm6-shaded</artifactId>
           <groupId>org.apache.xbean</groupId>
         </exclusion>
         <exclusion>
@@ -288,12 +284,12 @@
     </dependency>
     <dependency>
       <groupId>org.apache.spark</groupId>
-      <artifactId>spark-streaming_2.11</artifactId>
-      <version>2.3.0</version>
+      <artifactId>spark-streaming_2.12</artifactId>
+      <version>2.4.0</version>
       <scope>provided</scope>
       <exclusions>
         <exclusion>
-          <artifactId>spark-tags_2.11</artifactId>
+          <artifactId>spark-tags_2.12</artifactId>
           <groupId>org.apache.spark</groupId>
         </exclusion>
         <exclusion>
@@ -304,24 +300,24 @@
     </dependency>
     <dependency>
       <groupId>org.apache.spark</groupId>
-      <artifactId>spark-mllib_2.11</artifactId>
-      <version>2.3.0</version>
+      <artifactId>spark-mllib_2.12</artifactId>
+      <version>2.4.0</version>
       <scope>provided</scope>
       <exclusions>
         <exclusion>
-          <artifactId>spark-graphx_2.11</artifactId>
+          <artifactId>spark-graphx_2.12</artifactId>
           <groupId>org.apache.spark</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>spark-mllib-local_2.11</artifactId>
+          <artifactId>spark-mllib-local_2.12</artifactId>
           <groupId>org.apache.spark</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>breeze_2.11</artifactId>
+          <artifactId>breeze_2.12</artifactId>
           <groupId>org.scalanlp</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>spark-tags_2.11</artifactId>
+          <artifactId>spark-tags_2.12</artifactId>
           <groupId>org.apache.spark</groupId>
         </exclusion>
         <exclusion>
@@ -332,8 +328,8 @@
     </dependency>
     <dependency>
       <groupId>org.apache.spark</groupId>
-      <artifactId>spark-streaming-kafka-0-10_2.11</artifactId>
-      <version>2.3.0</version>
+      <artifactId>spark-streaming-kafka-0-10_2.12</artifactId>
+      <version>2.4.0</version>
       <scope>provided</scope>
       <exclusions>
         <exclusion>
@@ -341,7 +337,7 @@
           <groupId>org.apache.kafka</groupId>
         </exclusion>
         <exclusion>
-          <artifactId>spark-tags_2.11</artifactId>
+          <artifactId>spark-tags_2.12</artifactId>
           <groupId>org.apache.spark</groupId>
         </exclusion>
         <exclusion>
@@ -352,8 +348,8 @@
     </dependency>
     <dependency>
       <groupId>org.apache.spark</groupId>
-      <artifactId>spark-hive_2.11</artifactId>
-      <version>2.3.0</version>
+      <artifactId>spark-hive_2.12</artifactId>
+      <version>2.4.0</version>
       <scope>provided</scope>
       <exclusions>
         <exclusion>
@@ -409,17 +405,17 @@
     <dependency>
       <groupId>org.scala-lang</groupId>
       <artifactId>scala-library</artifactId>
-      <version>2.11.7</version>
+      <version>2.12.12</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.scala-lang</groupId>
       <artifactId>scala-compiler</artifactId>
-      <version>2.11.7</version>
+      <version>2.12.12</version>
       <scope>provided</scope>
       <exclusions>
         <exclusion>
-          <artifactId>scala-xml_2.11</artifactId>
+          <artifactId>scala-xml_2.12</artifactId>
           <groupId>org.scala-lang.modules</groupId>
         </exclusion>
       </exclusions>
@@ -427,7 +423,7 @@
     <dependency>
       <groupId>org.scala-lang</groupId>
       <artifactId>scala-reflect</artifactId>
-      <version>2.11.7</version>
+      <version>2.12.12</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -444,7 +440,7 @@
     </dependency>
     <dependency>
       <groupId>org.apache.flink</groupId>
-      <artifactId>flink-scala_2.11</artifactId>
+      <artifactId>flink-scala_2.12</artifactId>
       <version>1.8.1</version>
       <scope>provided</scope>
     </dependency>
@@ -462,19 +458,19 @@
     </dependency>
     <dependency>
       <groupId>org.apache.flink</groupId>
-      <artifactId>flink-queryable-state-client-java_2.11</artifactId>
+      <artifactId>flink-queryable-state-client-java_2.12</artifactId>
       <version>1.8.1</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.flink</groupId>
-      <artifactId>flink-runtime-web_2.11</artifactId>
+      <artifactId>flink-runtime-web_2.12</artifactId>
       <version>1.8.1</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.flink</groupId>
-      <artifactId>flink-statebackend-rocksdb_2.11</artifactId>
+      <artifactId>flink-statebackend-rocksdb_2.12</artifactId>
       <version>1.8.1</version>
       <scope>provided</scope>
       <exclusions>
@@ -558,8 +554,8 @@
   </dependencies>
   <properties>
     <zookeeper.version>3.4.13</zookeeper.version>
-    <spark.version>2.3.0</spark.version>
-    <scala.version>2.11.7</scala.version>
+    <spark.version>2.4.0</spark.version>
+    <scala.version>2.12.12</scala.version>
     <postgresql.version>42.2.5</postgresql.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <hadoop.version>2.7.4</hadoop.version>
@@ -573,6 +569,7 @@
     <commons-collections.version>3.2.1</commons-collections.version>
     <slf4j.version>1.7.21</slf4j.version>
     <redission.version>3.12.3</redission.version>
+    <scala-lib.version>2.12</scala-lib.version>
     <commons-lang.version>2.6</commons-lang.version>
     <build.plugins.plugin.version>3.0.1</build.plugins.plugin.version>
     <log4j.version>1.2.17</log4j.version>
