@@ -1,4 +1,4 @@
-package nowCode.simple;
+package nowCode.medium;
 
 import org.junit.Test;
 
