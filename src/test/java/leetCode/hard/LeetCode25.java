@@ -67,7 +67,7 @@ class Pair{
     }
 }
 
-public class LeetCode25_1 {
+public class LeetCode25 {
 
     private int remain = 0;
 
