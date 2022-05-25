@@ -1,5 +1,9 @@
 package nowCode.huawei;
 
+import org.junit.Test;
+
+import java.util.Scanner;
+
 /**
  * 描述
  * 编写一个函数，计算字符串中含有的不同字符的个数。字符在 ASCII 码范围内( 0~127 ，包括 0 和 127 )，换行表示结束符，不算在字符里。不在范围内的不作统计。多个相同的字符只计算一次
@@ -30,14 +34,21 @@ package nowCode.huawei;
 
 public class HJ10 {
 
-    public int getStringLength(String str){
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String str = scanner.nextLine();
+        int res = getStringLength(str);
+        System.out.println(res);
+    }
+
+    public static int getStringLength(String str){
         int[] countArray = new int[128];
         for(int i = 0;i<str.length();i++){
             char tmp = str.charAt(i);
             if(tmp=='\n'){
                 break;
             }
-            countArray[tmp-'0']+=1;
+            countArray[tmp-0]+=1;
         }
         int count = 0;
         for(int i = 0;i<128;i++){
@@ -48,4 +59,10 @@ public class HJ10 {
         return count;
     }
 
+    @Test
+    public void testGetStringLength(){
+        String str = "aaa";
+        int stringLength = getStringLength(str);
+        System.out.println("stringLength="+stringLength);
+    }
 }
