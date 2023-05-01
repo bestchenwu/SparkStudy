@@ -27,34 +27,25 @@ package offer.simple;
  * 输入：n = 4294967293 (控制台输入 11111111111111111111111111111101，部分语言中 n = -3）
  * 输出：31
  * 解释：输入的二进制串 11111111111111111111111111111101 中，共有 31 位为 '1'。
+ * 提示：
+ *
+ * 输入必须是长度为 32 的 二进制串 。
  */
 public class Offer15 {
 
     public int hammingWeight(int n) {
-        if(n>0){
-           return numbersOfOne(n);
-        }else{
-            //当n=-3的时候,
-            //带上符号位10000011
-            //除符号位取反11111100 再加上1
-            //11111101
-            return -1;
+        int res = 0;
+        for(int i=0;i<32;i++){
+            if((n & (1<<i)) != 0){
+                res +=1;
+            }
         }
-    }
-
-    private int numbersOfOne(int n){
-        int count = 0;
-        while(n>1){
-            count+=n%2;
-            n = n/2;
-        }
-        count+=(n==1?1:0);
-        return count;
+        return res;
     }
 
     public static void main(String[] args) {
         Offer15 test = new Offer15();
-        int n = 128;
+        int n = -3;
         int res = test.hammingWeight(n);
         System.out.println("res="+res);
     }
